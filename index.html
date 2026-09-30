@@ -128,6 +128,40 @@
     .header.scrolled{-webkit-backdrop-filter:none !important;backdrop-filter:none !important;background:var(--body-color) !important}
   }
 
+  /* ===== Effet 1 : orbite autour de la photo ===== */
+  .orbit{position:absolute;inset:-18px;border:1.5px dashed hsla(255,60%,70%,.45);border-radius:50%;pointer-events:none;animation:spin 18s linear infinite}
+  .orbit.o2{inset:-40px;border-style:solid;border-color:hsla(255,60%,70%,.16);animation-duration:28s;animation-direction:reverse}
+  .orbit i{position:absolute;top:-6px;left:50%;width:11px;height:11px;margin-left:-5.5px;border-radius:50%;background:var(--first-light);box-shadow:0 0 12px var(--first-color)}
+  .orbit.o2 i{top:50%;left:-4.5px;width:8px;height:8px;margin:-4px 0 0;background:var(--signal);box-shadow:0 0 10px var(--signal)}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  /* ===== Effet 2 : nom qui brille ===== */
+  :root{--shine:#fff}
+  :root[data-theme="light"]{--shine:hsl(255,100%,85%)}
+  .home__name{background:linear-gradient(100deg,var(--first-color) 30%,var(--shine) 45%,var(--first-light) 50%,var(--first-color) 65%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent !important;animation:fromBelow .8s ease .35s both,shine 4s ease-in-out 2.2s infinite;background-position:120% 0}
+  @keyframes shine{from{background-position:120% 0}to{background-position:-40% 0}}
+
+  /* ===== Effet 3 : lampe qui suit la souris ===== */
+  .spot,.spot-dots{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0;transition:opacity .4s}
+  .spot{background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),hsla(255,85%,62%,.13),transparent 60%)}
+  .spot-dots{background-image:radial-gradient(hsla(255,60%,80%,.35) 1px,transparent 1.5px);background-size:24px 24px;-webkit-mask-image:radial-gradient(220px circle at var(--mx,50%) var(--my,50%),#000,transparent 70%);mask-image:radial-gradient(220px circle at var(--mx,50%) var(--my,50%),#000,transparent 70%)}
+  [data-theme="light"] .spot{background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),hsla(255,85%,62%,.1),transparent 60%)}
+  [data-theme="light"] .spot-dots{background-image:radial-gradient(hsla(255,40%,40%,.3) 1px,transparent 1.5px)}
+  body.spot-on .spot,body.spot-on .spot-dots{opacity:1}
+  .main,.footer{position:relative;z-index:1}
+
+  /* ===== Effet 4 : cartes de projets en 3D ===== */
+  .projects__swiper .swiper-slide{perspective:900px}
+  .projects__swiper .card{position:relative;transform-style:preserve-3d;will-change:transform}
+  .projects__swiper .card::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(circle at var(--gx,50%) var(--gy,50%),#ffffff1f,transparent 55%);opacity:0;transition:opacity .3s}
+  .projects__swiper .card.tilting::after{opacity:1}
+
+  /* ===== Effet 5 : reflet sur les boutons ===== */
+  .button{position:relative;overflow:hidden;isolation:isolate}
+  .button::after{content:"";position:absolute;top:0;left:-80%;width:50%;height:100%;z-index:-1;background:linear-gradient(100deg,transparent,#ffffff66,transparent);transform:skewX(-20deg);transition:left .6s ease;pointer-events:none}
+  .button--ghost::after{background:linear-gradient(100deg,transparent,hsla(255,80%,75%,.35),transparent)}
+  .button:hover::after{left:130%}
+
   /* ===== Barre de progression ===== */
   .progress{position:fixed;top:0;left:0;z-index:150;width:100%;height:3px;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--first-alt),var(--first-light));pointer-events:none}
 
@@ -349,6 +383,7 @@
   .card.reveal{transition:opacity .85s cubic-bezier(.2,.7,.2,1) var(--d,0s),transform .85s cubic-bezier(.2,.7,.2,1) var(--d,0s),translate .3s,border-color .3s,box-shadow .3s}
 
   @media (prefers-reduced-motion:reduce){
+    .orbit,.home__name{animation:none !important}
     html{scroll-behavior:auto}
     *,*::before,*::after{animation:none !important;transition:none !important}
     .reveal{opacity:1 !important;transform:none !important}
@@ -385,6 +420,8 @@
 <div class="progress" id="progress" aria-hidden="true"></div>
 
 <div class="cursor" id="cursor" aria-hidden="true"></div>
+<div class="spot" aria-hidden="true"></div>
+<div class="spot-dots" aria-hidden="true"></div>
 
 <main class="main">
 
@@ -399,12 +436,14 @@
         </a></li>
       </ul>
       <div class="home__photo">
+        <span class="orbit" aria-hidden="true"><i></i></span>
+        <span class="orbit o2" aria-hidden="true"><i></i></span>
         <img src="assets/img/souad.webp" alt="Portrait de Souad" width="900" height="1040" fetchpriority="high">
       </div>
       <div class="home__data">
         <p class="home__badge" data-en="<span class='dot'></span>Available for a 6-month internship"><span class="dot"></span>Disponible pour un stage de 6 mois</p>
         <p class="home__greeting" data-en="Hi, I’m a <span>Master’s student (M2)</span>">Bonjour, je suis <span>étudiante en Master 2</span></p>
-        <h1 class="home__name" id="titre" data-split>Souad</h1>
+        <h1 class="home__name" id="titre">Souad</h1>
         <h2 class="home__profession" data-en="Control Engineering &amp; Robotics">Automatique &amp; Robotique</h2>
         <p class="home__seek" data-en="Student at Polytech Orléans, I’m looking for a 6-month end-of-studies internship in industrial automation and SCADA supervision. Explore my control, robotics and automation projects.">Étudiante à Polytech Orléans, je cherche un stage de fin d’études de 6 mois en automatisme et supervision SCADA. Découvrez mes projets de commande, de robotique et d’automatisme.</p>
         <div class="home__cta">
@@ -749,6 +788,25 @@
     });
     const tick = () => { cx += (x - cx) * 0.18; cy += (y - cy) * 0.18; cur.style.transform = `translate(${cx}px,${cy}px)`; requestAnimationFrame(tick); };
     tick();
+  }
+
+  /* ---- Effets 3 et 4 : lampe qui suit la souris + cartes 3D (ordinateur seulement) ---- */
+  if (!reduce && window.matchMedia('(hover:hover) and (pointer:fine)').matches) {
+    let raf = 0, mx = 0, my = 0;
+    window.addEventListener('pointermove', e => {
+      mx = e.clientX; my = e.clientY; document.body.classList.add('spot-on');
+      if (!raf) raf = requestAnimationFrame(() => { root.style.setProperty('--mx', mx + 'px'); root.style.setProperty('--my', my + 'px'); raf = 0; });
+    }, { passive: true });
+    document.addEventListener('pointerleave', () => document.body.classList.remove('spot-on'));
+    document.querySelectorAll('.projects__swiper .card').forEach(card => {
+      card.addEventListener('pointermove', e => {
+        const r = card.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+        card.classList.add('tilting');
+        card.style.transform = `rotateY(${x * 14}deg) rotateX(${-y * 14}deg)`;
+        card.style.setProperty('--gx', (x + .5) * 100 + '%'); card.style.setProperty('--gy', (y + .5) * 100 + '%');
+      });
+      card.addEventListener('pointerleave', () => { card.classList.remove('tilting'); card.style.transform = ''; });
+    });
   }
 
   /* ---- Schémas : tracé progressif ---- */
