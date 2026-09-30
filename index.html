@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Souad – Automatique, robotique et SCADA</title>
+<title>Souad El-Khataby – Portfolio</title>
 <meta name="description" content="Portfolio de Souad, étudiante en Master 2 Automatique, Robotique et Signal à Polytech Orléans. Projets, parcours et compétences.">
 <meta name="theme-color" content="#000005">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23876CDB'/%3E%3Ctext x='32' y='44' font-size='38' font-family='Arial' font-weight='700' text-anchor='middle' fill='white'%3ES%3C/text%3E%3C/svg%3E">
@@ -164,6 +164,10 @@
   .button--ghost::after{background:linear-gradient(100deg,transparent,hsla(255,80%,75%,.35),transparent)}
   .button:hover::after{left:130%}
 
+  /* ===== Message « adresse copiée » ===== */
+  .toast{position:fixed;left:50%;bottom:6rem;z-index:300;transform:translate(-50%,20px);padding:.75rem 1.2rem;border-radius:999px;background:var(--first-alt);color:#fff;font-size:var(--small);font-weight:600;box-shadow:0 12px 30px -10px hsla(255,85%,60%,.8);opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;white-space:nowrap}
+  .toast.show{opacity:1;transform:translate(-50%,0)}
+
   /* ===== Barre de progression ===== */
   .progress{position:fixed;top:0;left:0;z-index:150;width:100%;height:3px;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--first-alt),var(--first-light));pointer-events:none}
 
@@ -205,7 +209,7 @@
   .home__photo img{width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:center top;background:var(--container-2)}
   .home__greeting{font-size:var(--h3);font-weight:500;color:var(--title-color);animation:fromBelow .8s ease .2s both}
   .home__greeting span{color:var(--first-color);font-weight:600}
-  .home__name{font-size:var(--biggest);font-style:italic;color:var(--first-color);letter-spacing:-.01em;margin:.3rem 0 .4rem}
+  .home__name{font-size:clamp(1.45rem,4.3vw,3rem);white-space:nowrap;font-style:normal;color:var(--first-color);letter-spacing:-.01em;margin:.3rem 0 .4rem}
   .home__profession{font-size:var(--h2);animation:fromBelow .8s ease .6s both}
   .home__location{display:inline-flex;align-items:center;gap:.45rem;margin-top:.55rem;font-size:var(--small);font-weight:600;color:var(--text-color);animation:fromBelow .8s ease .75s both}
   .home__location svg{width:1rem;height:1rem;flex:none;fill:none;stroke:var(--first-color);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
@@ -449,15 +453,15 @@
       <div class="home__photo">
         <span class="orbit" aria-hidden="true"><i></i></span>
         <span class="orbit o2" aria-hidden="true"><i></i></span>
-        <img src="assets/img/souad.webp" alt="Portrait de Souad El Khataby" width="900" height="1040" fetchpriority="high">
+        <img src="assets/img/souad.webp" alt="Portrait de Souad El-Khataby" width="900" height="1040" fetchpriority="high">
       </div>
       <div class="home__data">
         <p class="home__badge" data-en="<span class='dot'></span>Available from March 2027 · 6-month internship"><span class="dot"></span>Disponible dès mars 2027 · stage de 6 mois</p>
         <p class="home__greeting" data-en="Hi, I’m">Bonjour, je suis</p>
-        <h1 class="home__name" id="titre">Souad El Khataby</h1>
+        <h1 class="home__name" id="titre">EL-KHATABY Souad</h1>
         <h2 class="home__profession" data-en="Engineer in Control, Robotics &amp; Signal Processing">Ingénieure en automatique, robotique &amp; signal</h2>
         <p class="home__location" data-en="<svg viewBox='0 0 24 24' aria-hidden='true'><path d='M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z'/><circle cx='12' cy='10' r='2.5'/></svg>Based in Orléans · Open to relocation anywhere in France"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z"/><circle cx="12" cy="10" r="2.5"/></svg>Basée à Orléans · Mobile dans toute la France</p>
-        <p class="home__seek" data-en="Master’s student (M2) in Control, Robotics and Signal Processing at Polytech Orléans, I’m looking for a 6-month end-of-studies internship in industrial automation and SCADA supervision.">Étudiante en Master 2 Automatique, Robotique et Signal à Polytech Orléans, je recherche un stage de fin d’études de 6 mois en automatisme industriel et supervision SCADA.</p>
+        <p class="home__seek" data-en="Master’s student (M2) in Control, Robotics and Signal Processing at Polytech Orléans, I’m looking for a 6-month end-of-studies internship.">Étudiante en Master 2 Automatique, Robotique et Signal à Polytech Orléans, je recherche un stage de fin d’études de 6 mois.</p>
         <div class="home__cta">
           <a class="button" href="assets/pdf/CV_Souad_El_Khataby.pdf" download data-en="Download my CV">Télécharger mon CV</a>
           <a class="button button--ghost" href="#projets" data-en="View my projects">Voir mes projets</a>
@@ -473,12 +477,12 @@
       <div class="about__stats">
         <div class="stat reveal" data-from="left"><span class="stat__num">M2</span><span class="stat__label" data-en="Control Engineering, Robotics &amp; Signal Processing, Polytech Orléans">Automatique, Robotique &amp; Signal, Polytech Orléans</span></div>
         <div class="stat reveal" data-from="left" style="--d:.12s"><span class="stat__num">5</span><span class="stat__label" data-en="projects in control, robotics and automation">projets en commande, robotique et automatisme</span></div>
-        <div class="stat reveal" data-from="left" style="--d:.24s"><span class="stat__num" data-en="6 mo.">6 mois</span><span class="stat__label" data-en="end-of-studies internship wanted, automation &amp; SCADA">de stage de fin d’études recherché, automatisme &amp; SCADA</span></div>
+        <div class="stat reveal" data-from="left" style="--d:.24s"><span class="stat__num" data-en="6 mo.">6 mois</span><span class="stat__label" data-en="end-of-studies internship wanted, from March 2027">de stage de fin d’études recherché, dès mars 2027</span></div>
       </div>
       <div class="reveal" data-from="right">
         <h2 class="section__title" id="h-apropos" data-en="<span>Control engineering</span><br>is my passion"><span>L’automatique</span><br>est ma passion</h2>
         <p class="about__description" data-en="I’m completing a Master’s in <b>control engineering, robotics and signal processing</b> at Polytech Orléans. My projects range from <b>stabilizing a two-wheeler</b> to the kinematics of industrial robots.">Je termine un Master en <b>automatique, robotique et signal</b> à Polytech Orléans. Mes projets vont de la <b>stabilisation d’un deux-roues</b> à la cinématique de robots industriels.</p>
-        <p class="about__description" data-en="What drives me: <b>industrial automation</b> and <b>SCADA supervision</b>. I’m looking for a 6-month end-of-studies internship in this field.">Ce qui m’attire : les <b>automatismes</b> et la <b>supervision SCADA</b>. Je cherche un stage de fin d’études de 6 mois dans ce domaine.</p>
+        <p class="about__description" data-en="What drives me: <b>industrial automation</b>, <b>robotics</b> and <b>embedded systems</b>. I’m looking for a 6-month end-of-studies internship.">Ce qui m’attire : les <b>automatismes</b>, la <b>robotique</b> et les <b>systèmes embarqués</b>. Je recherche un stage de fin d’études de 6 mois.</p>
         <a class="button" href="assets/pdf/Souad_Portfolio.pdf" download data-en="Download PDF">Télécharger le PDF</a>
       </div>
     </div>
@@ -642,7 +646,7 @@
     <div class="contact__container container">
       <div class="contact__card reveal">
         <h2 class="section__title" id="h-contact" data-en="Contact <span>me</span>">Me <span>contacter</span></h2>
-        <p class="contact__description" data-en="I’m available for a 6-month end-of-studies internship in industrial automation and SCADA.">Je suis disponible pour un stage de fin d’études de 6 mois en automatisme et SCADA.</p>
+        <p class="contact__description" data-en="I’m available from March 2027 for a 6-month end-of-studies internship.">Je suis disponible dès mars 2027 pour un stage de fin d’études de 6 mois.</p>
         <a class="contact__email" id="emailText" hidden></a>
         <div class="contact__actions">
           <button class="button" type="button" id="copyEmail" hidden data-en="Copy email">Copier l’e-mail</button>
@@ -671,7 +675,6 @@
   </div>
 </footer>
 
-<a class="up" id="up" href="#accueil" aria-label="Retour en haut">&uarr;</a>
 
 <script src="assets/js/swiper-bundle.min.js"></script>
 <script>
@@ -688,7 +691,7 @@
 
   /* ---- Langue FR / EN ---- */
   const i18n = [...document.querySelectorAll('[data-en]')].map(el => ({ el, fr: el.innerHTML, en: el.dataset.en }));
-  const titles = { fr: document.title, en: 'Souad – Control engineering, robotics and SCADA' };
+  const titles = { fr: document.title, en: 'Souad El-Khataby – Portfolio' };
   const langBtn = document.getElementById('langToggle');
   let lang = 'fr';
   const tr = (fr, en) => lang === 'en' ? en : fr;
@@ -748,6 +751,20 @@
     card.classList.toggle('open', open); h.setAttribute('aria-expanded', String(open));
   }));
 
+  /* ---- Liens e-mail : copier l'adresse au lieu d'ouvrir le logiciel de messagerie ---- */
+  const toast = document.createElement('div');
+  toast.className = 'toast'; toast.setAttribute('role', 'status'); document.body.appendChild(toast);
+  let toastTimer;
+  const showToast = msg => { toast.textContent = msg; toast.classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove('show'), 2600); };
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href^="mailto:"]');
+    if (!a) return;
+    e.preventDefault();
+    const mail = a.getAttribute('href').replace('mailto:', '');
+    const done = () => showToast(tr('Adresse copiée : ', 'Email copied: ') + mail);
+    if (navigator.clipboard) navigator.clipboard.writeText(mail).then(done, () => showToast(mail)); else showToast(mail);
+  });
+
   /* ---- Contact : copier l'e-mail ---- */
   const copyBtn = document.getElementById('copyEmail'), emailText = document.getElementById('emailText');
   if (EMAIL) {
@@ -775,7 +792,7 @@
   const header = document.getElementById('header'), up = document.getElementById('up'), progress = document.getElementById('progress');
   const onScroll = () => {
     header.classList.toggle('scrolled', window.scrollY > 40);
-    up.classList.toggle('show', window.scrollY > 500);
+    if (up) up.classList.toggle('show', window.scrollY > 500);
     const max = document.documentElement.scrollHeight - window.innerHeight;
     progress.style.transform = 'scaleX(' + (max > 0 ? window.scrollY / max : 0) + ')';
   };
