@@ -55,6 +55,10 @@
   .section{position:relative;padding-block:5.5rem 1rem}
   .section__title{text-align:center;font-size:var(--h1);margin-bottom:3rem}
   .section__title span{color:var(--first-color)}
+  .section__eyebrow{display:flex;align-items:center;justify-content:center;gap:.7rem;margin-bottom:.9rem;font-family:var(--second-font);font-size:.72rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--first-color)}
+  .section__eyebrow::before,.section__eyebrow::after{content:"";width:2rem;height:1px;background:currentColor;opacity:.5}
+  .about .section__eyebrow{justify-content:flex-start}
+  .about .section__eyebrow::before{display:none}
   .main{overflow:hidden}
   .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
@@ -77,7 +81,8 @@
   [data-theme="light"] .card,
   [data-theme="light"] .service,
   [data-theme="light"] .skill,
-  [data-theme="light"] .stat{box-shadow:0 10px 30px -18px hsla(250,40%,30%,.35)}
+  [data-theme="light"] .stat,
+  [data-theme="light"] .work__item{box-shadow:0 10px 30px -18px hsla(250,40%,30%,.35)}
   body{transition:background-color .4s,color .4s}
 
   /* ===== Bouton clair / sombre ===== */
@@ -189,11 +194,12 @@
 
   /* ===== Chiffres clés ===== */
   .about__stats{display:grid;gap:1rem;width:100%;max-width:360px;margin:0 auto}
+  @media (max-width:899px){.about__stats{order:2}}
   .stat{display:flex;align-items:center;gap:1.1rem;padding:1.1rem 1.3rem;border:1px solid var(--line);border-radius:1.1rem;background:linear-gradient(160deg,var(--container-2),var(--container-color) 70%);transition:border-color .3s,translate .3s,box-shadow .3s}
   .stat:hover{border-color:var(--first-color);translate:6px 0;box-shadow:0 16px 40px -24px hsla(255,80%,60%,.8)}
   .stat__num{flex:none;min-width:4.4rem;font-family:var(--second-font);font-size:1.75rem;font-weight:700;line-height:1;color:var(--first-color)}
   .stat__label{font-size:var(--small);line-height:1.45}
-  .stat.reveal{transition:opacity .85s cubic-bezier(.2,.7,.2,1) var(--d,0s),transform .85s cubic-bezier(.2,.7,.2,1) var(--d,0s),border-color .3s,translate .3s,box-shadow .3s}
+  .stat.reveal{transition:opacity .85s cubic-bezier(.2,.7,.2,1) var(--d,0s),transform .85s cubic-bezier(.2,.7,.2,1) var(--d,0s),filter .85s ease var(--d,0s),border-color .3s,translate .3s,box-shadow .3s}
 
   /* ===== Badge disponible + flèche ===== */
   .home__badge{display:inline-flex;align-items:center;gap:.55rem;padding:.4rem .95rem;margin-bottom:1rem;border-radius:999px;border:1px solid hsla(145,60%,45%,.45);background:hsla(145,60%,45%,.1);color:var(--title-color);font-size:.8rem;font-weight:600;animation:fromBelow .8s ease .1s both}
@@ -216,7 +222,7 @@
   .card__title{font-size:var(--h3)}
   .card__subtitle{font-size:var(--small);color:var(--first-color);font-weight:600;margin-top:.35rem}
   .card__text{font-size:var(--small)}
-  .panel{margin-top:.6rem;height:150px;border-radius:.9rem;background:radial-gradient(70% 90% at 50% 100%,hsla(255,80%,60%,.4),hsla(240,10%,9%,.2)),#07070d;display:grid;place-items:center}
+  .panel{margin:0 0 .7rem;height:150px;border-radius:.9rem;background:radial-gradient(70% 90% at 50% 100%,hsla(255,80%,60%,.4),hsla(240,10%,9%,.2)),#07070d;display:grid;place-items:center}
   .panel svg{width:100%;height:100%;stroke:var(--first-light);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
   .panel svg *:not([stroke-dasharray]){stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.6s ease .3s}
   .panel svg [stroke-dasharray]{opacity:0;transition:opacity 1s ease 1.2s}
@@ -235,7 +241,18 @@
 
   .projects .swiper{overflow:visible;padding-bottom:.25rem}
   .projects .swiper-slide{width:min(330px,82vw);height:auto}
-  .projects .swiper-pagination{position:static;margin-top:1.6rem;--swiper-theme-color:hsl(255,60%,64%);--swiper-pagination-bullet-inactive-color:hsl(240,8%,50%)}
+  .card__tools{margin-top:.5rem}
+  .projects__controls{display:flex;align-items:center;justify-content:center;gap:1rem;margin-top:1.8rem}
+  .swiper-btn{display:grid;place-items:center;width:2.7rem;height:2.7rem;border-radius:50%;border:1px solid var(--line);color:var(--title-color);font-size:1.1rem;transition:border-color .25s,background .25s,opacity .25s}
+  .swiper-btn:hover{border-color:var(--first-color);background:var(--container-2)}
+  .swiper-btn.swiper-button-disabled{opacity:.3;pointer-events:none}
+  @media (min-width:1000px){
+    .lab{display:grid;grid-template-columns:1.3fr 1fr;column-gap:2.2rem;row-gap:.55rem;align-items:start;padding:1.6rem}
+    .lab > *{grid-column:2}
+    .lab canvas{grid-column:1;grid-row:1 / span 9;height:100% !important;min-height:400px}
+    .lab .sliders{grid-template-columns:1fr}
+  }
+  .projects .swiper-pagination{position:static;width:auto !important;--swiper-theme-color:hsl(255,60%,64%);--swiper-pagination-bullet-inactive-color:hsl(240,8%,50%)}
   .projects .swiper-wrapper{cursor:grab}
 
   /* ===== Parcours ===== */
@@ -243,25 +260,18 @@
   .tab{padding:.6rem 1.4rem;border-radius:999px;border:1px solid var(--line);color:var(--text-color);font-weight:600;transition:background .25s,color .25s,border-color .25s}
   .tab:hover{border-color:var(--first-color);color:var(--title-color)}
   .tab[aria-pressed="true"]{background:var(--first-alt);border-color:var(--first-alt);color:#fff}
-  .work__list{max-width:900px;margin-inline:auto}
-  .work__item{display:flex;flex-direction:column;gap:.3rem;padding:0 0 2rem 1.6rem;border-left:2px solid var(--line);position:relative}
-  .work__item:last-child{padding-bottom:0}
-  .work__item::before{content:"";position:absolute;left:-8px;top:.35rem;width:14px;height:14px;border-radius:50%;background:var(--body-color);border:3px solid var(--first-color)}
-  .work__year{order:-1;color:var(--first-color);font-family:var(--second-font);font-size:var(--small);font-weight:600}
+  .work__list{position:relative;max-width:760px;margin-inline:auto;padding-left:2rem}
+  .work__list::before{content:"";position:absolute;left:.45rem;top:.6rem;bottom:.6rem;width:2px;border-radius:2px;background:linear-gradient(var(--first-color),hsla(255,60%,64%,.08))}
+  .work__item{position:relative;display:flex;flex-direction:column;gap:.35rem;margin-bottom:1.1rem;padding:1.25rem 1.4rem;border:1px solid var(--line);border-radius:1rem;background:linear-gradient(160deg,var(--container-2),var(--container-color) 70%);transition:border-color .3s,translate .3s,box-shadow .3s}
+  .work__item:last-child{margin-bottom:0}
+  .work__item:hover{border-color:var(--first-color);translate:6px 0;box-shadow:0 16px 40px -24px hsla(255,80%,60%,.8)}
+  .work__item.reveal{transition:opacity .85s cubic-bezier(.2,.7,.2,1) var(--d,0s),transform .85s cubic-bezier(.2,.7,.2,1) var(--d,0s),filter .85s ease var(--d,0s),border-color .3s,translate .3s,box-shadow .3s}
+  .work__item::before{content:"";position:absolute;left:calc(.45rem - 2rem - 6px);top:1.55rem;width:14px;height:14px;border-radius:50%;background:var(--body-color);border:3px solid var(--first-color);box-shadow:0 0 12px hsla(255,80%,60%,.7)}
+  .work__year{order:-1;align-self:flex-start;padding:.2rem .75rem;border-radius:999px;background:hsla(255,80%,60%,.15);color:var(--first-color);font-family:var(--second-font);font-size:.7rem;font-weight:600;letter-spacing:.04em}
   .work__title{font-size:var(--h3)}
   .work__subtitle{color:var(--first-color);font-weight:600;font-size:var(--small)}
-  .work__description{font-size:var(--small);max-width:56ch}
+  .work__description{font-size:var(--small);max-width:60ch}
   [hidden]{display:none !important}
-  @media (min-width:800px){
-    .work__item{display:grid;grid-template-columns:1.25fr .55fr 1.5fr;gap:0 2rem;padding:0;border-left:0;align-items:stretch}
-    .work__data,.work__description{padding-bottom:2.2rem}
-    .work__item::before{display:none}
-    .work__data{grid-column:1;grid-row:1;text-align:right}
-    .work__year{grid-column:2;grid-row:1;order:0;position:relative;padding:0 0 2.2rem 1.6rem;border-left:2px solid var(--line);align-self:stretch}
-    .work__year::before{content:"";position:absolute;left:-8px;top:.15rem;width:14px;height:14px;border-radius:50%;background:var(--body-color);border:3px solid var(--first-color)}
-    .work__description{grid-column:3;grid-row:1}
-    .work__item:last-child .work__data,.work__item:last-child .work__description,.work__item:last-child .work__year{padding-bottom:0}
-  }
 
   /* ===== Compétences (accordéon) ===== */
   .services__container{grid-template-columns:1fr;gap:1.1rem;max-width:1000px;margin-inline:auto;align-items:stretch}
@@ -284,7 +294,7 @@
   @media (min-width:800px){.services__container{grid-template-columns:repeat(3,1fr)}}
   .skill{background:var(--container-color);border:1px solid var(--line);border-radius:1.1rem;padding:1.5rem;height:100%;transition:border-color .3s,box-shadow .3s,translate .3s}
   .skill:hover{border-color:var(--first-color);translate:0 -6px;box-shadow:0 18px 44px -24px hsla(255,80%,60%,.7)}
-  .skill.reveal{transition:opacity .85s cubic-bezier(.2,.7,.2,1) var(--d,0s),transform .85s cubic-bezier(.2,.7,.2,1) var(--d,0s),border-color .3s,box-shadow .3s,translate .3s}
+  .skill.reveal{transition:opacity .85s cubic-bezier(.2,.7,.2,1) var(--d,0s),transform .85s cubic-bezier(.2,.7,.2,1) var(--d,0s),filter .85s ease var(--d,0s),border-color .3s,box-shadow .3s,translate .3s}
   .skill__head{display:flex;align-items:center;gap:.85rem;margin-bottom:.9rem}
   .skill__icon{flex:none;display:grid;place-items:center;width:2.7rem;height:2.7rem;border-radius:.85rem;background:hsla(255,80%,60%,.15);color:var(--first-color)}
   .skill__icon svg{width:1.35rem;height:1.35rem;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
@@ -325,16 +335,16 @@
   @media (hover:none),(pointer:coarse){.cursor{display:none}}
 
   /* ===== Apparition au défilement ===== */
-  .reveal{opacity:0;transform:translateY(32px);transition:opacity .85s cubic-bezier(.2,.7,.2,1) var(--d,0s),transform .85s cubic-bezier(.2,.7,.2,1) var(--d,0s)}
+  .reveal{opacity:0;filter:blur(8px);transform:translateY(32px);transition:opacity .85s cubic-bezier(.2,.7,.2,1) var(--d,0s),transform .85s cubic-bezier(.2,.7,.2,1) var(--d,0s),filter .85s ease var(--d,0s)}
   .reveal[data-from="left"]{transform:translateX(-48px)}
   .reveal[data-from="right"]{transform:translateX(48px)}
-  .reveal.in{opacity:1;transform:none}
-  .card.reveal{transition:opacity .85s cubic-bezier(.2,.7,.2,1) var(--d,0s),transform .85s cubic-bezier(.2,.7,.2,1) var(--d,0s),translate .3s,border-color .3s,box-shadow .3s}
+  .reveal.in{opacity:1;filter:none;transform:none}
+  .card.reveal{transition:opacity .85s cubic-bezier(.2,.7,.2,1) var(--d,0s),transform .85s cubic-bezier(.2,.7,.2,1) var(--d,0s),filter .85s ease var(--d,0s),translate .3s,border-color .3s,box-shadow .3s}
 
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
     *,*::before,*::after{animation:none !important;transition:none !important}
-    .reveal{opacity:1 !important;transform:none !important}
+    .reveal{opacity:1 !important;transform:none !important;filter:none !important}
     .panel svg *{stroke-dashoffset:0 !important;opacity:1 !important}
     .cursor{display:none}
   }
@@ -408,6 +418,7 @@
         <div class="stat reveal" data-from="left" style="--d:.24s"><span class="stat__num" data-en="6 mo.">6 mois</span><span class="stat__label" data-en="end-of-studies internship wanted, automation &amp; SCADA">de stage de fin d’études recherché, automatisme &amp; SCADA</span></div>
       </div>
       <div class="reveal" data-from="right">
+        <p class="section__eyebrow" data-en="01 · About">01 · À propos</p>
         <h2 class="section__title" id="h-apropos" data-en="<span>Control engineering</span><br>is my passion"><span>L’automatique</span><br>est ma passion</h2>
         <p class="about__description" data-en="I’m completing a Master’s in <b>control engineering, robotics and signal processing</b> at Polytech Orléans. My projects range from <b>stabilizing a two-wheeler</b> to the kinematics of industrial robots.">Je termine un Master en <b>automatique, robotique et signal</b> à Polytech Orléans. Mes projets vont de la <b>stabilisation d’un deux-roues</b> à la cinématique de robots industriels.</p>
         <p class="about__description" data-en="What drives me: <b>industrial automation</b> and <b>SCADA supervision</b>. I’m looking for a 6-month end-of-studies internship in this field.">Ce qui m’attire : les <b>automatismes</b> et la <b>supervision SCADA</b>. Je cherche un stage de fin d’études de 6 mois dans ce domaine.</p>
@@ -419,6 +430,7 @@
   <!--==================== PROJETS ====================-->
   <section class="projects section" id="projets" aria-labelledby="h-projets">
     <div class="container">
+      <p class="section__eyebrow reveal" data-en="02 · Projects">02 · Projets</p>
       <h2 class="section__title reveal" id="h-projets" data-en="Hands-on <br><span>projects</span>">Des projets <br><span>concrets</span></h2>
       <p class="projects__intro reveal" data-en="Systems modeled, simulated, then tested. Push the motorbike to see the controller react, then swipe through the cards.">Des systèmes modélisés, simulés puis testés. Poussez la moto pour voir la commande agir, puis faites glisser les cartes.</p>
 
@@ -427,8 +439,7 @@
         <h3 class="card__title" data-en="Self-balancing motorbike">Moto auto-équilibrée</h3>
         <canvas id="sim" role="img" aria-label="Schéma animé d’une moto en équilibre, stabilisée par un correcteur PD. Cliquez pour la pousser."></canvas>
         <p class="card__text" data-en="Stabilization of a two-wheeler with a PD controller: modeling in Simulink and Simscape, state logic in Stateflow, tilt measurement with an inertial measurement unit, implementation on Arduino.">Stabilisation d’un deux-roues par correcteur PD : modélisation sous Simulink et Simscape, logique d’état sous Stateflow, mesure de l’inclinaison par centrale inertielle, implémentation sur Arduino.</p>
-        <p class="card__subtitle" data-en="Tools used">Outils utilisés</p>
-        <p class="card__text" data-en="PD control, Simulink, Simscape, Stateflow, IMU, Arduino.">Commande PD, Simulink, Simscape, Stateflow, IMU, Arduino.</p>
+        <ul class="skill__tags card__tools"><li data-en="PD control">Commande PD</li><li>Simulink</li><li>Simscape</li><li>Stateflow</li><li>IMU</li><li>Arduino</li></ul>
         <div class="sliders">
           <label for="kp"><span data-en="Kp, stiffness:">Kp, rappel :</span> <output id="kpv">32</output>
             <input id="kp" type="range" min="4" max="50" step="1" value="32">
@@ -450,54 +461,54 @@
         <div class="swiper-wrapper">
           <div class="swiper-slide">
             <article class="card">
-              <div class="card__head"><span class="card__number">02</span><span class="card__tag" data-en="Robotics">Robotique</span></div>
-              <h3 class="card__title" data-en="Industrial robot kinematics">Cinématique de robots industriels</h3>
-              <p class="card__text" data-en="Geometric modeling of SCARA, ABB and UR3 robots using the Denavit-Hartenberg convention.">Modélisation géométrique de robots SCARA, ABB et UR3 avec la convention de Denavit-Hartenberg.</p>
-              <p class="card__subtitle" data-en="Tools used">Outils utilisés</p>
-              <p class="card__text">Denavit-Hartenberg, SCARA, ABB, UR3.</p>
               <div class="panel" aria-hidden="true">
                 <svg viewBox="0 0 240 150"><rect x="30" y="118" width="60" height="12" rx="3"/><line x1="60" y1="118" x2="90" y2="66"/><line x1="90" y1="66" x2="164" y2="86"/><circle cx="60" cy="118" r="6"/><circle cx="90" cy="66" r="6"/><circle cx="164" cy="86" r="6"/><line x1="164" y1="86" x2="164" y2="106"/></svg>
               </div>
+              <div class="card__head"><span class="card__number">02</span><span class="card__tag" data-en="Robotics">Robotique</span></div>
+              <h3 class="card__title" data-en="Industrial robot kinematics">Cinématique de robots industriels</h3>
+              <p class="card__text" data-en="Geometric modeling of SCARA, ABB and UR3 robots using the Denavit-Hartenberg convention.">Modélisation géométrique de robots SCARA, ABB et UR3 avec la convention de Denavit-Hartenberg.</p>
+              <ul class="skill__tags card__tools"><li>Denavit-Hartenberg</li><li>SCARA</li><li>ABB</li><li>UR3</li></ul>
             </article>
           </div>
           <div class="swiper-slide">
             <article class="card">
-              <div class="card__head"><span class="card__number">03</span><span class="card__tag" data-en="Sensors">Capteurs</span></div>
-              <h3 class="card__title" data-en="Autonomous robot and sensor fusion">Robot autonome et fusion de capteurs</h3>
-              <p class="card__text" data-en="Obstacle avoidance for an autonomous robot combining GPS, ultrasonic and LIDAR measurements.">Évitement d’obstacles d’un robot autonome à partir de mesures GPS, ultrasons et LIDAR combinées.</p>
-              <p class="card__subtitle" data-en="Tools used">Outils utilisés</p>
-              <p class="card__text" data-en="GPS, ultrasonic sensors, LIDAR.">GPS, ultrasons, LIDAR.</p>
               <div class="panel" aria-hidden="true">
                 <svg viewBox="0 0 240 150"><circle cx="56" cy="80" r="14"/><line x1="70" y1="80" x2="170" y2="40" stroke-dasharray="4 6"/><line x1="70" y1="80" x2="176" y2="80" stroke-dasharray="4 6"/><line x1="70" y1="80" x2="170" y2="120" stroke-dasharray="4 6"/><rect x="176" y="34" width="24" height="92" rx="4"/><circle cx="56" cy="40" r="4"/></svg>
               </div>
+              <div class="card__head"><span class="card__number">03</span><span class="card__tag" data-en="Sensors">Capteurs</span></div>
+              <h3 class="card__title" data-en="Autonomous robot and sensor fusion">Robot autonome et fusion de capteurs</h3>
+              <p class="card__text" data-en="Obstacle avoidance for an autonomous robot combining GPS, ultrasonic and LIDAR measurements.">Évitement d’obstacles d’un robot autonome à partir de mesures GPS, ultrasons et LIDAR combinées.</p>
+              <ul class="skill__tags card__tools"><li>GPS</li><li data-en="Ultrasonic">Ultrasons</li><li>LIDAR</li></ul>
             </article>
           </div>
           <div class="swiper-slide">
             <article class="card">
-              <div class="card__head"><span class="card__number">04</span><span class="card__tag" data-en="Control">Commande</span></div>
-              <h3 class="card__title" data-en="Turbojet engine control">Commande d’un turboréacteur</h3>
-              <p class="card__text" data-en="Turbojet engine regulation using Internal Model Control (IMC).">Régulation d’un turboréacteur par commande à modèle interne (IMC).</p>
-              <p class="card__subtitle" data-en="Tools used">Outils utilisés</p>
-              <p class="card__text" data-en="IMC, regulation.">IMC, régulation.</p>
               <div class="panel" aria-hidden="true">
                 <svg viewBox="0 0 240 150"><circle cx="120" cy="75" r="56"/><circle cx="120" cy="75" r="14"/><line x1="120" y1="61" x2="120" y2="22"/><line x1="132" y1="68" x2="166" y2="48"/><line x1="132" y1="82" x2="166" y2="102"/><line x1="120" y1="89" x2="120" y2="128"/><line x1="108" y1="82" x2="74" y2="102"/><line x1="108" y1="68" x2="74" y2="48"/></svg>
               </div>
+              <div class="card__head"><span class="card__number">04</span><span class="card__tag" data-en="Control">Commande</span></div>
+              <h3 class="card__title" data-en="Turbojet engine control">Commande d’un turboréacteur</h3>
+              <p class="card__text" data-en="Turbojet engine regulation using Internal Model Control (IMC).">Régulation d’un turboréacteur par commande à modèle interne (IMC).</p>
+              <ul class="skill__tags card__tools"><li>IMC</li><li data-en="Regulation">Régulation</li></ul>
             </article>
           </div>
           <div class="swiper-slide">
             <article class="card">
-              <div class="card__head"><span class="card__number">05</span><span class="card__tag" data-en="Automation">Automatisme</span></div>
-              <h3 class="card__title" data-en="Automation with Grafcet">Automatisme en Grafcet</h3>
-              <p class="card__text" data-en="Design of industrial automation sequences described in Grafcet.">Conception de séquences d’automatisme industriel décrites en Grafcet.</p>
-              <p class="card__subtitle" data-en="Tools used">Outils utilisés</p>
-              <p class="card__text" data-en="Grafcet, sequential automation.">Grafcet, automatismes séquentiels.</p>
               <div class="panel" aria-hidden="true">
                 <svg viewBox="0 0 240 150"><rect x="96" y="8" width="48" height="26"/><rect x="101" y="13" width="38" height="16"/><line x1="120" y1="34" x2="120" y2="50"/><line x1="108" y1="50" x2="132" y2="50"/><line x1="120" y1="50" x2="120" y2="60"/><rect x="96" y="60" width="48" height="26"/><line x1="120" y1="86" x2="120" y2="102"/><line x1="108" y1="102" x2="132" y2="102"/><line x1="120" y1="102" x2="120" y2="112"/><rect x="96" y="112" width="48" height="26"/></svg>
               </div>
+              <div class="card__head"><span class="card__number">05</span><span class="card__tag" data-en="Automation">Automatisme</span></div>
+              <h3 class="card__title" data-en="Automation with Grafcet">Automatisme en Grafcet</h3>
+              <p class="card__text" data-en="Design of industrial automation sequences described in Grafcet.">Conception de séquences d’automatisme industriel décrites en Grafcet.</p>
+              <ul class="skill__tags card__tools"><li>Grafcet</li><li data-en="Sequential automation">Automatismes séquentiels</li></ul>
             </article>
           </div>
         </div>
-        <div class="swiper-pagination"></div>
+        <div class="projects__controls">
+          <button class="swiper-btn" type="button" id="prevProj" aria-label="Projet précédent">&larr;</button>
+          <div class="swiper-pagination"></div>
+          <button class="swiper-btn" type="button" id="nextProj" aria-label="Projet suivant">&rarr;</button>
+        </div>
       </div>
     </div>
   </section>
@@ -505,6 +516,7 @@
   <!--==================== PARCOURS ====================-->
   <section class="work section" id="parcours" aria-labelledby="h-parcours">
     <div class="container">
+      <p class="section__eyebrow reveal" data-en="03 · Experience">03 · Parcours</p>
       <h2 class="section__title reveal" id="h-parcours" data-en="<span>My experience</span><br>and education"><span>Mon parcours</span><br>et mes études</h2>
       <div class="work__tabs" role="group" aria-label="Choisir la liste">
         <button class="tab" type="button" data-tab="exp" aria-pressed="true" data-en="Experience">Expérience</button>
@@ -513,7 +525,7 @@
 
       <ul class="work__list" id="tab-exp">
         <li class="work__item reveal">
-          <div class="work__data"><h3 class="work__title" data-en="Internship">Stage</h3><p class="work__subtitle">PROMINOX</p></div>
+          <div class="work__data"><h3 class="work__title" data-en="Electrical diagnostics intern">Stage en diagnostic électrique</h3><p class="work__subtitle">PROMINOX</p></div>
           <span class="work__year" data-en="Internship">Stage</span>
           <p class="work__description" data-en="Electrical diagnostics of laser cutting machines.">Diagnostic électrique de machines de découpe laser.</p>
         </li>
@@ -547,6 +559,7 @@
   <!--==================== COMPÉTENCES ====================-->
   <section class="services section" id="competences" aria-labelledby="h-competences">
     <div class="container">
+      <p class="section__eyebrow reveal" data-en="04 · Skills">04 · Compétences</p>
       <h2 class="section__title reveal" id="h-competences" data-en="My <span>skills</span>">Mes <span>compétences</span></h2>
       <div class="services__container grid">
         <article class="skill reveal">
@@ -573,6 +586,7 @@
     <div class="blob blob--3" aria-hidden="true"></div>
     <div class="contact__container container">
       <div class="contact__card reveal">
+        <p class="section__eyebrow" data-en="05 · Contact">05 · Contact</p>
         <h2 class="section__title" id="h-contact" data-en="Contact <span>me</span>">Me <span>contacter</span></h2>
         <p class="contact__description" data-en="I’m available for a 6-month end-of-studies internship in industrial automation and SCADA.">Je suis disponible pour un stage de fin d’études de 6 mois en automatisme et SCADA.</p>
         <a class="contact__email" id="emailText" hidden></a>
@@ -665,7 +679,8 @@
   if (window.Swiper) {
     new Swiper('.projects__swiper', {
       grabCursor: true, slidesPerView: 'auto', spaceBetween: 20,
-      pagination: { el: '.swiper-pagination', clickable: true }
+      pagination: { el: '.swiper-pagination', clickable: true },
+      navigation: { prevEl: '#prevProj', nextEl: '#nextProj' }
     });
   }
 
