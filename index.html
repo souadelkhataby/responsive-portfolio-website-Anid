@@ -428,7 +428,6 @@
 </header>
 <div class="progress" id="progress" aria-hidden="true"></div>
 
-<div class="cursor" id="cursor" aria-hidden="true"></div>
 <div class="spot" aria-hidden="true"></div>
 <div class="spot-dots" aria-hidden="true"></div>
 
@@ -807,7 +806,7 @@
 
   /* ---- Curseur personnalisé (ordinateur seulement) ---- */
   const cur = document.getElementById('cursor');
-  if (!reduce && window.matchMedia('(hover:hover) and (pointer:fine)').matches) {
+  if (cur && !reduce && window.matchMedia('(hover:hover) and (pointer:fine)').matches) {
     let x = 0, y = 0, cx = 0, cy = 0;
     window.addEventListener('pointermove', e => { x = e.clientX; y = e.clientY; cur.classList.add('on'); });
     document.addEventListener('pointerleave', () => cur.classList.remove('on'));
