@@ -38,6 +38,7 @@
     --biggest:2.2rem; --bigger:1.6rem; --h1:1.5rem; --h2:1.2rem; --h3:1rem; --normal:.95rem; --small:.85rem;
     --header-h:3.5rem;
     --header-bg:hsla(240,100%,2%,.82);
+    --grid-line:hsla(255,60%,75%,.07);
   }
   @media (min-width:1150px){
     :root{--biggest:3.6rem;--bigger:2.1rem;--h1:2.1rem;--h2:1.4rem;--h3:1.15rem;--normal:1rem;--small:.875rem}
@@ -69,7 +70,8 @@
     --container-color:hsl(0,0%,100%);
     --container-2:hsl(250,50%,96%);
     --line:hsl(248,25%,87%);
-    --header-bg:hsla(250,45%,98%,.85);
+    --header-bg:hsla(250,45%,98%,.9);
+    --grid-line:hsla(250,40%,40%,.08);
   }
   [data-theme="light"] .blob{opacity:.3}
   [data-theme="light"] .card,
@@ -86,7 +88,34 @@
   .icon-moon{display:none}
   .lang-toggle{font-family:var(--second-font);font-size:.7rem;font-weight:700;letter-spacing:.02em}
   .lang-toggle:hover{transform:none}
-  @media (max-width:700px){.nav__list li:has(.nav__link){display:none}}
+  .nav__logo span{color:var(--first-color)}
+
+  /* ===== Menu mobile ===== */
+  .nav__burger-li,.nav__menu{display:none}
+  .nav__burger{position:relative}
+  .nav__burger span,.nav__burger span::before,.nav__burger span::after{position:absolute;width:14px;height:2px;border-radius:2px;background:currentColor;transition:transform .3s,background .3s}
+  .nav__burger span{left:50%;top:50%;margin:-1px 0 0 -7px}
+  .nav__burger span::before,.nav__burger span::after{content:"";left:0}
+  .nav__burger span::before{top:-5px}
+  .nav__burger span::after{top:5px}
+  .menu-open .nav__burger span{background:transparent}
+  .menu-open .nav__burger span::before{transform:translateY(5px) rotate(45deg)}
+  .menu-open .nav__burger span::after{transform:translateY(-5px) rotate(-45deg)}
+  @media (max-width:700px){
+    .nav__list li:has(.nav__link){display:none}
+    .nav__burger-li{display:block}
+    .nav__menu{display:grid;gap:.2rem;position:absolute;top:calc(100% + .4rem);left:1rem;right:1rem;padding:.7rem;border:1px solid var(--line);border-radius:1rem;background:var(--header-bg);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 24px 50px -24px rgba(0,0,0,.6);opacity:0;transform:translateY(-10px);pointer-events:none;transition:opacity .25s,transform .25s}
+    .menu-open .nav__menu{opacity:1;transform:none;pointer-events:auto}
+    .nav__menu .nav__link{display:block;padding:.75rem .9rem;border-radius:.65rem;font-size:var(--normal)}
+    .nav__menu .nav__link::after{display:none}
+    .nav__menu .nav__link.active,.nav__menu .nav__link:hover{background:var(--container-2);color:var(--first-color)}
+  }
+
+  /* ===== Barre de progression ===== */
+  .progress{position:fixed;top:0;left:0;z-index:150;width:100%;height:3px;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--first-alt),var(--first-light));pointer-events:none}
+
+  /* ===== Grille « plan technique » ===== */
+  .home::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(var(--grid-line) 1px,transparent 1px),linear-gradient(90deg,var(--grid-line) 1px,transparent 1px);background-size:48px 48px;-webkit-mask-image:radial-gradient(ellipse 75% 65% at 50% 45%,#000 25%,transparent 78%);mask-image:radial-gradient(ellipse 75% 65% at 50% 45%,#000 25%,transparent 78%)}
   [data-theme="light"] .icon-sun{display:none}
   [data-theme="light"] .icon-moon{display:block}
 
@@ -279,8 +308,12 @@
   .contact__address a{color:var(--text-color);text-decoration:underline;text-underline-offset:4px}
   .contact__address a:hover{color:var(--title-color)}
   @media (min-width:700px){.contact__info{grid-template-columns:repeat(3,1fr)}}
-  .footer{padding:2.5rem 1.5rem 3rem;text-align:center;font-size:var(--small);color:var(--text-light)}
-  .footer span{color:var(--first-color)}
+  .footer{margin-top:3rem;padding-block:2rem 2.5rem;border-top:1px solid var(--line);font-size:var(--small);color:var(--text-light)}
+  .footer__inner{display:flex;flex-direction:column;align-items:center;gap:1rem;text-align:center}
+  .footer__links{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem 1.4rem}
+  .footer__links a{font-weight:600;color:var(--text-color);transition:color .25s}
+  .footer__links a:hover{color:var(--first-color)}
+  @media (min-width:800px){.footer__inner{flex-direction:row;justify-content:space-between}}
 
   /* ===== Retour en haut + curseur ===== */
   .up{position:fixed;right:1.2rem;bottom:1.2rem;z-index:100;width:2.9rem;height:2.9rem;border-radius:50%;display:grid;place-items:center;background:var(--first-alt);color:#fff;font-size:1.2rem;opacity:0;transform:translateY(16px);pointer-events:none;transition:opacity .3s,transform .3s,background .25s}
@@ -313,13 +346,14 @@
 <!--==================== EN-TÊTE ====================-->
 <header class="header" id="header">
   <nav class="nav container">
-    <a href="#accueil" class="nav__logo">Souad</a>
+    <a href="#accueil" class="nav__logo">Souad<span>.</span></a>
     <ul class="nav__list">
       <li><a href="#apropos" class="nav__link" data-en="About">À propos</a></li>
       <li><a href="#projets" class="nav__link" data-en="Projects">Projets</a></li>
       <li><a href="#parcours" class="nav__link" data-en="Experience">Parcours</a></li>
       <li><a href="#competences" class="nav__link" data-en="Skills">Compétences</a></li>
       <li><a href="#contact" class="nav__link">Contact</a></li>
+      <li class="nav__burger-li"><button class="theme-toggle nav__burger" type="button" id="navBurger" aria-label="Menu" aria-expanded="false" aria-controls="navMenu"><span></span></button></li>
       <li><button class="theme-toggle lang-toggle" type="button" id="langToggle" aria-label="Switch to English">EN</button></li>
       <li>
         <button class="theme-toggle" type="button" id="themeToggle" aria-label="Changer de thème">
@@ -329,7 +363,9 @@
       </li>
     </ul>
   </nav>
+  <nav class="nav__menu" id="navMenu" aria-label="Menu mobile"></nav>
 </header>
+<div class="progress" id="progress" aria-hidden="true"></div>
 
 <div class="cursor" id="cursor" aria-hidden="true"></div>
 
@@ -555,7 +591,16 @@
 </main>
 
 <footer class="footer">
-  <p>© <span id="year">2026</span> <span>Souad</span>, Orléans</p>
+  <div class="footer__inner container">
+    <a href="#accueil" class="nav__logo">Souad<span>.</span></a>
+    <ul class="footer__links">
+      <li><a href="#projets" data-en="Projects">Projets</a></li>
+      <li><a href="https://github.com/souadelkhataby" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="mailto:souadelkhataby@gmail.com">E-mail</a></li>
+      <li><a href="assets/pdf/Souad_Portfolio.pdf" download>PDF</a></li>
+    </ul>
+    <p>© <span id="year">2026</span> Souad, Orléans</p>
+  </div>
 </footer>
 
 <a class="up" id="up" href="#accueil" aria-label="Retour en haut">&uarr;</a>
@@ -572,6 +617,14 @@
     root.dataset.theme = next;
     try { localStorage.setItem('theme', next); } catch {}
   });
+
+  /* ---- Menu mobile ---- */
+  const hdr = document.getElementById('header'), burger = document.getElementById('navBurger'), navMenu = document.getElementById('navMenu');
+  document.querySelectorAll('.nav__list .nav__link').forEach(a => navMenu.appendChild(a.cloneNode(true)));
+  const closeMenu = () => { hdr.classList.remove('menu-open'); burger.setAttribute('aria-expanded', 'false'); };
+  burger.addEventListener('click', () => burger.setAttribute('aria-expanded', String(hdr.classList.toggle('menu-open'))));
+  navMenu.addEventListener('click', e => { if (e.target.closest('a')) closeMenu(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
 
   /* ---- Langue FR / EN ---- */
   const i18n = [...document.querySelectorAll('[data-en]')].map(el => ({ el, fr: el.innerHTML, en: el.dataset.en }));
@@ -659,10 +712,12 @@
   } else items.forEach(el => el.classList.add('in'));
 
   /* ---- En-tête, retour en haut, lien actif ---- */
-  const header = document.getElementById('header'), up = document.getElementById('up');
+  const header = document.getElementById('header'), up = document.getElementById('up'), progress = document.getElementById('progress');
   const onScroll = () => {
     header.classList.toggle('scrolled', window.scrollY > 40);
     up.classList.toggle('show', window.scrollY > 500);
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.transform = 'scaleX(' + (max > 0 ? window.scrollY / max : 0) + ')';
   };
   window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
   const links = [...document.querySelectorAll('.nav__link')];
