@@ -299,7 +299,10 @@
   .projects .swiper-wrapper{cursor:grab}
 
   /* ===== Parcours ===== */
-  .work__tabs{display:flex;justify-content:center;gap:.6rem;margin:-1rem 0 2.5rem}
+  .work__tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem;margin:-1rem 0 2.5rem}
+  @media (max-width:480px){.work__tabs{gap:.4rem}.work__tabs .tab{padding:.5rem .7rem;font-size:.76rem}}
+  .work__link{display:inline-block;margin-left:.3rem;font-weight:600;color:var(--first-color);white-space:nowrap}
+  .work__link:hover{text-decoration:underline}
   .tab{padding:.6rem 1.4rem;border-radius:999px;border:1px solid var(--line);color:var(--text-color);font-weight:600;transition:background .25s,color .25s,border-color .25s}
   .tab:hover{border-color:var(--first-color);color:var(--title-color)}
   .tab[aria-pressed="true"]{background:var(--first-alt);border-color:var(--first-alt);color:#fff}
@@ -496,6 +499,7 @@
       <div class="work__tabs" role="group" aria-label="Choisir la liste">
         <button class="tab" type="button" data-tab="edu" aria-pressed="true" data-en="Education">Formation</button>
         <button class="tab" type="button" data-tab="exp" aria-pressed="false" data-en="Experience">Expérience</button>
+        <button class="tab" type="button" data-tab="cert" aria-pressed="false">Certifications</button>
       </div>
 
       <ul class="work__list" id="tab-edu">
@@ -538,6 +542,24 @@
           <div class="work__data"><h3 class="work__title">RGIS · Azureva · Action · Deret</h3><p class="work__subtitle" data-en="Part-time jobs">Emplois à temps partiel</p></div>
           <span class="work__year" data-en="During my studies">Pendant mes études</span>
           <p class="work__description" data-en="Jobs held alongside my studies: organisation, teamwork and customer focus.">Emplois exercés en parallèle de mes études : organisation, travail en équipe et sens du service.</p>
+        </li>
+      </ul>
+
+      <ul class="work__list" id="tab-cert" hidden>
+        <li class="work__item">
+          <div class="work__data"><h3 class="work__title">Simulink Fundamentals</h3><p class="work__subtitle">MathWorks</p></div>
+          <span class="work__year">2025</span>
+          <p class="work__description" data-en="Online certified course, 100% completed: modelling and simulating dynamic systems in Simulink. <a class='work__link' href='assets/pdf/Certificat_Simulink.pdf' target='_blank' rel='noopener'>View certificate →</a>">Formation certifiante en ligne, complétée à 100 % : modélisation et simulation de systèmes dynamiques sous Simulink. <a class="work__link" href="assets/pdf/Certificat_Simulink.pdf" target="_blank" rel="noopener">Voir le certificat →</a></p>
+        </li>
+        <li class="work__item">
+          <div class="work__data"><h3 class="work__title" data-en="MATLAB Desktop Tools and Troubleshooting Scripts">Outils MATLAB Desktop et résolution de problèmes dans les scripts</h3><p class="work__subtitle">MathWorks</p></div>
+          <span class="work__year">2025</span>
+          <p class="work__description" data-en="Online certified course, 100% completed: MATLAB environment, debugging and making scripts reliable. <a class='work__link' href='assets/pdf/Certificat_MATLAB.pdf' target='_blank' rel='noopener'>View certificate →</a>">Formation certifiante en ligne, complétée à 100 % : environnement MATLAB, débogage et fiabilisation des scripts. <a class="work__link" href="assets/pdf/Certificat_MATLAB.pdf" target="_blank" rel="noopener">Voir le certificat →</a></p>
+        </li>
+        <li class="work__item">
+          <div class="work__data"><h3 class="work__title" data-en="TCF – French proficiency test">TCF – Test de connaissance du français</h3><p class="work__subtitle">France Éducation International</p></div>
+          <span class="work__year">2023</span>
+          <p class="work__description" data-en="<b>C1</b> level (CEFR) in listening, reading and language structure.">Niveau <b>C1</b> (CECRL) en compréhension orale, compréhension écrite et maîtrise de la langue.</p>
         </li>
       </ul>
     </div>
@@ -754,8 +776,9 @@
   });
   document.querySelectorAll('.tab').forEach(btn => btn.addEventListener('click', () => {
     document.querySelectorAll('.tab').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
-    const show = btn.dataset.tab === 'exp' ? exp : edu, hide = show === exp ? edu : exp;
-    hide.hidden = true; show.hidden = false; replay(show);
+    const show = document.getElementById('tab-' + btn.dataset.tab);
+    document.querySelectorAll('.work__list').forEach(l => { l.hidden = l !== show; });
+    replay(show);
   }));
 
   /* ---- Compétences : accordéon ---- */
