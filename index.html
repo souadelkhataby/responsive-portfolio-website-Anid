@@ -128,11 +128,13 @@
     .header.scrolled{-webkit-backdrop-filter:none !important;backdrop-filter:none !important;background:var(--body-color) !important}
   }
 
-  /* ===== Effet 1 : orbite autour de la photo ===== */
-  .orbit{position:absolute;inset:-18px;border:1.5px dashed hsla(255,60%,70%,.45);border-radius:50%;pointer-events:none;animation:spin 18s linear infinite}
-  .orbit.o2{inset:-40px;border-style:solid;border-color:hsla(255,60%,70%,.16);animation-duration:28s;animation-direction:reverse}
-  .orbit i{position:absolute;top:-6px;left:50%;width:11px;height:11px;margin-left:-5.5px;border-radius:50%;background:var(--first-light);box-shadow:0 0 12px var(--first-color)}
-  .orbit.o2 i{top:50%;left:-4.5px;width:8px;height:8px;margin:-4px 0 0;background:var(--signal);box-shadow:0 0 10px var(--signal)}
+  /* ===== Effet 1 : orbite animée autour de la photo ===== */
+  .orbit{position:absolute;inset:-20px;border:1.5px dashed hsla(255,60%,70%,.35);border-radius:50%;pointer-events:none;animation:spin 9s linear infinite}
+  .orbit::before{content:"";position:absolute;inset:-1.5px;border-radius:50%;background:conic-gradient(from 0deg,transparent 0 62%,hsla(255,90%,72%,.95) 100%);-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 calc(100% - 3px));mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 calc(100% - 3px))}
+  .orbit i{position:absolute;top:-6px;left:50%;width:12px;height:12px;margin-left:-6px;border-radius:50%;background:#fff;box-shadow:0 0 6px #fff,0 0 16px var(--first-color),0 0 28px var(--first-color)}
+  .orbit.o2{inset:-44px;border-style:solid;border-color:hsla(255,60%,70%,.12);animation-duration:14s;animation-direction:reverse}
+  .orbit.o2::before{background:conic-gradient(from 270deg,hsla(255,90%,78%,.8) 0,transparent 30%)}
+  .orbit.o2 i{top:50%;left:-5px;width:9px;height:9px;margin:-4.5px 0 0;background:var(--first-light);box-shadow:0 0 6px var(--first-light),0 0 16px var(--first-color)}
   @keyframes spin{to{transform:rotate(360deg)}}
 
   /* ===== Effet 2 : nom qui brille ===== */
