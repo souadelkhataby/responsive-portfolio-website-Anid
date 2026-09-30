@@ -312,6 +312,8 @@
   .work__subtitle{color:var(--first-color);font-weight:600;font-size:var(--small)}
   .work__description{font-size:var(--small);max-width:56ch}
   [hidden]{display:none !important}
+  .work__group{margin:0 0 1.4rem;text-align:center;font-family:var(--second-font);font-size:.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--first-color)}
+  .work__group:not(:first-child){margin-top:2.8rem}
   @media (min-width:800px){
     .work__item{display:grid;grid-template-columns:1.25fr .55fr 1.5fr;gap:0 2rem;padding:0;border-left:0;align-items:stretch}
     .work__data,.work__description{padding-bottom:2.2rem}
@@ -520,6 +522,7 @@
       </ul>
 
       <ul class="work__list" id="tab-exp" hidden>
+        <li class="work__group" data-en="Professional experience">Expérience professionnelle</li>
         <li class="work__item">
           <div class="work__data"><h3 class="work__title" data-en="Customer service agent → Quality specialist">Chargée de service clients → Spécialiste qualité</h3><p class="work__subtitle">Konnekta</p></div>
           <span class="work__year" data-en="2021 – 2024">2021 – 2024</span>
@@ -530,8 +533,9 @@
           <span class="work__year" data-en="Apr. – Jun. 2021">Avr. – juin 2021</span>
           <p class="work__description" data-en="Support for technical interventions on industrial equipment. Study of a laser cutting machine: electrical diagnostics and operating analysis.">Assistance aux interventions techniques sur des équipements industriels. Étude d’une machine de découpe laser : diagnostic et analyse de son fonctionnement électrique.</p>
         </li>
+        <li class="work__group" data-en="Student jobs">Jobs étudiants</li>
         <li class="work__item">
-          <div class="work__data"><h3 class="work__title" data-en="Student jobs">Emplois étudiants</h3><p class="work__subtitle">Burger King, MERIDIUS, Azureva</p></div>
+          <div class="work__data"><h3 class="work__title">Burger King · MERIDIUS · Azureva</h3><p class="work__subtitle" data-en="Part-time jobs">Emplois à temps partiel</p></div>
           <span class="work__year" data-en="During my studies">Pendant mes études</span>
           <p class="work__description" data-en="Jobs held alongside my studies: organisation, teamwork and customer focus.">Emplois exercés en parallèle de mes études : organisation, travail en équipe et sens du service.</p>
         </li>
