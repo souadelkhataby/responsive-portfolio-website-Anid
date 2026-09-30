@@ -77,7 +77,8 @@
   [data-theme="light"] .card,
   [data-theme="light"] .service,
   [data-theme="light"] .skill,
-  [data-theme="light"] .stat{box-shadow:0 10px 30px -18px hsla(250,40%,30%,.35)}
+  [data-theme="light"] .stat,
+  [data-theme="light"] .project{box-shadow:0 10px 30px -18px hsla(250,40%,30%,.35)}
   body{transition:background-color .4s,color .4s}
 
   /* ===== Bouton clair / sombre ===== */
@@ -301,6 +302,27 @@
   /* ===== Parcours ===== */
   .work__tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem;margin:-1rem 0 2.5rem}
   @media (max-width:480px){.work__tabs{gap:.4rem}.work__tabs .tab{padding:.5rem .7rem;font-size:.76rem}}
+  /* ===== Cartes projets ===== */
+  .projects__list{display:grid;gap:2rem}
+  .project{padding:1.6rem;border:1px solid var(--line);border-radius:1.4rem;background:linear-gradient(160deg,var(--container-2),var(--container-color) 60%)}
+  .project__head{margin-bottom:1.4rem}
+  .project__tag{display:inline-block;margin-bottom:.7rem;padding:.25rem .8rem;border-radius:999px;background:hsla(255,80%,60%,.15);color:var(--first-color);font-size:.72rem;font-weight:700;letter-spacing:.04em}
+  .project__title{font-size:var(--h2);margin-bottom:.3rem}
+  .project__meta{font-size:var(--small);color:var(--text-light)}
+  .project__body{display:grid;gap:1.8rem}
+  .project__text > p:not(.project__label){font-size:var(--small);margin-bottom:1.1rem}
+  .project__label{font-family:var(--second-font);font-size:.74rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--first-color);margin-bottom:.4rem}
+  .project__steps{margin:0 0 1.1rem;padding-left:0;display:grid;gap:.55rem}
+  .project__steps li{position:relative;padding-left:1.1rem;font-size:var(--small)}
+  .project__steps li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;border-radius:50%;background:var(--first-color)}
+  .project__text b{color:var(--title-color);font-weight:600}
+  .project__tools{margin-top:.4rem}
+  .project__figures{display:grid;gap:1rem;align-content:start}
+  .project__fig{display:flex;flex-direction:column;overflow:hidden;border:1px solid var(--line);border-radius:1rem;background:var(--container-color);text-align:left;cursor:zoom-in;transition:border-color .3s,translate .3s,box-shadow .3s}
+  .project__fig:hover{border-color:var(--first-color);translate:0 -4px;box-shadow:0 18px 40px -22px hsla(255,80%,60%,.8)}
+  .project__fig img{width:100%;background:#fff}
+  .project__fig span{padding:.6rem .85rem;font-size:.78rem;color:var(--text-color)}
+  @media (min-width:960px){.project{padding:2.2rem}.project__body{grid-template-columns:1.15fr 1fr;gap:2.4rem}}
   .cert__gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem;margin-top:2.2rem}
   .cert__thumb{display:flex;flex-direction:column;overflow:hidden;border:1px solid var(--line);border-radius:1rem;background:var(--container-color);text-align:left;transition:border-color .3s,translate .3s,box-shadow .3s}
   .cert__thumb:hover{border-color:var(--first-color);translate:0 -5px;box-shadow:0 18px 40px -22px hsla(255,80%,60%,.8)}
@@ -584,84 +606,48 @@
   <section class="projects section" id="projets" aria-labelledby="h-projets">
     <div class="container">
       <h2 class="section__title reveal" id="h-projets" data-en="Hands-on <br><span>projects</span>">Des projets <br><span>concrets</span></h2>
-      <p class="projects__intro reveal" data-en="Systems modeled, simulated, then tested. Push the motorbike to see the controller react, then swipe through the cards.">Des systèmes modélisés, simulés puis testés. Poussez la moto pour voir la commande agir, puis faites glisser les cartes.</p>
+      <div class="projects__list" id="projectsList">
 
-      <article class="card lab reveal">
-        <div class="card__head"><span class="card__number">01</span><span class="card__tag" data-en="Control">Commande</span></div>
-        <h3 class="card__title" data-en="Self-balancing motorbike">Moto auto-équilibrée</h3>
-        <canvas id="sim" role="img" aria-label="Schéma animé d’une moto en équilibre, stabilisée par un correcteur PD. Cliquez pour la pousser."></canvas>
-        <p class="card__text" data-en="Stabilization of a two-wheeler with a PD controller: modeling in Simulink and Simscape, state logic in Stateflow, tilt measurement with an inertial measurement unit, implementation on Arduino.">Stabilisation d’un deux-roues par correcteur PD : modélisation sous Simulink et Simscape, logique d’état sous Stateflow, mesure de l’inclinaison par centrale inertielle, implémentation sur Arduino.</p>
-        <p class="card__subtitle" data-en="Tools used">Outils utilisés</p>
-        <p class="card__text" data-en="PD control, Simulink, Simscape, Stateflow, IMU, Arduino.">Commande PD, Simulink, Simscape, Stateflow, IMU, Arduino.</p>
-        <div class="sliders">
-          <label for="kp"><span data-en="Kp, stiffness:">Kp, rappel :</span> <output id="kpv">32</output>
-            <input id="kp" type="range" min="4" max="50" step="1" value="32">
-          </label>
-          <label for="kd"><span data-en="Kd, damping:">Kd, amortissement :</span> <output id="kdv">9</output>
-            <input id="kd" type="range" min="0" max="16" step="0.5" value="9">
-          </label>
-        </div>
-        <div class="lab__actions">
-          <button class="button button--ghost button--small" type="button" id="pushL" data-en="Push left">Pousser à gauche</button>
-          <button class="button button--ghost button--small" type="button" id="pushR" data-en="Push right">Pousser à droite</button>
-          <button class="button button--ghost button--small" type="button" id="reset" data-en="Reset upright">Remettre d’aplomb</button>
-          <span class="readout" id="angle">Angle : 0,0°</span>
-        </div>
-        <p class="status" id="status" role="status"></p>
-      </article>
+        <!-- ===== Projet : turboréacteur ===== -->
+        <article class="project reveal">
+          <div class="project__head">
+            <span class="project__tag" data-en="Control engineering">Automatique · Commande</span>
+            <h3 class="project__title" data-en="Speed control of a turbofan engine">Commande de la vitesse d’un turboréacteur</h3>
+            <p class="project__meta" data-en="Mini-project · MARS Master’s · 2026 · Team of two">Mini-projet · Master MARS · 2026 · En binôme</p>
+          </div>
 
-      <div class="swiper projects__swiper reveal">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <article class="card">
-              <div class="card__head"><span class="card__number">02</span><span class="card__tag" data-en="Robotics">Robotique</span></div>
-              <h3 class="card__title" data-en="Industrial robot kinematics">Cinématique de robots industriels</h3>
-              <p class="card__text" data-en="Geometric modeling of SCARA, ABB and UR3 robots using the Denavit-Hartenberg convention.">Modélisation géométrique de robots SCARA, ABB et UR3 avec la convention de Denavit-Hartenberg.</p>
-              <p class="card__subtitle" data-en="Tools used">Outils utilisés</p>
-              <p class="card__text">Denavit-Hartenberg, SCARA, ABB, UR3.</p>
-              <div class="panel" aria-hidden="true">
-                <svg viewBox="0 0 240 150"><rect x="30" y="118" width="60" height="12" rx="3"/><line x1="60" y1="118" x2="90" y2="66"/><line x1="90" y1="66" x2="164" y2="86"/><circle cx="60" cy="118" r="6"/><circle cx="90" cy="66" r="6"/><circle cx="164" cy="86" r="6"/><line x1="164" y1="86" x2="164" y2="106"/></svg>
-              </div>
-            </article>
+          <div class="project__body">
+            <div class="project__text">
+              <p class="project__label" data-en="Objective">Objectif</p>
+              <p data-en="Regulate the speed of a turbofan’s high-pressure turbine by acting on the kerosene flow, then design and compare several control strategies.">Réguler la vitesse de la turbine haute pression d’un turboréacteur en agissant sur le débit de kérosène, puis concevoir et comparer plusieurs stratégies de commande.</p>
+
+              <p class="project__label" data-en="What I did">Ce que j’ai réalisé</p>
+              <ul class="project__steps">
+                <li data-en="<b>System identification</b> from an open-loop step test: first-order-plus-delay model (Broïda method), validated against the real response."><b>Identification du système</b> à partir d’un essai en boucle ouverte : modèle du premier ordre avec retard (méthode de Broïda), validé par comparaison avec la réponse réelle.</li>
+                <li data-en="<b>Open-loop control</b> based on the static characteristic (look-up table)."><b>Commande en boucle ouverte</b> à partir de la caractéristique statique (table de correspondance).</li>
+                <li data-en="<b>PID controller design</b> by the Broïda method and by pole placement, with <b>anti-windup</b>, a setpoint <b>pre-filter</b> and a study of measurement noise."><b>Synthèse de correcteurs PID</b> par la méthode de Broïda et par placement de pôles, avec <b>anti-windup</b>, <b>pré-filtre</b> de consigne et étude du bruit de mesure.</li>
+                <li data-en="<b>Internal Model Control (IMC)</b>: implementation and study of the filter tuning and anti-windup."><b>Commande à modèle interne (IMC)</b> : mise en place et étude du réglage du filtre et de l’anti-windup.</li>
+              </ul>
+
+              <p class="project__label" data-en="Result">Résultat</p>
+              <p data-en="The final PID (anti-windup + pre-filter) tracks every setpoint change across the whole operating range, without overshoot, while keeping the fuel command within its limits.">Le PID final (anti-windup + pré-filtre) suit chaque changement de consigne sur toute la plage de fonctionnement, sans dépassement, avec une commande de kérosène qui reste dans ses limites.</p>
+
+              <ul class="skill__tags project__tools"><li>MATLAB</li><li>Simulink</li><li>Identification</li><li>PID</li><li data-en="Pole placement">Placement de pôles</li><li>IMC</li><li>Anti-windup</li></ul>
+            </div>
+
+            <div class="project__figures">
+              <button class="project__fig zoom" type="button" data-full="assets/img/proj-turbo-identification.jpg">
+                <img src="assets/img/proj-turbo-identification.jpg" alt="Comparaison de la réponse réelle et du modèle identifié" loading="lazy">
+                <span data-en="Identified model (red) vs real response (blue)">Modèle identifié (rouge) et réponse réelle (bleu)</span>
+              </button>
+              <button class="project__fig zoom" type="button" data-full="assets/img/proj-turbo-pid.jpg">
+                <img src="assets/img/proj-turbo-pid.jpg" alt="Suivi de consigne avec le PID final et commande de kérosène" loading="lazy">
+                <span data-en="Setpoint tracking with the final PID (top) and fuel command (bottom)">Suivi de consigne avec le PID final (en haut) et commande de kérosène (en bas)</span>
+              </button>
+            </div>
           </div>
-          <div class="swiper-slide">
-            <article class="card">
-              <div class="card__head"><span class="card__number">03</span><span class="card__tag" data-en="Sensors">Capteurs</span></div>
-              <h3 class="card__title" data-en="Autonomous robot and sensor fusion">Robot autonome et fusion de capteurs</h3>
-              <p class="card__text" data-en="Obstacle avoidance for an autonomous robot combining GPS, ultrasonic and LIDAR measurements.">Évitement d’obstacles d’un robot autonome à partir de mesures GPS, ultrasons et LIDAR combinées.</p>
-              <p class="card__subtitle" data-en="Tools used">Outils utilisés</p>
-              <p class="card__text" data-en="GPS, ultrasonic sensors, LIDAR.">GPS, ultrasons, LIDAR.</p>
-              <div class="panel" aria-hidden="true">
-                <svg viewBox="0 0 240 150"><circle cx="56" cy="80" r="14"/><line x1="70" y1="80" x2="170" y2="40" stroke-dasharray="4 6"/><line x1="70" y1="80" x2="176" y2="80" stroke-dasharray="4 6"/><line x1="70" y1="80" x2="170" y2="120" stroke-dasharray="4 6"/><rect x="176" y="34" width="24" height="92" rx="4"/><circle cx="56" cy="40" r="4"/></svg>
-              </div>
-            </article>
-          </div>
-          <div class="swiper-slide">
-            <article class="card">
-              <div class="card__head"><span class="card__number">04</span><span class="card__tag" data-en="Control">Commande</span></div>
-              <h3 class="card__title" data-en="Turbojet engine control">Commande d’un turboréacteur</h3>
-              <p class="card__text" data-en="Turbojet engine regulation using Internal Model Control (IMC).">Régulation d’un turboréacteur par commande à modèle interne (IMC).</p>
-              <p class="card__subtitle" data-en="Tools used">Outils utilisés</p>
-              <p class="card__text" data-en="IMC, regulation.">IMC, régulation.</p>
-              <div class="panel" aria-hidden="true">
-                <svg viewBox="0 0 240 150"><circle cx="120" cy="75" r="56"/><circle cx="120" cy="75" r="14"/><line x1="120" y1="61" x2="120" y2="22"/><line x1="132" y1="68" x2="166" y2="48"/><line x1="132" y1="82" x2="166" y2="102"/><line x1="120" y1="89" x2="120" y2="128"/><line x1="108" y1="82" x2="74" y2="102"/><line x1="108" y1="68" x2="74" y2="48"/></svg>
-              </div>
-            </article>
-          </div>
-          <div class="swiper-slide">
-            <article class="card">
-              <div class="card__head"><span class="card__number">05</span><span class="card__tag" data-en="Automation">Automatisme</span></div>
-              <h3 class="card__title" data-en="Automation with Grafcet">Automatisme en Grafcet</h3>
-              <p class="card__text" data-en="Design of industrial automation sequences described in Grafcet.">Conception de séquences d’automatisme industriel décrites en Grafcet.</p>
-              <p class="card__subtitle" data-en="Tools used">Outils utilisés</p>
-              <p class="card__text" data-en="Grafcet, sequential automation.">Grafcet, automatismes séquentiels.</p>
-              <div class="panel" aria-hidden="true">
-                <svg viewBox="0 0 240 150"><rect x="96" y="8" width="48" height="26"/><rect x="101" y="13" width="38" height="16"/><line x1="120" y1="34" x2="120" y2="50"/><line x1="108" y1="50" x2="132" y2="50"/><line x1="120" y1="50" x2="120" y2="60"/><rect x="96" y="60" width="48" height="26"/><line x1="120" y1="86" x2="120" y2="102"/><line x1="108" y1="102" x2="132" y2="102"/><line x1="120" y1="102" x2="120" y2="112"/><rect x="96" y="112" width="48" height="26"/></svg>
-              </div>
-            </article>
-          </div>
-        </div>
-        <div class="swiper-pagination"></div>
+        </article>
+
       </div>
     </div>
   </section>
@@ -775,7 +761,7 @@
   });
 
   /* ---- Projets : cartes coulissantes ---- */
-  if (window.Swiper) {
+  if (window.Swiper && document.querySelector('.projects__swiper')) {
     new Swiper('.projects__swiper', {
       grabCursor: true, slidesPerView: 'auto', spaceBetween: 20,
       pagination: { el: '.swiper-pagination', clickable: true }
@@ -823,7 +809,7 @@
   document.body.appendChild(lb);
   const lbImg = lb.querySelector('img');
   const closeLb = () => lb.classList.remove('open');
-  document.querySelectorAll('.cert__thumb').forEach(t => t.addEventListener('click', () => {
+  document.querySelectorAll('.cert__thumb, .zoom').forEach(t => t.addEventListener('click', () => {
     lbImg.src = t.dataset.full; lbImg.alt = t.querySelector('img').alt; lb.classList.add('open');
   }));
   lb.addEventListener('click', closeLb);
@@ -908,6 +894,7 @@
   });
 
   /* ---- Simulation : moto en équilibre, correcteur PD ---- */
+  if (document.getElementById('sim')) {
   const cv = document.getElementById('sim'), ctx = cv.getContext('2d');
   const kpIn = document.getElementById('kp'), kdIn = document.getElementById('kd');
   const kpOut = document.getElementById('kpv'), kdOut = document.getElementById('kdv');
@@ -1011,6 +998,7 @@
       if (es[0].isIntersecting && !started) { started = true; setTimeout(() => push(1), 400); once.disconnect(); }
     }, { threshold: 0.6 });
     once.observe(cv);
+  }
   }
 })();
 </script>
