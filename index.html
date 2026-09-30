@@ -301,6 +301,16 @@
   /* ===== Parcours ===== */
   .work__tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem;margin:-1rem 0 2.5rem}
   @media (max-width:480px){.work__tabs{gap:.4rem}.work__tabs .tab{padding:.5rem .7rem;font-size:.76rem}}
+  .cert__gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem;margin-top:2.2rem}
+  .cert__thumb{display:flex;flex-direction:column;overflow:hidden;border:1px solid var(--line);border-radius:1rem;background:var(--container-color);text-align:left;transition:border-color .3s,translate .3s,box-shadow .3s}
+  .cert__thumb:hover{border-color:var(--first-color);translate:0 -5px;box-shadow:0 18px 40px -22px hsla(255,80%,60%,.8)}
+  .cert__thumb img{width:100%;height:150px;object-fit:cover;object-position:top;background:#fff}
+  .cert__thumb span{padding:.7rem .9rem;font-size:var(--small);font-weight:600;color:var(--title-color)}
+  .lightbox{position:fixed;inset:0;z-index:400;display:grid;place-items:center;padding:1.2rem;background:rgba(3,3,10,.88);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity .3s;cursor:zoom-out}
+  .lightbox.open{opacity:1;pointer-events:auto}
+  .lightbox img{max-width:min(92vw,1000px);max-height:86vh;border-radius:.6rem;box-shadow:0 30px 80px rgba(0,0,0,.6);transform:scale(.95);transition:transform .3s}
+  .lightbox.open img{transform:none}
+  .lightbox__close{position:absolute;top:1rem;right:1rem;width:2.6rem;height:2.6rem;border-radius:50%;background:#ffffff1f;color:#fff;font-size:1.3rem}
   .work__link{display:inline-block;margin-left:.3rem;font-weight:600;color:var(--first-color);white-space:nowrap}
   .work__link:hover{text-decoration:underline}
   .tab{padding:.6rem 1.4rem;border-radius:999px;border:1px solid var(--line);color:var(--text-color);font-weight:600;transition:background .25s,color .25s,border-color .25s}
@@ -549,17 +559,22 @@
         <li class="work__item">
           <div class="work__data"><h3 class="work__title">Simulink Fundamentals</h3><p class="work__subtitle">MathWorks</p></div>
           <span class="work__year">2025</span>
-          <p class="work__description" data-en="Online certified course, 100% completed: modelling and simulating dynamic systems in Simulink. <a class='work__link' href='assets/pdf/Certificat_Simulink.pdf' target='_blank' rel='noopener'>View certificate →</a>">Formation certifiante en ligne, complétée à 100 % : modélisation et simulation de systèmes dynamiques sous Simulink. <a class="work__link" href="assets/pdf/Certificat_Simulink.pdf" target="_blank" rel="noopener">Voir le certificat →</a></p>
+          <p class="work__description" data-en="Online certified course, 100% completed: modelling and simulating dynamic systems in Simulink.">Formation certifiante en ligne, complétée à 100 % : modélisation et simulation de systèmes dynamiques sous Simulink.</p>
         </li>
         <li class="work__item">
           <div class="work__data"><h3 class="work__title" data-en="MATLAB Desktop Tools and Troubleshooting Scripts">Outils MATLAB Desktop et résolution de problèmes dans les scripts</h3><p class="work__subtitle">MathWorks</p></div>
           <span class="work__year">2025</span>
-          <p class="work__description" data-en="Online certified course, 100% completed: MATLAB environment, debugging and making scripts reliable. <a class='work__link' href='assets/pdf/Certificat_MATLAB.pdf' target='_blank' rel='noopener'>View certificate →</a>">Formation certifiante en ligne, complétée à 100 % : environnement MATLAB, débogage et fiabilisation des scripts. <a class="work__link" href="assets/pdf/Certificat_MATLAB.pdf" target="_blank" rel="noopener">Voir le certificat →</a></p>
+          <p class="work__description" data-en="Online certified course, 100% completed: MATLAB environment, debugging and making scripts reliable.">Formation certifiante en ligne, complétée à 100 % : environnement MATLAB, débogage et fiabilisation des scripts.</p>
         </li>
         <li class="work__item">
           <div class="work__data"><h3 class="work__title" data-en="TCF – French proficiency test">TCF – Test de connaissance du français</h3><p class="work__subtitle">France Éducation International</p></div>
           <span class="work__year">2023</span>
           <p class="work__description" data-en="<b>C1</b> level (CEFR) in listening, reading and language structure.">Niveau <b>C1</b> (CECRL) en compréhension orale, compréhension écrite et maîtrise de la langue.</p>
+        </li>
+        <li class="cert__gallery">
+          <button class="cert__thumb" type="button" data-full="assets/img/cert-simulink.jpg"><img src="assets/img/cert-simulink.jpg" alt="Certificat Simulink Fundamentals, MathWorks" loading="lazy"><span>Simulink Fundamentals</span></button>
+          <button class="cert__thumb" type="button" data-full="assets/img/cert-matlab.jpg"><img src="assets/img/cert-matlab.jpg" alt="Certificat MATLAB, MathWorks" loading="lazy"><span>MATLAB</span></button>
+          <button class="cert__thumb" type="button" data-full="assets/img/cert-tcf.jpg"><img src="assets/img/cert-tcf.jpg" alt="Attestation TCF, niveau C1" loading="lazy"><span>TCF · C1</span></button>
         </li>
       </ul>
     </div>
@@ -800,6 +815,19 @@
     const done = () => showToast(tr('Adresse copiée : ', 'Email copied: ') + mail);
     if (navigator.clipboard) navigator.clipboard.writeText(mail).then(done, () => showToast(mail)); else showToast(mail);
   });
+
+  /* ---- Certificats : agrandir au clic ---- */
+  const lb = document.createElement('div');
+  lb.className = 'lightbox'; lb.setAttribute('role', 'dialog'); lb.setAttribute('aria-modal', 'true');
+  lb.innerHTML = '<img alt=""><button class="lightbox__close" type="button" aria-label="Fermer">✕</button>';
+  document.body.appendChild(lb);
+  const lbImg = lb.querySelector('img');
+  const closeLb = () => lb.classList.remove('open');
+  document.querySelectorAll('.cert__thumb').forEach(t => t.addEventListener('click', () => {
+    lbImg.src = t.dataset.full; lbImg.alt = t.querySelector('img').alt; lb.classList.add('open');
+  }));
+  lb.addEventListener('click', closeLb);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
 
   /* ---- Contact : copier l'e-mail ---- */
   const copyBtn = document.getElementById('copyEmail'), emailText = document.getElementById('emailText');
