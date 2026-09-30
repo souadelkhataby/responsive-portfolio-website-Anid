@@ -302,6 +302,14 @@
   /* ===== Parcours ===== */
   .work__tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem;margin:-1rem 0 2.5rem}
   @media (max-width:480px){.work__tabs{gap:.4rem}.work__tabs .tab{padding:.5rem .7rem;font-size:.76rem}}
+  /* ===== Filtres projets ===== */
+  .projects__filters{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem;margin:-1rem 0 2.2rem}
+  .filter{padding:.55rem 1.1rem;border-radius:999px;border:1px solid var(--line);color:var(--text-color);font-size:var(--small);font-weight:600;transition:background .25s,color .25s,border-color .25s}
+  .filter:hover{border-color:var(--first-color);color:var(--title-color)}
+  .filter[aria-pressed="true"]{background:var(--first-alt);border-color:var(--first-alt);color:#fff}
+  @media (max-width:480px){.filter{padding:.45rem .8rem;font-size:.74rem}}
+  .projects__empty{text-align:center;color:var(--text-light);padding:2.5rem 1rem;border:1px dashed var(--line);border-radius:1.2rem}
+
   /* ===== Cartes projets ===== */
   .projects__list{display:grid;gap:2rem}
   .project{padding:1.6rem;border:1px solid var(--line);border-radius:1.4rem;background:linear-gradient(160deg,var(--container-2),var(--container-color) 60%)}
@@ -606,12 +614,20 @@
   <section class="projects section" id="projets" aria-labelledby="h-projets">
     <div class="container">
       <h2 class="section__title reveal" id="h-projets" data-en="Hands-on <br><span>projects</span>">Des projets <br><span>concrets</span></h2>
+      <div class="projects__filters" role="group" aria-label="Filtrer les projets">
+        <button class="filter" type="button" data-filter="all" aria-pressed="true" data-en="All">Tous</button>
+        <button class="filter" type="button" data-filter="commande" aria-pressed="false" data-en="Control">Commande &amp; régulation</button>
+        <button class="filter" type="button" data-filter="robotique" aria-pressed="false" data-en="Robotics">Robotique</button>
+        <button class="filter" type="button" data-filter="automatisme" aria-pressed="false" data-en="Automation">Automatisme</button>
+        <button class="filter" type="button" data-filter="embarque" aria-pressed="false" data-en="Embedded &amp; signal">Embarqué &amp; signal</button>
+      </div>
+      <p class="projects__empty" id="projectsEmpty" hidden data-en="Projects coming soon in this category.">Projets à venir dans cette catégorie.</p>
       <div class="projects__list" id="projectsList">
 
         <!-- ===== Projet : turboréacteur ===== -->
-        <article class="project reveal">
+        <article class="project reveal" data-cat="commande">
           <div class="project__head">
-            <span class="project__tag" data-en="Control engineering">Automatique · Commande</span>
+            <span class="project__tag" data-en="Control">Commande &amp; régulation</span>
             <h3 class="project__title" data-en="Speed control of a turbofan engine">Commande de la vitesse d’un turboréacteur</h3>
             <p class="project__meta" data-en="Mini-project · MARS Master’s · 2026 · Team of two">Mini-projet · Master MARS · 2026 · En binôme</p>
           </div>
@@ -801,6 +817,19 @@
     const done = () => showToast(tr('Adresse copiée : ', 'Email copied: ') + mail);
     if (navigator.clipboard) navigator.clipboard.writeText(mail).then(done, () => showToast(mail)); else showToast(mail);
   });
+
+  /* ---- Projets : filtres par domaine ---- */
+  const filters = document.querySelectorAll('.filter'), projectCards = document.querySelectorAll('.project'), projectsEmpty = document.getElementById('projectsEmpty');
+  filters.forEach(f => f.addEventListener('click', () => {
+    filters.forEach(x => x.setAttribute('aria-pressed', String(x === f)));
+    let shown = 0;
+    projectCards.forEach(card => {
+      const show = f.dataset.filter === 'all' || (card.dataset.cat || '').split(' ').includes(f.dataset.filter);
+      card.hidden = !show;
+      if (show) { shown++; card.classList.add('in'); }
+    });
+    projectsEmpty.hidden = shown > 0;
+  }));
 
   /* ---- Certificats : agrandir au clic ---- */
   const lb = document.createElement('div');
