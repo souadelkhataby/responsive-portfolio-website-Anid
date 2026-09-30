@@ -654,6 +654,7 @@
         <button class="filter" type="button" data-filter="robotique" aria-pressed="false" data-en="Robotics">Robotique</button>
         <button class="filter" type="button" data-filter="automatisme" aria-pressed="false" data-en="Automation">Automatisme</button>
         <button class="filter" type="button" data-filter="embarque" aria-pressed="false" data-en="Embedded &amp; signal">Embarqué &amp; signal</button>
+        <button class="filter" type="button" data-filter="electrotechnique" aria-pressed="false" data-en="Electrical engineering">Électrotechnique</button>
       </div>
       <p class="projects__empty" id="projectsEmpty" hidden data-en="Projects coming soon in this category.">Projets à venir dans cette catégorie.</p>
       <div class="projects__list" id="projectsList">
@@ -703,6 +704,60 @@
                 <span data-en="Setpoint tracking with the final PID (top) and fuel command (bottom)">Suivi de consigne avec le PID final (en haut) et commande de kérosène (en bas)</span>
               </button>
             </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ===== TP : moteur asynchrone ===== -->
+        <article class="pcard reveal" data-cat="electrotechnique" tabindex="0" role="button" aria-haspopup="dialog">
+          <div class="pcard__img"><img src="assets/img/proj-mas-banc.jpg" alt="" loading="lazy" style="object-position:center"></div>
+          <div class="pcard__body">
+            <span class="project__tag" data-en="Electrical engineering">Électrotechnique</span>
+            <h3 class="pcard__title" data-en="Testing a three-phase induction motor">Caractérisation d’un moteur asynchrone triphasé</h3>
+            <p class="pcard__meta" data-en="Lab work">Travaux pratiques</p>
+            <p class="pcard__summary" data-en="Tests on an instrumented bench to compare the real performance of a 1.5 kW motor with the manufacturer’s data.">Essais sur banc instrumenté pour comparer les performances réelles d’un moteur de 1,5 kW aux données du constructeur.</p>
+            <ul class="skill__tags pcard__tools"><li data-en="Induction motor">Moteur asynchrone</li><li data-en="Test bench">Banc d’essai</li><li data-en="Oscilloscope">Oscilloscope</li><li data-en="Efficiency">Rendement</li></ul>
+            <span class="pcard__more" data-en="View project →">Voir le projet →</span>
+          </div>
+          <div class="pcard__details" hidden>
+            <div class="project__head">
+              <span class="project__tag" data-en="Electrical engineering">Électrotechnique</span>
+              <h3 class="project__title" data-en="Testing a three-phase induction motor">Caractérisation d’un moteur asynchrone triphasé</h3>
+              <p class="project__meta" data-en="Lab work">Travaux pratiques</p>
+            </div>
+            <div class="project__body">
+              <div class="project__text">
+                <p class="project__label" data-en="Objective">Objectif</p>
+                <p data-en="Experimentally check the characteristics of a 1.5 kW three-phase induction motor (current, speed, torque, efficiency) and compare them with the manufacturer’s data.">Vérifier expérimentalement les caractéristiques d’un moteur asynchrone triphasé de 1,5 kW (courant, vitesse, couple, rendement) et les comparer aux données du constructeur.</p>
+
+                <p class="project__label" data-en="What I did">Ce que j’ai réalisé</p>
+                <ul class="project__steps">
+                  <li data-en="<b>Preparation</b>: analysis of the manufacturer’s documentation, calculation of the rated current and torque, choice of a <b>star connection</b> for the 400 V network."><b>Préparation</b> : exploitation de la documentation constructeur, calcul du courant et du couple nominaux, choix du <b>couplage étoile</b> pour le réseau 400 V.</li>
+                  <li data-en="<b>Wiring the test bench</b>: three-phase supply through a starter, powder brake to apply the load, tachometer generator for speed and force sensor for torque. Added an ammeter in series to make the current measurement reliable."><b>Câblage du banc d’essai</b> : alimentation triphasée via un démarreur, frein à poudre pour la charge, dynamo tachymétrique pour la vitesse et capteur de force pour le couple. Ajout d’un ampèremètre en série pour fiabiliser la mesure du courant.</li>
+                  <li data-en="<b>Load tests</b> at several operating points: measurement of power, current, speed and torque, check of the relation P = T·Ω and plot of the <b>efficiency curve</b>."><b>Essais en charge</b> à plusieurs points de fonctionnement : relevé des puissances, du courant, de la vitesse et du couple, vérification de la relation P = T·Ω et tracé de la <b>courbe de rendement</b>.</li>
+                  <li data-en="<b>Start-up study</b> with an oscilloscope (current probe and voltage probe): visualisation of the inrush current and of the speed rise."><b>Étude du démarrage</b> à l’oscilloscope (sonde de courant et sonde de tension) : visualisation de l’appel de courant et de la montée en vitesse.</li>
+                </ul>
+
+                <p class="project__label" data-en="Result">Résultat</p>
+                <p data-en="Measured efficiency of <b>79.9%</b> at full load for 79.4% announced (less than 1% difference), with a maximum of about 81% at half load. At full load: 1.55 kW, 10.1 N·m and 1,443 rpm, consistent with the rated values. The relation P = T·Ω is confirmed within 1.5%.">Rendement mesuré de <b>79,9 %</b> à pleine charge pour 79,4 % annoncés (moins de 1 % d’écart), avec un maximum d’environ 81 % vers mi-charge. À pleine charge : 1,55 kW, 10,1 N·m et 1 443 tr/min, cohérents avec les valeurs nominales. La relation P = T·Ω est vérifiée à 1,5 % près.</p>
+
+                <ul class="skill__tags project__tools"><li data-en="Induction motor">Moteur asynchrone</li><li data-en="Star connection">Couplage étoile</li><li data-en="Powder brake">Frein à poudre</li><li data-en="Power clamp meter">Pince wattmétrique</li><li data-en="Oscilloscope">Oscilloscope</li><li data-en="Electrical measurements">Mesures électriques</li></ul>
+              </div>
+
+              <div class="project__figures">
+                <button class="project__fig zoom" type="button" data-full="assets/img/proj-mas-rendement.jpg">
+                  <img src="assets/img/proj-mas-rendement.jpg" alt="Courbe de rendement du moteur en fonction de la charge" loading="lazy">
+                  <span data-en="Measured efficiency (%) versus load (P / P nominal)">Rendement mesuré (%) en fonction de la charge (P / P nominale)</span>
+                </button>
+                <button class="project__fig zoom" type="button" data-full="assets/img/proj-mas-banc.jpg">
+                  <img src="assets/img/proj-mas-banc.jpg" alt="Moteur câblé en étoile sur le banc d’essai" loading="lazy">
+                  <span data-en="Motor wired in star connection on the test bench">Moteur câblé en étoile sur le banc d’essai</span>
+                </button>
+                <button class="project__fig zoom" type="button" data-full="assets/img/proj-mas-demarrage.jpg">
+                  <img src="assets/img/proj-mas-demarrage.jpg" alt="Oscilloscope pendant l’étude du démarrage" loading="lazy">
+                  <span data-en="Start-up study with the oscilloscope">Étude du démarrage à l’oscilloscope</span>
+                </button>
+              </div>
             </div>
           </div>
         </article>
