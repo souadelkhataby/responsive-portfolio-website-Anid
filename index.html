@@ -762,6 +762,61 @@
           </div>
         </article>
 
+        <!-- ===== TP : machine à courant continu ===== -->
+        <article class="pcard reveal" data-cat="electrotechnique" tabindex="0" role="button" aria-haspopup="dialog">
+          <div class="pcard__img"><img src="assets/img/proj-mcc-plaque.jpg" alt="" loading="lazy" style="object-position:center"></div>
+          <div class="pcard__body">
+            <span class="project__tag" data-en="Electrical engineering">Électrotechnique</span>
+            <h3 class="pcard__title" data-en="DC machine as a generator and a motor">Machine à courant continu en génératrice et en moteur</h3>
+            <p class="pcard__meta" data-en="Lab work">Travaux pratiques</p>
+            <p class="pcard__summary" data-en="Bench tests on a 1.5 kW separately excited DC machine, run first as a generator and then as a motor.">Essais sur banc d’une machine à courant continu de 1,5 kW à excitation indépendante, utilisée d’abord en génératrice puis en moteur.</p>
+            <ul class="skill__tags pcard__tools"><li data-en="DC machine">Machine à courant continu</li><li data-en="Test bench">Banc d’essai</li><li data-en="Electrical measurements">Mesures électriques</li><li data-en="Python (plots)">Python (courbes)</li></ul>
+            <span class="pcard__more" data-en="View project →">Voir le projet →</span>
+          </div>
+          <div class="pcard__details" hidden>
+            <div class="project__head">
+              <span class="project__tag" data-en="Electrical engineering">Électrotechnique</span>
+              <h3 class="project__title" data-en="DC machine as a generator and a motor">Machine à courant continu en génératrice et en moteur</h3>
+              <p class="project__meta" data-en="Lab work">Travaux pratiques</p>
+            </div>
+            <div class="project__body">
+              <div class="project__text">
+                <p class="project__label" data-en="Objective">Objectif</p>
+                <p data-en="Study the reversibility of a 1.5 kW separately excited DC machine: drive it as a generator, then run it as a motor, and measure its electrical and mechanical characteristics.">Étudier la réversibilité d’une machine à courant continu de 1,5 kW à excitation indépendante : l’entraîner en génératrice, puis la faire fonctionner en moteur, et relever ses caractéristiques électriques et mécaniques.</p>
+
+                <p class="project__label" data-en="What I did">Ce que j’ai réalisé</p>
+                <ul class="project__steps">
+                  <li data-en="<b>Bench setup</b>: DC machine coupled to an induction motor that drives it at rated speed, with separate supplies for the armature and the field winding."><b>Mise en place du banc</b> : machine à courant continu accouplée à un moteur asynchrone qui l’entraîne à vitesse nominale, avec des alimentations séparées pour l’induit et l’inducteur.</li>
+                  <li data-en="<b>No-load test</b>: plot of E = f(Ie) with increasing then decreasing field current, to highlight <b>magnetic saturation</b> and <b>hysteresis</b>."><b>Essai à vide</b> : tracé de E = f(Ie) en montée puis en descente du courant d’excitation, pour mettre en évidence la <b>saturation magnétique</b> et l’<b>hystérésis</b>.</li>
+                  <li data-en="<b>Load test</b> on a variable resistive load, keeping the current below its rated value (6.8 A): plot of U = f(I) and analysis of the voltage drop."><b>Essai en charge</b> sur charge résistive variable, sans dépasser le courant nominal (6,8 A) : tracé de U = f(I) et analyse de la chute de tension.</li>
+                  <li data-en="<b>Regulation characteristic</b>: adjusting the field current to hold the output voltage at 110 V as the load increases."><b>Caractéristique de réglage</b> : ajustement du courant d’excitation pour maintenir la tension de sortie à 110 V quand la charge augmente.</li>
+                  <li data-en="<b>Armature resistance measurement</b>, then <b>motor operation</b>: load tests and power balance (Joule, iron and mechanical losses)."><b>Mesure de la résistance d’induit</b>, puis <b>fonctionnement en moteur</b> : essais en charge et bilan des puissances (pertes Joule, fer et mécaniques).</li>
+                </ul>
+
+                <p class="project__label" data-en="Result">Résultat</p>
+                <p data-en="Measured armature resistance of <b>4.1 to 4.3 Ω</b> for 4.2 Ω announced. The no-load curve clearly shows saturation above about 0.5 A of field current and a hysteresis gap between the two directions. Under load, the voltage falls steadily from 278 V to 244 V, as the model U = E − R·I predicts. All curves were plotted in Python.">Résistance d’induit mesurée entre <b>4,1 et 4,3 Ω</b> pour 4,2 Ω annoncés. La courbe à vide montre nettement la saturation au-delà d’environ 0,5 A d’excitation et un écart d’hystérésis entre la montée et la descente. En charge, la tension baisse régulièrement de 278 V à 244 V, comme le prévoit le modèle U = E − R·I. Toutes les courbes ont été tracées en Python.</p>
+
+                <ul class="skill__tags project__tools"><li data-en="DC machine">Machine à courant continu</li><li data-en="Separate excitation">Excitation indépendante</li><li data-en="Test bench">Banc d’essai</li><li data-en="Power balance">Bilan de puissance</li><li data-en="Electrical measurements">Mesures électriques</li><li data-en="Python (plots)">Python (courbes)</li></ul>
+              </div>
+
+              <div class="project__figures">
+                <button class="project__fig zoom" type="button" data-full="assets/img/proj-mcc-vide.jpg">
+                  <img src="assets/img/proj-mcc-vide.jpg" alt="Caractéristique à vide E = f(Ie) en montée et en descente" loading="lazy">
+                  <span data-en="No-load characteristic E = f(Ie): saturation and hysteresis">Caractéristique à vide E = f(Ie) : saturation et hystérésis</span>
+                </button>
+                <button class="project__fig zoom" type="button" data-full="assets/img/proj-mcc-charge.jpg">
+                  <img src="assets/img/proj-mcc-charge.jpg" alt="Caractéristique en charge U = f(I) de la génératrice" loading="lazy">
+                  <span data-en="Load characteristic U = f(I) of the generator">Caractéristique en charge U = f(I) de la génératrice</span>
+                </button>
+                <button class="project__fig zoom" type="button" data-full="assets/img/proj-mcc-plaque.jpg">
+                  <img src="assets/img/proj-mcc-plaque.jpg" alt="Plaque signalétique de la machine à courant continu" loading="lazy">
+                  <span data-en="Nameplate of the DC machine tested (1.5 kW, 220 V)">Plaque signalétique de la machine testée (1,5 kW, 220 V)</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+
       </div>
     </div>
   </section>
