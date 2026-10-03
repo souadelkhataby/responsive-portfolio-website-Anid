@@ -787,6 +787,52 @@
           </div>
         </article>
 
+        <!-- ===== Projet : ralenti (en cours) ===== -->
+        <article class="pcard reveal" data-cat="commande" tabindex="0" role="button" aria-haspopup="dialog">
+          <div class="pcard__img"><img src="assets/img/proj-ralenti-illu.svg" alt="" loading="lazy" style="object-position:center"></div>
+          <div class="pcard__body">
+            <span class="project__tag" data-en="Control">Commande &amp; régulation</span>
+            <h3 class="pcard__title" data-en="Engine idle speed control">Régulation du régime de ralenti d’un moteur</h3>
+            <p class="pcard__meta" data-en="Ongoing project">Projet en cours</p>
+            <p class="pcard__summary" data-en="Modelling of a combustion engine and control design to keep the idle speed stable under disturbances.">Modélisation d’un moteur thermique et synthèse de lois de commande pour stabiliser le régime de ralenti face aux perturbations.</p>
+            <ul class="skill__tags pcard__tools"><li>MATLAB</li><li>Simulink</li><li data-en="Multivariable control">Commande multivariable</li></ul>
+            <span class="pcard__more" data-en="View project →">Voir le projet →</span>
+          </div>
+          <div class="pcard__details" hidden>
+            <div class="project__head">
+              <span class="project__tag" data-en="Control">Commande &amp; régulation</span>
+              <h3 class="project__title" data-en="Engine idle speed control">Régulation du régime de ralenti d’un moteur</h3>
+              <p class="project__meta" data-en="Ongoing project">Projet en cours</p>
+            </div>
+            <div class="project__body">
+              <div class="project__text">
+                <p class="project__label" data-en="Objective">Objectif</p>
+                <p data-en="Keep a stable idle speed (750 to 1,000 rpm) despite added loads, by acting on two inputs: the air valve opening and the spark advance.">Maintenir un régime de ralenti stable (750 à 1000 tr/min) malgré les charges qui s’ajoutent, en agissant sur deux commandes : l’ouverture de la vanne d’air et l’avance à l’allumage.</p>
+
+                <p class="project__label" data-en="Approach">Démarche</p>
+                <ul class="project__steps">
+                  <li data-en="<b>Problem analysis</b>: inputs, output, actuator constraints and performance criteria (speed, disturbance rejection, noise sensitivity)."><b>Analyse du problème</b> : entrées, sortie, contraintes sur les actionneurs et critères de performance (rapidité, rejet des perturbations, sensibilité au bruit).</li>
+                  <li data-en="<b>Physical model</b> in MATLAB/Simulink: throttle air flow (Barré de Saint-Venant), intake manifold pressure dynamics, cylinder filling, torque and engine speed."><b>Modèle physique</b> sous MATLAB/Simulink : débit d’air au papillon (Barré de Saint-Venant), dynamique de pression du collecteur, remplissage des cylindres, couple et régime moteur.</li>
+                  <li data-en="<b>Identification and linearisation</b> around several operating points (750, 900 and 1,000 rpm)."><b>Identification et linéarisation</b> autour de plusieurs points de fonctionnement (750, 900 et 1000 tr/min).</li>
+                  <li data-en="<b>Design and comparison of controllers</b>: PI/PID, pole placement, frequency decoupling of the two inputs, then RST or LQ/LQG, with robustness analysis."><b>Synthèse et comparaison de correcteurs</b> : PI/PID, placement de pôles, découplage fréquentiel des deux commandes, puis RST ou LQ/LQG, avec analyse de robustesse.</li>
+                </ul>
+
+                <p class="project__label" data-en="Progress">Avancement</p>
+                <p data-en="Project started in September 2026: problem analysis done, physical model in progress. This page will be updated as the project moves forward.">Projet démarré en septembre 2026 : analyse du problème réalisée, modèle physique en cours. Cette fiche sera complétée au fil de l’avancement.</p>
+
+                <ul class="skill__tags project__tools"><li>MATLAB</li><li>Simulink</li><li data-en="Physical modelling">Modélisation physique</li><li>Identification</li><li>PID</li><li>LQ / LQG</li><li data-en="Robustness">Robustesse</li></ul>
+              </div>
+
+              <div class="project__figures">
+                <button class="project__fig zoom" type="button" data-full="assets/img/proj-ralenti-illu.svg">
+                  <img src="assets/img/proj-ralenti-illu.svg" alt="Régulation du régime de ralenti" loading="lazy">
+                  <span data-en="Goal: return to idle speed after a disturbance">Objectif : revenir au régime de ralenti après une perturbation</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+
         <!-- ===== Projet : drone ===== -->
         <article class="pcard reveal" data-cat="commande" tabindex="0" role="button" aria-haspopup="dialog">
           <div class="pcard__img"><img src="assets/img/proj-drone-illu.svg" alt="" loading="lazy" style="object-position:center"></div>
