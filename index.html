@@ -206,7 +206,7 @@
   /* ===== Accueil ===== */
   .home{min-height:100vh;display:grid;align-items:center;padding-block:6.5rem 3rem}
   .home__container{position:relative;z-index:1;width:100%;grid-template-columns:1fr;gap:2.5rem;align-items:center;justify-items:center;text-align:center}
-  .home__photo{position:relative;width:min(320px,72vw);aspect-ratio:1;border-radius:50%;padding:6px;background:var(--first-color);box-shadow:0 0 24px hsla(255,85%,62%,.75),0 0 70px hsla(255,85%,62%,.4);animation:popIn 1s cubic-bezier(.2,.7,.2,1) .3s both,ring 4s ease-in-out 1.4s infinite}
+  .home__photo{position:relative;width:min(320px,72vw);aspect-ratio:1;border-radius:50%;padding:6px;background:var(--first-color);box-shadow:0 0 24px hsla(255,85%,62%,.75),0 0 70px hsla(255,85%,62%,.4);animation:popIn 1s cubic-bezier(.2,.7,.2,1) .3s both}
   .home__photo img{width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:center top;background:var(--container-2)}
   .home__greeting{font-size:var(--h3);font-weight:500;color:var(--title-color);animation:fromBelow .8s ease .2s both}
   .home__greeting span{color:var(--first-color);font-weight:600}
@@ -357,6 +357,9 @@
   .project__fig{display:flex;flex-direction:column;overflow:hidden;border:1px solid var(--line);border-radius:1rem;background:var(--container-color);text-align:left;cursor:zoom-in;transition:border-color .3s,translate .3s,box-shadow .3s}
   .project__fig:hover{border-color:var(--first-color);translate:0 -4px;box-shadow:0 18px 40px -22px hsla(255,80%,60%,.8)}
   .project__fig img{width:100%;background:#fff}
+  .project__fig--video{cursor:default}
+  .project__fig--video:hover{translate:none}
+  .project__fig video{width:100%;max-height:60vh;background:#000;display:block}
   .project__fig span{padding:.6rem .85rem;font-size:.78rem;color:var(--text-color)}
   @media (min-width:960px){.project__body{grid-template-columns:1.15fr 1fr;gap:2.4rem}}
   .cert__gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem;margin-top:2.2rem}
@@ -418,6 +421,14 @@
   .skill{background:var(--container-color);border:1px solid var(--line);border-radius:1.1rem;padding:1.5rem;height:100%;transition:border-color .3s,box-shadow .3s,translate .3s}
   .skill:hover{border-color:var(--first-color);translate:0 -6px;box-shadow:0 18px 44px -24px hsla(255,80%,60%,.7)}
   .skill.reveal{transition:opacity .85s cubic-bezier(.2,.7,.2,1) var(--d,0s),transform .85s cubic-bezier(.2,.7,.2,1) var(--d,0s),border-color .3s,box-shadow .3s,translate .3s}
+  .skills__intro{text-align:center;font-size:var(--small);color:var(--text-light);max-width:560px;margin:-1.2rem auto 2rem}
+  .skill{display:flex;flex-direction:column}
+  .skill__tags{margin-bottom:1.1rem}
+  .skill__proof{margin-top:auto;align-self:flex-start;font-size:var(--small);font-weight:600;color:var(--first-color)}
+  .skill__proof:hover span[aria-hidden]{margin-left:.25rem}
+  .skill__count{font-weight:700}
+  .skill__count:not(:empty)::before{content:"("}
+  .skill__count:not(:empty)::after{content:")"}
   .skill__head{display:flex;align-items:center;gap:.85rem;margin-bottom:.9rem}
   .skill__icon{flex:none;display:grid;place-items:center;width:2.7rem;height:2.7rem;border-radius:.85rem;background:hsla(255,80%,60%,.15);color:var(--first-color)}
   .skill__icon svg{width:1.35rem;height:1.35rem;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
@@ -524,20 +535,21 @@
         <li><a href="https://www.linkedin.com/in/souad-el-khataby-641822375" aria-label="LinkedIn" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
         </a></li>
+        <li><a href="tel:+33745263173" aria-label="Téléphone : +33 7 45 26 31 73" title="+33 7 45 26 31 73">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 2.5h2.6c.5 0 .9.3 1 .8l.9 4c.1.4-.1.9-.4 1.1L8.8 9.7a14 14 0 0 0 5.5 5.5l1.3-1.9c.3-.4.7-.5 1.1-.4l4 .9c.5.1.8.5.8 1v2.6c0 1.2-1 2.1-2.2 2.1C10.6 19.5 4.5 13.4 4.5 4.7c0-1.2.9-2.2 2.1-2.2Z"/></svg>
+        </a></li>
         <li><a href="mailto:souadelkhataby@gmail.com" aria-label="E-mail">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm9 7.2L3.6 7v10.4h16.8V7L12 12.2Zm0-1.9L19.6 6.6H4.4L12 10.3Z"/></svg>
         </a></li>
       </ul>
       <div class="home__photo">
-        <span class="orbit" aria-hidden="true"><i></i></span>
-        <span class="orbit o2" aria-hidden="true"><i></i></span>
         <img src="assets/img/souad.webp" alt="Portrait de Souad El-Khataby" width="900" height="1040" fetchpriority="high">
       </div>
       <div class="home__data">
         <p class="home__badge" data-en="<span class='dot'></span>Available from March 2027 · 6-month internship"><span class="dot"></span>Disponible dès mars 2027 · stage de 6 mois</p>
         <p class="home__greeting" data-en="Hi, I’m">Bonjour, je suis</p>
         <h1 class="home__name" id="titre">El-khataby Souad</h1>
-        <h2 class="home__profession" data-en="Engineer in Control, Robotics &amp; Signal Processing">Ingénieure en automatique, robotique &amp; signal</h2>
+        <h2 class="home__profession" data-en="Future engineer in Control, Robotics &amp; Signal Processing">Future ingénieure en automatique, robotique &amp; signal</h2>
         <p class="home__location" data-en="<svg viewBox='0 0 24 24' aria-hidden='true'><path d='M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z'/><circle cx='12' cy='10' r='2.5'/></svg>Based in Orléans · Open to relocation anywhere in France"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z"/><circle cx="12" cy="10" r="2.5"/></svg>Basée à Orléans · Mobile dans toute la France</p>
         <p class="home__seek" data-en="Master’s student (M2) in Control, Robotics and Signal Processing at Polytech Orléans, I’m looking for a 6-month end-of-studies internship.">Étudiante en Master 2 Automatique, Robotique et Signal à Polytech Orléans, je recherche un stage de fin d’études de 6 mois.</p>
         <div class="home__cta">
@@ -661,7 +673,7 @@
 
         <!-- ===== Projet : turboréacteur ===== -->
         <article class="pcard reveal" data-cat="commande" tabindex="0" role="button" aria-haspopup="dialog">
-          <div class="pcard__img"><img src="assets/img/proj-turbo-pid.jpg" alt="" loading="lazy"></div>
+          <div class="pcard__img"><img src="assets/img/proj-turbo-illu.svg" alt="" loading="lazy"></div>
           <div class="pcard__body">
             <span class="project__tag" data-en="Control">Commande &amp; régulation</span>
             <h3 class="pcard__title" data-en="Speed control of a turbofan engine">Commande de la vitesse d’un turboréacteur</h3>
@@ -708,9 +720,712 @@
           </div>
         </article>
 
+        <!-- ===== Projet : moto auto-équilibrée ===== -->
+        <article class="pcard reveal" data-cat="commande" tabindex="0" role="button" aria-haspopup="dialog">
+          <div class="pcard__img"><img src="assets/img/proj-moto-thumb.jpg" alt="" loading="lazy" style="object-position:center"></div>
+          <div class="pcard__body">
+            <span class="project__tag" data-en="Control">Commande &amp; régulation</span>
+            <h3 class="pcard__title" data-en="Self-balancing motorcycle">Moto auto-équilibrée</h3>
+            <p class="pcard__meta" data-en="Project">Projet</p>
+            <p class="pcard__summary" data-en="Modelling, control and simulation of a motorcycle that stays upright on its own thanks to an Arduino-driven reaction wheel.">Modélisation, commande et simulation d’une moto qui tient debout seule grâce à une roue d’inertie pilotée par Arduino.</p>
+            <ul class="skill__tags pcard__tools"><li data-en="Inverted pendulum">Pendule inversé</li><li>Simulink</li><li>Simscape</li><li data-en="Arduino">Arduino</li></ul>
+            <span class="pcard__more" data-en="View project →">Voir le projet →</span>
+          </div>
+          <div class="pcard__details" hidden>
+            <div class="project__head">
+              <span class="project__tag" data-en="Control">Commande &amp; régulation</span>
+              <h3 class="project__title" data-en="Self-balancing motorcycle">Moto auto-équilibrée</h3>
+              <p class="project__meta" data-en="Project">Projet</p>
+            </div>
+            <div class="project__body">
+              <div class="project__text">
+                <p class="project__label" data-en="Objective">Objectif</p>
+                <p data-en="Keep a riderless motorcycle balanced (a naturally unstable system that behaves like an inverted pendulum) by acting on the torque of a reaction wheel.">Maintenir une moto en équilibre sans pilote, un système naturellement instable assimilable à un pendule inversé, en agissant sur le couple d’une roue d’inertie.</p>
+
+                <p class="project__label" data-en="What I did">Ce que j’ai réalisé</p>
+                <ul class="project__steps">
+                  <li data-en="<b>Modelling</b>: equations of the motorcycle as an inverted pendulum with a reaction wheel (state θ, θ̇, ω), <b>nonlinear</b> Simulink model, then linearisation around equilibrium."><b>Modélisation</b> : mise en équations de la moto comme un pendule inversé à roue d’inertie (état θ, θ̇, ω), modèle <b>non linéaire</b> sous Simulink puis linéarisation autour de l’équilibre.</li>
+                  <li data-en="<b>Control</b>: design of a <b>PD</b> state-feedback controller (angle, angular velocity, wheel speed) and gain tuning."><b>Commande</b> : synthèse d’un correcteur <b>PD</b> à retour d’état (angle, vitesse angulaire, vitesse de la roue) et réglage des gains.</li>
+                  <li data-en="<b>Multi-model validation</b>: same controller tested on a <b>Simscape</b> physical model with a disturbance, then on the <b>3D CAD model</b> of the motorcycle (real masses and inertias)."><b>Validation multi-modèles</b> : même contrôleur testé sur un modèle physique <b>Simscape</b> avec perturbation, puis sur le <b>modèle CAO 3D</b> de la moto (masses et inerties réelles).</li>
+                  <li data-en="<b>Embedded implementation</b> on an Arduino Nano 33 IoT: reading the <b>BNO055 IMU</b>, the encoder and the battery, PWM control of the reaction-wheel motor."><b>Implémentation embarquée</b> sur Arduino Nano 33 IoT : acquisition de l’<b>IMU BNO055</b>, de l’encodeur et de la batterie, commande du moteur de la roue d’inertie en PWM.</li>
+                  <li data-en="<b>Safety logic</b> with a <b>Stateflow state machine</b>: fall detection, IMU calibration, battery level and control enabling."><b>Logique de sécurité</b> avec une <b>machine à états Stateflow</b> : détection de chute, calibration de l’IMU, niveau de batterie et activation de la commande.</li>
+                </ul>
+
+                <p class="project__label" data-en="Result">Résultat</p>
+                <p data-en="Without control the motorcycle falls; with the controller it rights itself in under half a second from an initial tilt and returns to equilibrium after a disturbance. Stable behaviour on all three models (Simulink, Simscape and 3D CAD), and state machine validated in simulation.">Sans commande, la moto tombe ; avec le correcteur, elle se redresse en moins d’une demi-seconde après une inclinaison initiale et revient à l’équilibre après une perturbation. Comportement stable obtenu sur les trois modèles (Simulink, Simscape et CAO 3D), et machine à états validée en simulation.</p>
+
+                <ul class="skill__tags project__tools"><li data-en="MATLAB">MATLAB</li><li>Simulink</li><li data-en="Simscape Multibody">Simscape Multibody</li><li data-en="Stateflow">Stateflow</li><li data-en="PD / state feedback">PD / retour d’état</li><li data-en="Arduino Nano 33 IoT">Arduino Nano 33 IoT</li><li data-en="BNO055 IMU">IMU BNO055</li></ul>
+              </div>
+
+              <div class="project__figures">
+                <button class="project__fig zoom" type="button" data-full="assets/img/proj-moto-photo.jpg">
+                  <img src="assets/img/proj-moto-photo.jpg" alt="La moto auto-équilibrée et sa roue d’inertie" loading="lazy">
+                  <span data-en="The motorcycle: reaction wheel, Arduino board and motors">La moto : roue d’inertie, carte Arduino et moteurs</span>
+                </button>
+                <button class="project__fig zoom" type="button" data-full="assets/img/proj-moto-pd.jpg">
+                  <img src="assets/img/proj-moto-pd.jpg" alt="Réponse en boucle fermée avec le correcteur PD" loading="lazy">
+                  <span data-en="Closed loop: θ returns to 0 in under 0.5 s">Boucle fermée : θ revient à 0 en moins de 0,5 s</span>
+                </button>
+                <button class="project__fig zoom" type="button" data-full="assets/img/proj-moto-simscape.jpg">
+                  <img src="assets/img/proj-moto-simscape.jpg" alt="Réponse du modèle Simscape" loading="lazy">
+                  <span data-en="Simscape model: return to equilibrium">Modèle Simscape : retour à l’équilibre</span>
+                </button>
+                <button class="project__fig zoom" type="button" data-full="assets/img/proj-moto-stateflow.jpg">
+                  <img src="assets/img/proj-moto-stateflow.jpg" alt="Machine à états Stateflow" loading="lazy">
+                  <span data-en="Stateflow state machine (safety)">Machine à états Stateflow (sécurité)</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ===== Projet : drone ===== -->
+        <article class="pcard reveal" data-cat="commande" tabindex="0" role="button" aria-haspopup="dialog">
+          <div class="pcard__img"><img src="assets/img/proj-drone-illu.svg" alt="" loading="lazy" style="object-position:center"></div>
+          <div class="pcard__body">
+            <span class="project__tag" data-en="Control">Commande &amp; régulation</span>
+            <h3 class="pcard__title" data-en="Attitude control of a drone">Contrôle d’attitude d’un drone</h3>
+            <p class="pcard__meta" data-en="Project">Projet</p>
+            <p class="pcard__summary" data-en="Modelling, observers and state-feedback control of a quadcopter, an underactuated and unstable system.">Modélisation, observateurs et commande par retour d’état d’un quadricoptère, un système sous-actionné et instable.</p>
+            <ul class="skill__tags pcard__tools"><li data-en="State space">Espace d’état</li><li data-en="Observer">Observateur</li><li>LQR</li><li>Simulink</li></ul>
+            <span class="pcard__more" data-en="View project →">Voir le projet →</span>
+          </div>
+          <div class="pcard__details" hidden>
+            <div class="project__head">
+              <span class="project__tag" data-en="Control">Commande &amp; régulation</span>
+              <h3 class="project__title" data-en="Attitude control of a drone">Contrôle d’attitude d’un drone</h3>
+              <p class="project__meta" data-en="Project">Projet</p>
+            </div>
+            <div class="project__body">
+              <div class="project__text">
+                <p class="project__label" data-en="Objective">Objectif</p>
+                <p data-en="Stabilise the attitude (angle θ) of a quadcopter moving in a vertical plane: a thrust-vectoring system that is underactuated and naturally unstable.">Stabiliser l’attitude (angle θ) d’un drone quadricoptère évoluant dans un plan vertical : un système à poussée vectorisée, sous-actionné et naturellement instable.</p>
+
+                <p class="project__label" data-en="What I did">Ce que j’ai réalisé</p>
+                <ul class="project__steps">
+                  <li data-en="<b>Modelling</b>: <b>nonlinear</b> dynamic model (motor thrusts, gravity, inertia), simplification through virtual inputs and Simulink model."><b>Modélisation</b> : modèle dynamique <b>non linéaire</b> (poussées des moteurs, gravité, inertie), simplification par commandes virtuelles et construction du modèle sous Simulink.</li>
+                  <li data-en="<b>Analysis</b>: equilibrium points, <b>tangent linearisation</b> around θ = 0°, 10° and 20°, frequency responses (Bode) and pole study."><b>Analyse</b> : points d’équilibre, <b>linéarisation tangente</b> autour de θ = 0°, 10° et 20°, réponses fréquentielles (Bode) et étude des pôles.</li>
+                  <li data-en="<b>Controllability and observability</b>: rank checks and choice of the measurements that allow the full state vector to be reconstructed."><b>Commandabilité et observabilité</b> : vérification des rangs et choix des mesures permettant de reconstruire tout le vecteur d’état.</li>
+                  <li data-en="<b>Observers</b>: <b>Luenberger</b> observer by pole placement, stability checked at all three angles, then an observer based on the <b>nonlinear model</b>."><b>Observateurs</b> : observateur de <b>Luenberger</b> par placement de pôles, stabilité vérifiée pour les trois angles, puis observateur fondé sur le <b>modèle non linéaire</b>.</li>
+                  <li data-en="<b>Control</b>: <b>LQR</b> state feedback completed with <b>integral action</b> on the angle θ."><b>Commande</b> : retour d’état <b>LQR</b> complété par une <b>action intégrale</b> sur l’angle θ.</li>
+                </ul>
+
+                <p class="project__label" data-en="Result">Résultat</p>
+                <p data-en="The system is controllable at all three operating points. In simulation, the nonlinear observer reconstructs the state with near-zero error, whereas the linear observer drifts as soon as the system leaves equilibrium. With state feedback and integral action, the drone’s angle goes from 10° to about 1° in under 5 s.">Système commandable aux trois points de fonctionnement. En simulation, l’observateur non linéaire reconstruit l’état avec une erreur quasi nulle, alors que l’observateur linéaire s’écarte dès qu’on quitte l’équilibre. Avec le retour d’état et l’action intégrale, l’angle du drone passe de 10° à environ 1° en moins de 5 s.</p>
+
+                <ul class="skill__tags project__tools"><li>MATLAB</li><li>Simulink</li><li data-en="Linearisation">Linéarisation</li><li data-en="Luenberger observer">Observateur de Luenberger</li><li data-en="Nonlinear observer">Observateur non linéaire</li><li data-en="Pole placement">Placement de pôles</li><li>LQR</li><li data-en="Integral action">Action intégrale</li></ul>
+              </div>
+
+              <div class="project__figures">
+                <button class="project__fig zoom" type="button" data-full="assets/img/proj-drone-schema.jpg">
+                  <img src="assets/img/proj-drone-schema.jpg" alt="Modèle plan du drone" loading="lazy">
+                  <span data-en="Planar drone model: thrusts F1, F2 and angle θ">Modèle plan du drone : poussées F1, F2 et angle θ</span>
+                </button>
+                <button class="project__fig zoom" type="button" data-full="assets/img/proj-drone-observateurs.jpg">
+                  <img src="assets/img/proj-drone-observateurs.jpg" alt="Comparaison des observateurs linéaire et non linéaire" loading="lazy">
+                  <span data-en="Linear (red) and nonlinear (green) observers versus the real state">Observateur linéaire (rouge) et non linéaire (vert) face à l’état réel</span>
+                </button>
+                <button class="project__fig zoom" type="button" data-full="assets/img/proj-drone-commande.jpg">
+                  <img src="assets/img/proj-drone-commande.jpg" alt="Stabilisation de l’angle par retour d’état et action intégrale" loading="lazy">
+                  <span data-en="State feedback + integral action: stabilisation of θ">Retour d’état + action intégrale : stabilisation de θ</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ===== Projet : robot éviteur ===== -->
+        <article class="pcard reveal" data-cat="robotique embarque" tabindex="0" role="button" aria-haspopup="dialog">
+          <div class="pcard__img"><img src="assets/img/proj-robot-thumb.jpg" alt="" loading="lazy" style="object-position:center"></div>
+          <div class="pcard__body">
+            <span class="project__tag" data-en="Robotics">Robotique</span>
+            <h3 class="pcard__title" data-en="Autonomous obstacle-avoiding mobile robot">Robot mobile autonome éviteur d’obstacles</h3>
+            <p class="pcard__meta" data-en="Project">Projet</p>
+            <p class="pcard__summary" data-en="Design, integration and programming of a robot that detects and bypasses obstacles in real time using a LiDAR.">Conception, intégration et programmation d’un robot qui détecte et contourne les obstacles en temps réel grâce à un LiDAR.</p>
+            <ul class="skill__tags pcard__tools"><li>Arduino</li><li>LiDAR</li><li>C / C++</li><li>STM32</li></ul>
+            <span class="pcard__more" data-en="View project →">Voir le projet →</span>
+          </div>
+          <div class="pcard__details" hidden>
+            <div class="project__head">
+              <span class="project__tag" data-en="Robotics">Robotique</span>
+              <h3 class="project__title" data-en="Autonomous obstacle-avoiding mobile robot">Robot mobile autonome éviteur d’obstacles</h3>
+              <p class="project__meta" data-en="Project">Projet</p>
+            </div>
+            <div class="project__body">
+              <div class="project__text">
+                <p class="project__label" data-en="Objective">Objectif</p>
+                <p data-en="Design and build a mobile robot able to move on its own indoors, detect obstacles on its path and bypass them, with the limited resources of a microcontroller.">Concevoir et réaliser un robot mobile capable de se déplacer seul en intérieur, de détecter les obstacles sur sa trajectoire et de les contourner, avec les ressources limitées d’un microcontrôleur.</p>
+
+                <p class="project__label" data-en="What I did">Ce que j’ai réalisé</p>
+                <ul class="project__steps">
+                  <li data-en="<b>Functional analysis</b>: interaction diagram, FAST diagram and functional <b>Grafcet</b> of the robot’s behaviour."><b>Analyse fonctionnelle</b> : diagramme pieuvre, diagramme FAST et <b>Grafcet</b> fonctionnel du comportement du robot.</li>
+                  <li data-en="<b>Hardware integration</b> on an AlphaBot base: front <b>TFMini LiDAR</b> (serial link), side infrared sensors, optical wheel encoders and DC motors driven by an H-bridge."><b>Intégration matérielle</b> sur une base AlphaBot : <b>LiDAR TFMini</b> à l’avant (liaison série), capteurs infrarouges latéraux, encodeurs optiques sur les roues et moteurs DC pilotés par un pont en H.</li>
+                  <li data-en="<b>Embedded programming</b> in C/C++ on an Arduino Uno: perception-decision-action loop, <b>state machine</b> (path, avoidance, end), <b>odometry</b> with encoder interrupts to convert distances and angles into pulses."><b>Programmation embarquée</b> en C/C++ sur Arduino Uno : boucle perception-décision-action, <b>machine à états</b> (trajectoire, évitement, fin), <b>odométrie</b> par interruptions sur les encodeurs pour convertir distances et angles en impulsions.</li>
+                  <li data-en="<b>Step-by-step validation</b>: wiring simulation on Tinkercad, unit tests of the sensors on an <b>STM32 Nucleo</b> board, then real tests on a course with obstacles."><b>Validation progressive</b> : simulation du câblage sur Tinkercad, tests unitaires des capteurs sur carte <b>STM32 Nucleo</b>, puis essais réels sur un parcours avec obstacles.</li>
+                  <li data-en="<b>Problem solving</b>: replacing an unreliable ultrasonic sensor with the LiDAR, adjusting the angle of IR sensors that detected the floor, calibrating thresholds between sensors with different ranges."><b>Résolution de problèmes</b> : remplacement d’un capteur ultrason peu fiable par le LiDAR, réglage de l’angle des capteurs IR qui détectaient le sol, calibration des seuils entre capteurs de portées différentes.</li>
+                </ul>
+
+                <p class="project__label" data-en="Result">Résultat</p>
+                <p data-en="Working robot: it moves straight ahead, detects an obstacle at 30 cm, stops, then bypasses it (turn, move forward, turn) before resuming its path autonomously.">Robot fonctionnel : il avance en ligne droite, détecte un obstacle à 30 cm, s’arrête puis le contourne (rotation, avance, rotation) avant de reprendre sa trajectoire de façon autonome.</p>
+
+                <ul class="skill__tags project__tools"><li>Arduino Uno</li><li>C / C++</li><li data-en="TFMini LiDAR">LiDAR TFMini</li><li data-en="IR sensors">Capteurs IR</li><li data-en="Encoders / odometry">Encodeurs / odométrie</li><li data-en="State machine">Machine à états</li><li>STM32 Nucleo</li><li>Tinkercad</li></ul>
+              </div>
+
+              <div class="project__figures">
+                <button class="project__fig zoom" type="button" data-full="assets/img/proj-robot-photo.jpg">
+                  <img src="assets/img/proj-robot-photo.jpg" alt="Le robot réalisé" loading="lazy">
+                  <span data-en="The robot built: front LiDAR, IR sensors and encoders">Le robot réalisé : LiDAR à l’avant, capteurs IR et encodeurs</span>
+                </button>
+                <button class="project__fig zoom" type="button" data-full="assets/img/proj-robot-implantation.jpg">
+                  <img src="assets/img/proj-robot-implantation.jpg" alt="Implantation des composants sur le robot" loading="lazy">
+                  <span data-en="Placement of the sensors and the Arduino board">Implantation des capteurs et de la carte Arduino</span>
+                </button>
+                <button class="project__fig zoom" type="button" data-full="assets/img/proj-robot-tinkercad.jpg">
+                  <img src="assets/img/proj-robot-tinkercad.jpg" alt="Simulation du câblage sur Tinkercad" loading="lazy">
+                  <span data-en="Wiring simulated on Tinkercad before building">Câblage simulé sur Tinkercad avant la réalisation</span>
+                </button>
+                <button class="project__fig zoom" type="button" data-full="assets/img/proj-robot-grafcet.jpg">
+                  <img src="assets/img/proj-robot-grafcet.jpg" alt="Grafcet fonctionnel du robot" loading="lazy">
+                  <span data-en="Functional Grafcet of the robot">Grafcet fonctionnel du robot</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ===== Projet : robot trajectoire ===== -->
+        <article class="pcard reveal" data-cat="robotique embarque" tabindex="0" role="button" aria-haspopup="dialog">
+          <div class="pcard__img"><img src="assets/img/proj-traj-thumb.jpg" alt="" loading="lazy" style="object-position:center"></div>
+          <div class="pcard__body">
+            <span class="project__tag" data-en="Robotics">Robotique</span>
+            <h3 class="pcard__title" data-en="Trajectory-following mobile robot">Robot mobile à suivi de trajectoire</h3>
+            <p class="pcard__meta" data-en="Project">Projet</p>
+            <p class="pcard__summary" data-en="Wiring and programming of a mobile robot on an Arduino Mega–compatible board to make it follow a trajectory.">Câblage et programmation d’un robot mobile sur carte compatible Arduino Mega pour lui faire parcourir une trajectoire.</p>
+            <ul class="skill__tags pcard__tools"><li>Arduino Mega</li><li>C / C++</li><li data-en="Mobile robot">Robot mobile</li></ul>
+            <span class="pcard__more" data-en="View project →">Voir le projet →</span>
+          </div>
+          <div class="pcard__details" hidden>
+            <div class="project__head">
+              <span class="project__tag" data-en="Robotics">Robotique</span>
+              <h3 class="project__title" data-en="Trajectory-following mobile robot">Robot mobile à suivi de trajectoire</h3>
+              <p class="project__meta" data-en="Project">Projet</p>
+            </div>
+            <div class="project__body">
+              <div class="project__text">
+                <p class="project__label" data-en="Objective">Objectif</p>
+                <p data-en="Make a two-wheel-drive mobile robot follow a trajectory autonomously.">Faire suivre de façon autonome une trajectoire à un robot mobile à deux roues motrices.</p>
+
+                <p class="project__label" data-en="What I did">Ce que j’ai réalisé</p>
+                <ul class="project__steps">
+                  <li data-en="<b>Hardware integration</b>: <b>DFRobot Bluno Mega</b> board (Arduino Mega compatible), DC motors, ultrasonic sensors, <b>16×2 LCD</b> and LEDs, wired on a breadboard."><b>Intégration matérielle</b> : carte <b>DFRobot Bluno Mega</b> (compatible Arduino Mega), moteurs à courant continu, capteurs à ultrasons, écran <b>LCD 16×2</b> et LEDs, câblés sur plaque d’essai.</li>
+                  <li data-en="<b>Embedded programming</b> in C/C++: motor control to chain the movements of the trajectory."><b>Programmation embarquée</b> en C/C++ : commande des moteurs pour enchaîner les mouvements de la trajectoire.</li>
+                  <li data-en="<b>Floor tests</b> and program adjustments."><b>Essais au sol</b> et ajustement du programme.</li>
+                </ul>
+
+                <p class="project__label" data-en="Result">Résultat</p>
+                <p data-en="Robot fully wired and programmed, then tested on the floor.">Robot entièrement câblé et programmé, puis testé au sol.</p>
+
+                <ul class="skill__tags project__tools"><li>Arduino Mega / Bluno</li><li>C / C++</li><li data-en="DC motors">Moteurs à courant continu</li><li data-en="Ultrasonic sensors">Capteurs à ultrasons</li><li data-en="LCD display">Écran LCD</li><li data-en="Wiring">Câblage</li></ul>
+              </div>
+
+              <div class="project__figures">
+                <button class="project__fig zoom" type="button" data-full="assets/img/proj-traj-face.jpg">
+                  <img src="assets/img/proj-traj-face.jpg" alt="Le robot vu de face avec ses capteurs à ultrasons" loading="lazy">
+                  <span data-en="Front view: ultrasonic sensors and wiring">Le robot de face : capteurs à ultrasons et câblage</span>
+                </button>
+                <button class="project__fig zoom" type="button" data-full="assets/img/proj-traj-dessus.jpg">
+                  <img src="assets/img/proj-traj-dessus.jpg" alt="Le robot vu de dessus" loading="lazy">
+                  <span data-en="Top view: Bluno Mega board, breadboard and LCD">Vue de dessus : carte Bluno Mega, plaque d’essai et écran LCD</span>
+                </button>
+                <button class="project__fig zoom" type="button" data-full="assets/img/proj-traj-lcd.jpg">
+                  <img src="assets/img/proj-traj-lcd.jpg" alt="Écran LCD et LEDs du robot" loading="lazy">
+                  <span data-en="LCD, LEDs and wiring">Écran LCD, LEDs et câblage</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ===== Projet : Stäubli ===== -->
+        <article class="pcard reveal" data-cat="robotique" tabindex="0" role="button" aria-haspopup="dialog">
+          <div class="pcard__img"><img src="assets/img/proj-staubli-thumb.jpg" alt="" loading="lazy" style="object-position:center"></div>
+          <div class="pcard__body">
+            <span class="project__tag" data-en="Robotics">Robotique</span>
+            <h3 class="pcard__title" data-en="Programming a 6-axis industrial robot">Programmation d’un robot industriel 6 axes</h3>
+            <p class="pcard__meta" data-en="Project">Projet</p>
+            <p class="pcard__summary" data-en="Commissioning of a Stäubli robotic cell and VAL 3 programming of a 20-part transfer cycle.">Mise en œuvre d’une cellule robotisée Stäubli et programmation en VAL 3 d’un cycle de transfert de 20 pièces.</p>
+            <ul class="skill__tags pcard__tools"><li>VAL 3</li><li data-en="6-axis robot">Robot 6 axes</li><li>Pick &amp; place</li></ul>
+            <span class="pcard__more" data-en="View project →">Voir le projet →</span>
+          </div>
+          <div class="pcard__details" hidden>
+            <div class="project__head">
+              <span class="project__tag" data-en="Robotics">Robotique</span>
+              <h3 class="project__title" data-en="Programming a 6-axis industrial robot">Programmation d’un robot industriel 6 axes</h3>
+              <p class="project__meta" data-en="Project">Projet</p>
+            </div>
+            <div class="project__body">
+              <div class="project__text">
+                <p class="project__label" data-en="Objective">Objectif</p>
+                <p data-en="Analyse an industrial robotic cell, then program the robot to automatically transfer parts from a pick zone to a place zone.">Analyser une cellule robotisée industrielle puis programmer le robot pour transférer automatiquement des pièces d’une zone de prise vers une zone de dépôt.</p>
+
+                <p class="project__label" data-en="What I did">Ce que j’ai réalisé</p>
+                <ul class="project__steps">
+                  <li data-en="<b>Cell analysis</b>: <b>Stäubli TX60L</b> 6-axis robot, CS8 controller, teach pendant, programming PC and pneumatic gripper; information flows between subsystems and position control of each axis."><b>Analyse de la cellule</b> : robot <b>Stäubli TX60L</b> à 6 axes, armoire de commande CS8, boîtier Teach, PC de programmation et pince pneumatique ; flux d’informations entre sous-systèmes et asservissement en position de chaque axe.</li>
+                  <li data-en="<b>Commissioning</b>: start-up and shutdown procedures, safety rules, manual jogging with the teach pendant in joint and Cartesian modes, teaching of pick and place points."><b>Mise en œuvre</b> : procédures de mise en marche et d’arrêt, consignes de sécurité, déplacements manuels au Teach en mode articulaire et cartésien, apprentissage des points de prise et de dépôt.</li>
+                  <li data-en="<b>VAL 3 programming</b>: <b>pick &amp; place</b> cycle over a 4 × 5 grid of parts using two nested loops and automatically computed offset positions (<b>appro</b>), with motion synchronisation and gripper control."><b>Programmation VAL 3</b> : cycle de <b>pick &amp; place</b> sur une grille de 4 × 5 pièces à l’aide de deux boucles imbriquées et de positions décalées calculées automatiquement (<b>appro</b>), avec synchronisation des mouvements et commande de la pince.</li>
+                  <li data-en="<b>Debugging on the real robot</b>: network communication issue with the controller, collisions fixed by recalibrating the axes, gripper timing adjusted and approach path modified to avoid a joint limit."><b>Débogage sur le robot réel</b> : problème de communication réseau avec l’armoire, collisions corrigées par recalibration des axes, temporisation de la pince ajustée et trajectoire d’approche modifiée pour éviter une limite articulaire.</li>
+                </ul>
+
+                <p class="project__label" data-en="Result">Résultat</p>
+                <p data-en="Complete cycle run on the real robot: all 20 parts are transferred one by one from zone A to zone B, without collision.">Cycle complet exécuté sur le robot réel : les 20 pièces sont transférées une à une de la zone A vers la zone B, sans collision.</p>
+
+                <ul class="skill__tags project__tools"><li>Stäubli TX60L</li><li>VAL 3</li><li data-en="Teach pendant">Boîtier Teach</li><li>Pick &amp; place</li><li data-en="Pneumatic gripper">Pince pneumatique</li><li data-en="Machine safety">Sécurité machine</li><li data-en="Debugging">Débogage</li></ul>
+              </div>
+
+              <div class="project__figures">
+                <button class="project__fig zoom" type="button" data-full="assets/img/proj-staubli-photo.jpg">
+                  <img src="assets/img/proj-staubli-photo.jpg" alt="Le robot Stäubli au-dessus de la grille de pièces" loading="lazy">
+                  <span data-en="The robot during the cycle above the parts grid">Le robot en cours de cycle au-dessus de la grille de pièces</span>
+                </button>
+                <button class="project__fig zoom" type="button" data-full="assets/img/proj-staubli-trajectoire.jpg">
+                  <img src="assets/img/proj-staubli-trajectoire.jpg" alt="Trajectoire de transfert de la zone A à la zone B" loading="lazy">
+                  <span data-en="Transfer path: approach, pick, place">Trajectoire de transfert : approche, prise, dépôt</span>
+                </button>
+                <button class="project__fig zoom" type="button" data-full="assets/img/proj-staubli-cellule.jpg">
+                  <img src="assets/img/proj-staubli-cellule.jpg" alt="Schéma bloc de la cellule robotisée" loading="lazy">
+                  <span data-en="Block diagram of the robotic cell">Schéma bloc de la cellule robotisée</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ===== Projet : cobot FANUC ===== -->
+        <article class="pcard reveal" data-cat="robotique" tabindex="0" role="button" aria-haspopup="dialog">
+          <div class="pcard__img"><img src="assets/img/proj-fanuc-thumb.jpg" alt="" loading="lazy" style="object-position:center"></div>
+          <div class="pcard__body">
+            <span class="project__tag" data-en="Robotics">Robotique</span>
+            <h3 class="pcard__title" data-en="Programming a FANUC collaborative robot">Programmation d’un robot collaboratif FANUC</h3>
+            <p class="pcard__meta" data-en="Project">Projet</p>
+            <p class="pcard__summary" data-en="Pick-and-place cycle with a suction gripper, programmed on the tablet of a FANUC CRX cobot.">Cycle de prise et dépose de pièces avec ventouse, programmé sur la tablette d’un cobot FANUC CRX.</p>
+            <ul class="skill__tags pcard__tools"><li>FANUC CRX</li><li>Pick &amp; place</li><li data-en="Suction gripper">Ventouse</li></ul>
+            <span class="pcard__more" data-en="View project →">Voir le projet →</span>
+          </div>
+          <div class="pcard__details" hidden>
+            <div class="project__head">
+              <span class="project__tag" data-en="Robotics">Robotique</span>
+              <h3 class="project__title" data-en="Programming a FANUC collaborative robot">Programmation d’un robot collaboratif FANUC</h3>
+              <p class="project__meta" data-en="Project">Projet</p>
+            </div>
+            <div class="project__body">
+              <div class="project__text">
+                <p class="project__label" data-en="Objective">Objectif</p>
+                <p data-en="Program a collaborative robot to automatically transfer parts from one pallet to another using a suction gripper.">Programmer un robot collaboratif pour transférer automatiquement des pièces d’une palette vers une autre à l’aide d’une ventouse.</p>
+
+                <p class="project__label" data-en="What I did">Ce que j’ai réalisé</p>
+                <ul class="project__steps">
+                  <li data-en="<b>Teaching the pick and place positions</b> above the two pallets."><b>Apprentissage des positions</b> de prise et de dépose au-dessus des deux palettes.</li>
+                  <li data-en="<b>Block-based programming</b> on the robot’s tablet: <b>joint and linear moves</b> for approach and descent, <b>suction gripper</b> control through an output, timers to let the vacuum build up."><b>Programmation par blocs</b> sur la tablette du robot : <b>mouvements articulaires et linéaires</b> pour l’approche et la descente, commande de la <b>ventouse</b> par sortie, temporisations pour laisser le vide s’établir.</li>
+                  <li data-en="<b>Tests in automatic mode</b> at reduced speed, then execution of the full cycle."><b>Essais en mode automatique</b> à vitesse réduite, puis exécution du cycle complet.</li>
+                </ul>
+
+                <p class="project__label" data-en="Result">Résultat</p>
+                <p data-en="Cycle run on the real robot: parts are picked one by one from the start pallet and placed in the slots of the target pallet.">Cycle exécuté sur le robot réel : les pièces sont prises une à une sur la palette de départ et déposées dans les emplacements de la palette d’arrivée.</p>
+
+                <ul class="skill__tags project__tools"><li>FANUC CRX</li><li data-en="Collaborative robot">Robot collaboratif</li><li data-en="Block-based programming">Programmation par blocs</li><li>Pick &amp; place</li><li data-en="Suction gripping">Préhension par ventouse</li></ul>
+              </div>
+
+              <div class="project__figures">
+                <div class="project__fig project__fig--video">
+                  <video src="assets/img/proj-cobot-video.mp4" poster="assets/img/proj-cobot-poster.jpg" controls muted playsinline loop preload="none"></video>
+                  <span data-en="Video: the robot running the cycle">Vidéo : le robot exécute le cycle</span>
+                </div>
+                <button class="project__fig zoom" type="button" data-full="assets/img/proj-cobot-photo.jpg">
+                  <img src="assets/img/proj-cobot-photo.jpg" alt="Le robot FANUC CRX en train de prendre une pièce" loading="lazy">
+                  <span data-en="Picking a part with the suction gripper">Prise d’une pièce avec la ventouse</span>
+                </button>
+                <button class="project__fig zoom" type="button" data-full="assets/img/proj-cobot-programme.jpg">
+                  <img src="assets/img/proj-cobot-programme.jpg" alt="Programme sur la tablette du robot" loading="lazy">
+                  <span data-en="The block program on the robot’s tablet">Le programme par blocs sur la tablette du robot</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ===== Projet : cobot Doosan ===== -->
+        <article class="pcard reveal" data-cat="robotique" tabindex="0" role="button" aria-haspopup="dialog">
+          <div class="pcard__img"><img src="assets/img/proj-doosan-thumb.jpg" alt="" loading="lazy" style="object-position:center"></div>
+          <div class="pcard__body">
+            <span class="project__tag" data-en="Robotics">Robotique</span>
+            <h3 class="pcard__title" data-en="Programming a Doosan collaborative robot">Programmation d’un robot collaboratif Doosan</h3>
+            <p class="pcard__meta" data-en="Project">Projet</p>
+            <p class="pcard__summary" data-en="Pick and place of cardboard boxes with a vacuum gripper, programmed in the Task Builder of a Doosan cobot.">Prise et dépose de cartons avec un préhenseur à vide, programmées dans le Task Builder d’un cobot Doosan.</p>
+            <ul class="skill__tags pcard__tools"><li>Doosan</li><li>Task Builder</li><li data-en="Vacuum gripping">Préhension par le vide</li></ul>
+            <span class="pcard__more" data-en="View project →">Voir le projet →</span>
+          </div>
+          <div class="pcard__details" hidden>
+            <div class="project__head">
+              <span class="project__tag" data-en="Robotics">Robotique</span>
+              <h3 class="project__title" data-en="Programming a Doosan collaborative robot">Programmation d’un robot collaboratif Doosan</h3>
+              <p class="project__meta" data-en="Project">Projet</p>
+            </div>
+            <div class="project__body">
+              <div class="project__text">
+                <p class="project__label" data-en="Objective">Objectif</p>
+                <p data-en="Program a collaborative robot to automatically move cardboard boxes using a vacuum gripper.">Programmer un robot collaboratif pour déplacer automatiquement des cartons à l’aide d’un préhenseur à vide.</p>
+
+                <p class="project__label" data-en="What I did">Ce que j’ai réalisé</p>
+                <ul class="project__steps">
+                  <li data-en="<b>Teaching the approach, pick and place positions</b> for the boxes."><b>Apprentissage des positions</b> d’approche, de prise et de dépose des cartons.</li>
+                  <li data-en="<b>Programming in the Task Builder</b>: <b>MoveJ / MoveL</b> moves, suction of the <b>Schmalz</b> gripper controlled through tool outputs, task speed setting."><b>Programmation dans le Task Builder</b> : mouvements <b>MoveJ / MoveL</b>, commande de l’aspiration du préhenseur <b>Schmalz</b> par les sorties outil, réglage de la vitesse de tâche.</li>
+                  <li data-en="<b>Program improved</b> in a second version, then execution of the full cycle."><b>Amélioration du programme</b> dans une seconde version, puis exécution du cycle complet.</li>
+                </ul>
+
+                <p class="project__label" data-en="Result">Résultat</p>
+                <p data-en="Cycle run on the real robot: boxes are picked by suction, carried and placed at their location.">Cycle exécuté sur le robot réel : les cartons sont saisis par aspiration, transportés puis déposés à leur emplacement.</p>
+
+                <ul class="skill__tags project__tools"><li>Doosan Robotics</li><li data-en="Collaborative robot">Robot collaboratif</li><li>Task Builder</li><li>MoveJ / MoveL</li><li data-en="Vacuum gripping">Préhension par le vide</li></ul>
+              </div>
+
+              <div class="project__figures">
+                <div class="project__fig project__fig--video">
+                  <video src="assets/img/proj-doosan-video.mp4" poster="assets/img/proj-doosan-poster.jpg" controls muted playsinline loop preload="none"></video>
+                  <span data-en="Video: the robot moving the boxes">Vidéo : le robot déplace les cartons</span>
+                </div>
+                <button class="project__fig zoom" type="button" data-full="assets/img/proj-doosan-photo.jpg">
+                  <img src="assets/img/proj-doosan-photo.jpg" alt="Le robot Doosan transporte un carton" loading="lazy">
+                  <span data-en="Carrying a box with the vacuum gripper">Transport d’un carton avec le préhenseur à vide</span>
+                </button>
+                <button class="project__fig zoom" type="button" data-full="assets/img/proj-doosan-programme.jpg">
+                  <img src="assets/img/proj-doosan-programme.jpg" alt="Programme Doosan dans le Task Builder" loading="lazy">
+                  <span data-en="The program in the Task Builder">Le programme dans le Task Builder</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ===== Projet : cobot UR ===== -->
+        <article class="pcard reveal" data-cat="robotique" tabindex="0" role="button" aria-haspopup="dialog">
+          <div class="pcard__img"><img src="assets/img/proj-ur-thumb.jpg" alt="" loading="lazy" style="object-position:center"></div>
+          <div class="pcard__body">
+            <span class="project__tag" data-en="Robotics">Robotique</span>
+            <h3 class="pcard__title" data-en="Programming a Universal Robots collaborative robot">Programmation d’un robot collaboratif Universal Robots</h3>
+            <p class="pcard__meta" data-en="Project">Projet</p>
+            <p class="pcard__summary" data-en="Pick and place of parts with a two-finger Robotiq gripper, on a Universal Robots cobot.">Prise et dépose de pièces avec une pince Robotiq à deux doigts, sur un cobot Universal Robots.</p>
+            <ul class="skill__tags pcard__tools"><li>Universal Robots</li><li>PolyScope</li><li data-en="Robotiq gripper">Pince Robotiq</li></ul>
+            <span class="pcard__more" data-en="View project →">Voir le projet →</span>
+          </div>
+          <div class="pcard__details" hidden>
+            <div class="project__head">
+              <span class="project__tag" data-en="Robotics">Robotique</span>
+              <h3 class="project__title" data-en="Programming a Universal Robots collaborative robot">Programmation d’un robot collaboratif Universal Robots</h3>
+              <p class="project__meta" data-en="Project">Projet</p>
+            </div>
+            <div class="project__body">
+              <div class="project__text">
+                <p class="project__label" data-en="Objective">Objectif</p>
+                <p data-en="Program a collaborative robot to automatically move cylindrical parts from a holder to a drop-off area with a gripper.">Programmer un robot collaboratif pour déplacer automatiquement des pièces cylindriques d’un support vers une zone de dépose avec une pince.</p>
+
+                <p class="project__label" data-en="What I did">Ce que j’ai réalisé</p>
+                <ul class="project__steps">
+                  <li data-en="<b>Manual jogging</b> in the <b>PolyScope</b> interface, by joints and by tool position (TCP), to teach the pick and place points."><b>Pilotage manuel</b> dans l’interface <b>PolyScope</b>, par articulations et par position de l’outil (TCP), pour apprendre les points de prise et de dépose.</li>
+                  <li data-en="<b>Robotiq gripper settings</b>: opening, speed and gripping force."><b>Réglage de la pince Robotiq</b> : ouverture, vitesse et force de serrage.</li>
+                  <li data-en="<b>Pick-and-place program</b> for the parts one by one, then execution of the full cycle on the real robot."><b>Programme de prise et dépose</b> des pièces une à une, puis exécution du cycle complet sur le robot réel.</li>
+                </ul>
+
+                <p class="project__label" data-en="Result">Résultat</p>
+                <p data-en="Cycle run on the real robot: parts are picked one by one by the gripper and placed in a row on the drop-off area.">Cycle exécuté sur le robot réel : les pièces sont saisies une à une par la pince et déposées en ligne sur la zone de dépose.</p>
+
+                <ul class="skill__tags project__tools"><li>Universal Robots</li><li>PolyScope</li><li data-en="Collaborative robot">Robot collaboratif</li><li data-en="Robotiq gripper">Pince Robotiq</li><li>Pick &amp; place</li></ul>
+              </div>
+
+              <div class="project__figures">
+                <div class="project__fig project__fig--video">
+                  <video src="assets/img/proj-ur-video.mp4" poster="assets/img/proj-ur-poster.jpg" controls muted playsinline loop preload="none"></video>
+                  <span data-en="Video: the robot moving parts with the gripper">Vidéo : le robot déplace les pièces avec la pince</span>
+                </div>
+                <button class="project__fig zoom" type="button" data-full="assets/img/proj-ur-photo.jpg">
+                  <img src="assets/img/proj-ur-photo.jpg" alt="Le robot UR dépose une pièce avec la pince Robotiq" loading="lazy">
+                  <span data-en="Placing a part with the Robotiq gripper">Dépose d’une pièce avec la pince Robotiq</span>
+                </button>
+                <button class="project__fig zoom" type="button" data-full="assets/img/proj-ur-interface.jpg">
+                  <img src="assets/img/proj-ur-interface.jpg" alt="Interface PolyScope avec réglages de la pince" loading="lazy">
+                  <span data-en="Jogging and gripper settings in PolyScope">Pilotage et réglage de la pince dans PolyScope</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ===== Projet : automates ===== -->
+        <article class="pcard reveal" data-cat="automatisme" tabindex="0" role="button" aria-haspopup="dialog">
+          <div class="pcard__img"><img src="assets/img/proj-auto-illu.svg" alt="" loading="lazy" style="object-position:center"></div>
+          <div class="pcard__body">
+            <span class="project__tag" data-en="Automation">Automatisme</span>
+            <h3 class="pcard__title" data-en="Industrial PLC programming">Programmation d’automates industriels</h3>
+            <p class="pcard__meta" data-en="Hands-on work on industrial test rigs">Mise en œuvre sur maquettes industrielles</p>
+            <p class="pcard__summary" data-en="Five automated systems wired, programmed and tested with Grafcet on Siemens and Schneider PLCs.">Cinq systèmes automatisés câblés, programmés et testés en Grafcet sur automates Siemens et Schneider.</p>
+            <ul class="skill__tags pcard__tools"><li>Grafcet</li><li>Siemens S7</li><li>Schneider M340</li><li>Unity Pro</li></ul>
+            <span class="pcard__more" data-en="View project →">Voir le projet →</span>
+          </div>
+          <div class="pcard__details" hidden>
+            <div class="project__head">
+              <span class="project__tag" data-en="Automation">Automatisme</span>
+              <h3 class="project__title" data-en="Industrial PLC programming">Programmation d’automates industriels</h3>
+              <p class="project__meta" data-en="Hands-on work on industrial test rigs">Mise en œuvre sur maquettes industrielles</p>
+            </div>
+            <div class="project__body">
+              <div class="project__text">
+                <p class="project__label" data-en="Objective">Objectif</p>
+                <p data-en="Automate real industrial systems from their specifications: wire the PLC, design the Grafcet, program it and test it on the test rig.">Automatiser des systèmes industriels réels à partir de leur cahier des charges : câbler l’automate, concevoir le Grafcet, le programmer puis le tester sur la maquette.</p>
+
+                <p class="project__label" data-en="What I did">Ce que j’ai réalisé</p>
+                <ul class="project__steps">
+                  <li data-en="<b>Mixing tanks</b> (Siemens S7-1200): filling and dosing of a product, timed stirring, then consumption management with alternating valve opening and anti-chatter timers."><b>Réservoirs de mélange</b> (Siemens S7-1200) : remplissage et dosage d’un produit, agitation temporisée, puis gestion de la consommation avec ouverture alternée des vannes et temporisations anti-battement.</li>
+                  <li data-en="<b>Robotic arm</b> (Schneider M340): pick-and-place of a cup while avoiding an obstacle, positions read from potentiometers with comparison blocks, homing Grafcet."><b>Bras manipulateur</b> (Schneider M340) : prise et dépose d’un gobelet en évitant un obstacle, positions lues par potentiomètres et blocs de comparaison, Grafcet de remise en position initiale.</li>
+                  <li data-en="<b>Overhead crane</b> (Schneider M340): surface-treatment cycle over four stations with hoist turn counting, electromagnet and timers."><b>Pont roulant</b> (Schneider M340) : cycle de traitement de surface sur quatre postes avec comptage des tours du palan, électro-aimant et temporisations.</li>
+                  <li data-en="<b>Elevator</b> (Siemens S7-300): handling of inside and outside calls, timed stop at each floor, floor and cabin indicator lamps."><b>Ascenseur</b> (Siemens S7-300) : gestion des appels intérieurs et extérieurs, arrêt temporisé à l’étage, voyants d’étage et de cabine.</li>
+                  <li data-en="<b>Machining station</b> with a rotary table (Schneider M340): Grafcet with <b>parallel sequences</b> (drilling, inspection, ejection), automatic and cycle-by-cycle modes, handling of faulty parts with reset."><b>Poste d’usinage</b> à plateau tournant (Schneider M340) : Grafcet à <b>séquences simultanées</b> (perçage, contrôle, évacuation), modes automatique et cycle par cycle, gestion des pièces défectueuses avec réarmement.</li>
+                </ul>
+
+                <p class="project__label" data-en="Result">Résultat</p>
+                <p data-en="Five complete automation systems implemented on real test rigs, from I/O wiring to testing, on two industrial PLC ranges (Siemens and Schneider).">Cinq automatismes complets mis en œuvre sur maquettes réelles, du câblage des entrées/sorties jusqu’aux essais, sur deux gammes d’automates industriels (Siemens et Schneider).</p>
+
+                <ul class="skill__tags project__tools"><li>Grafcet</li><li>Siemens S7-1200</li><li>Siemens S7-300</li><li>Schneider M340</li><li>Unity Pro</li><li data-en="I/O wiring">Câblage E/S</li><li data-en="Timers">Temporisations</li><li data-en="Parallel sequences">Séquences simultanées</li></ul>
+              </div>
+
+              <div class="project__figures">
+                <button class="project__fig zoom" type="button" data-full="assets/img/proj-auto-grafcet.svg">
+                  <img src="assets/img/proj-auto-grafcet.svg" alt="Exemple de Grafcet du poste de perçage" loading="lazy">
+                  <span data-en="Example: Grafcet of the drilling station">Exemple : Grafcet du poste de perçage</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ===== Projet : bras CLIMAX ===== -->
+        <article class="pcard reveal" data-cat="automatisme robotique" tabindex="0" role="button" aria-haspopup="dialog">
+          <div class="pcard__img"><img src="assets/img/proj-climax-illu.svg" alt="" loading="lazy" style="object-position:center"></div>
+          <div class="pcard__body">
+            <span class="project__tag" data-en="Automation">Automatisme</span>
+            <h3 class="pcard__title" data-en="Control of a pneumatic robotic arm">Pilotage d’un bras manipulateur pneumatique</h3>
+            <p class="pcard__meta" data-en="Project">Projet</p>
+            <p class="pcard__summary" data-en="Grafcet and Ladder programming of an industrial PLC to automate a production cycle on a real arm.">Programmation Grafcet et Ladder d’un automate industriel pour automatiser un cycle de production sur un bras réel.</p>
+            <ul class="skill__tags pcard__tools"><li>Grafcet</li><li>Ladder</li><li>PL7-Pro</li><li data-en="TSX 37 PLC">Automate TSX 37</li></ul>
+            <span class="pcard__more" data-en="View project →">Voir le projet →</span>
+          </div>
+          <div class="pcard__details" hidden>
+            <div class="project__head">
+              <span class="project__tag" data-en="Automation">Automatisme</span>
+              <h3 class="project__title" data-en="Control of a pneumatic robotic arm">Pilotage d’un bras manipulateur pneumatique</h3>
+              <p class="project__meta" data-en="Project">Projet</p>
+            </div>
+            <div class="project__body">
+              <div class="project__text">
+                <p class="project__label" data-en="Objective">Objectif</p>
+                <p data-en="Program an industrial PLC to drive a pneumatic robotic arm with 8 movements, up to a complete production cycle.">Programmer un automate industriel pour piloter un bras manipulateur pneumatique à 8 mouvements, jusqu’à réaliser un cycle de production complet.</p>
+
+                <p class="project__label" data-en="What I did">Ce que j’ai réalisé</p>
+                <ul class="project__steps">
+                  <li data-en="<b>Getting started</b>: input/output table (limit switches, valves driving the cylinders), then Grafcet of a first 8-movement cycle."><b>Prise en main du système</b> : table des entrées/sorties (capteurs de fin de course, distributeurs commandant les vérins), puis Grafcet d’un premier cycle de 8 mouvements.</li>
+                  <li data-en="<b>Programming in PL7-Pro</b>: Grafcet entry, transitions coded in <b>Ladder</b> and outputs driven by the step bits."><b>Programmation sous PL7-Pro</b> : saisie du Grafcet, transitions codées en <b>Ladder</b> et activation des sorties par les bits d’étape.</li>
+                  <li data-en="<b>Industrial application</b>: cycle of a French-fries production line — picking up the basket, timed draining and salting (<b>TON timers</b> of 5 s), shaking repeated 3 times using a <b>counter</b>, then drop-off and return to the initial position."><b>Application industrielle</b> : cycle d’une ligne de fabrication de frites — saisie du panier, égouttage et ajout du sel temporisés (<b>temporisateurs TON</b> de 5 s), secouage répété 3 fois grâce à un <b>compteur</b>, puis dépose et retour en position initiale.</li>
+                </ul>
+
+                <p class="project__label" data-en="Result">Résultat</p>
+                <p data-en="Complete cycle tested and validated on the real arm, in front of the instructor.">Cycle complet testé et validé sur le bras réel, en présence de l’enseignant.</p>
+
+                <ul class="skill__tags project__tools"><li>Grafcet</li><li>Ladder</li><li>PL7-Pro</li><li data-en="TSX 37 PLC">Automate TSX 37</li><li data-en="Timers">Temporisateurs</li><li data-en="Counters">Compteurs</li><li data-en="Pneumatics">Pneumatique</li></ul>
+              </div>
+
+              <div class="project__figures">
+                <button class="project__fig zoom" type="button" data-full="assets/img/proj-climax-grafcet.svg">
+                  <img src="assets/img/proj-climax-grafcet.svg" alt="Extrait du Grafcet : boucle de secouage avec compteur" loading="lazy">
+                  <span data-en="Grafcet excerpt: shaking repeated 3 times (counter Ca)">Extrait du Grafcet : secouage répété 3 fois (compteur Ca)</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ===== Projet : traitement du signal ===== -->
+        <article class="pcard reveal" data-cat="embarque" tabindex="0" role="button" aria-haspopup="dialog">
+          <div class="pcard__img"><img src="assets/img/proj-sig-illu.svg" alt="" loading="lazy" style="object-position:center"></div>
+          <div class="pcard__body">
+            <span class="project__tag" data-en="Embedded &amp; signal">Embarqué &amp; signal</span>
+            <h3 class="pcard__title" data-en="Digital signal processing in MATLAB">Traitement numérique du signal sous MATLAB</h3>
+            <p class="pcard__meta" data-en="Project">Projet</p>
+            <p class="pcard__summary" data-en="Spectral analysis, design and application of digital filters to extract information from noisy signals.">Analyse spectrale, conception et application de filtres numériques pour extraire l’information de signaux bruités.</p>
+            <ul class="skill__tags pcard__tools"><li>FFT / DFT</li><li data-en="Filtering">Filtrage</li><li>MATLAB</li></ul>
+            <span class="pcard__more" data-en="View project →">Voir le projet →</span>
+          </div>
+          <div class="pcard__details" hidden>
+            <div class="project__head">
+              <span class="project__tag" data-en="Embedded &amp; signal">Embarqué &amp; signal</span>
+              <h3 class="project__title" data-en="Digital signal processing in MATLAB">Traitement numérique du signal sous MATLAB</h3>
+              <p class="project__meta" data-en="Project">Projet</p>
+            </div>
+            <div class="project__body">
+              <div class="project__text">
+                <p class="project__label" data-en="Objective">Objectif</p>
+                <p data-en="Master the tools of digital signal processing (convolution, DFT, filtering, sampling) and use them to isolate useful information in a signal, including in the presence of noise.">Maîtriser les outils du traitement numérique du signal (convolution, DFT, filtrage, échantillonnage) et les appliquer pour isoler une information utile dans un signal, y compris en présence de bruit.</p>
+
+                <p class="project__label" data-en="What I did">Ce que j’ai réalisé</p>
+                <ul class="project__steps">
+                  <li data-en="<b>Convolution and LTI systems</b>: discrete convolution, response of a system described by a difference equation solved recursively, stability study."><b>Convolution et systèmes LTI</b> : convolution discrète, réponse d’un système décrit par une équation aux différences résolue par récurrence, étude de sa stabilité.</li>
+                  <li data-en="<b>Low-pass filtering</b>: moving-average filter on Gaussian noise and sinc filter, effect of truncation (<b>Gibbs</b> phenomenon) and frequency shifting to obtain a band-pass filter."><b>Filtrage passe-bas</b> : filtre moyenneur sur un bruit gaussien et filtre à réponse en sinus cardinal, effet de la troncature (phénomène de <b>Gibbs</b>) et translation fréquentielle pour obtenir un passe-bande.</li>
+                  <li data-en="<b>Spectral analysis</b>: decomposition of a square wave into odd harmonics, then a <b>band-pass filter</b> to extract the fundamental, with and without noise."><b>Analyse spectrale</b> : décomposition d’un signal carré en harmoniques impaires, puis <b>filtre passe-bande</b> pour en extraire le fondamental, avec et sans bruit.</li>
+                  <li data-en="<b>DFT resolution</b>: discrimination of two close frequencies depending on the number of samples (Δf = fe/N), separation of sinusoidal components by filtering."><b>Résolution de la DFT</b> : discrimination de deux fréquences proches selon le nombre d’échantillons (Δf = fe/N), séparation de composantes sinusoïdales par filtrage.</li>
+                  <li data-en="<b>Audio signal</b>: choice of the sampling frequency using the <b>Shannon criterion</b> for a 4–12 kHz chirp, <b>Butterworth</b> filtering and analysis of its limits when components overlap in frequency."><b>Signal audio</b> : choix de la fréquence d’échantillonnage selon le <b>critère de Shannon</b> pour un chirp de 4 à 12 kHz, filtrage <b>Butterworth</b> et analyse de ses limites quand les composantes se chevauchent en fréquence.</li>
+                </ul>
+
+                <p class="project__label" data-en="Result">Résultat</p>
+                <p data-en="The 1 Hz fundamental is cleanly extracted from a square wave, even with heavy noise. The numerical results (convolution, spectra, frequency resolution) match theory, and the limits of classical filtering are identified for non-stationary signals.">Le fondamental à 1 Hz est extrait proprement d’un signal carré, même fortement bruité. Les résultats numériques (convolution, spectres, résolution fréquentielle) concordent avec la théorie, et les limites du filtrage classique sont identifiées pour les signaux non stationnaires.</p>
+
+                <ul class="skill__tags project__tools"><li>MATLAB</li><li>FFT / DFT</li><li>Convolution</li><li data-en="Low-pass / band-pass filter">Filtre passe-bas / passe-bande</li><li>Butterworth</li><li data-en="Sampling (Shannon)">Échantillonnage (Shannon)</li><li data-en="Noisy signals">Signaux bruités</li></ul>
+              </div>
+
+              <div class="project__figures">
+                <button class="project__fig zoom" type="button" data-full="assets/img/proj-sig-carre.jpg">
+                  <img src="assets/img/proj-sig-carre.jpg" alt="Signal carré et fondamental extrait par filtrage passe-bande" loading="lazy">
+                  <span data-en="Square wave and fundamental extracted by a band-pass filter">Signal carré et fondamental extrait par filtre passe-bande</span>
+                </button>
+                <button class="project__fig zoom" type="button" data-full="assets/img/proj-sig-bruit.jpg">
+                  <img src="assets/img/proj-sig-bruit.jpg" alt="Signal carré bruité puis filtré" loading="lazy">
+                  <span data-en="Noisy square wave, then filtered">Signal carré bruité, puis filtré</span>
+                </button>
+                <button class="project__fig zoom" type="button" data-full="assets/img/proj-sig-spectres.jpg">
+                  <img src="assets/img/proj-sig-spectres.jpg" alt="Spectres du signal, du filtre et du signal filtré" loading="lazy">
+                  <span data-en="Spectra: signal, low-pass filter and filtered signal">Spectres : signal, filtre passe-bas et signal filtré</span>
+                </button>
+                <button class="project__fig zoom" type="button" data-full="assets/img/proj-sig-dft.jpg">
+                  <img src="assets/img/proj-sig-dft.jpg" alt="DFT pour N = 100 et N = 1000" loading="lazy">
+                  <span data-en="DFT resolution: N = 100 and N = 1000">Résolution de la DFT : N = 100 et N = 1000</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ===== Projet : IoT ===== -->
+        <article class="pcard reveal" data-cat="embarque" tabindex="0" role="button" aria-haspopup="dialog">
+          <div class="pcard__img"><img src="assets/img/proj-iot-thumb.jpg" alt="" loading="lazy" style="object-position:center"></div>
+          <div class="pcard__body">
+            <span class="project__tag" data-en="Embedded &amp; signal">Embarqué &amp; signal</span>
+            <h3 class="pcard__title" data-en="IoT connected devices on Arduino">Objets connectés IoT sur Arduino</h3>
+            <p class="pcard__meta" data-en="Project">Projet</p>
+            <p class="pcard__summary" data-en="Sensors, actuators and real-time data streaming to a cloud dashboard.">Capteurs, actionneurs et envoi des mesures vers un tableau de bord cloud en temps réel.</p>
+            <ul class="skill__tags pcard__tools"><li>Arduino MKR</li><li>C / C++</li><li>I²C</li><li>IoT Cloud</li></ul>
+            <span class="pcard__more" data-en="View project →">Voir le projet →</span>
+          </div>
+          <div class="pcard__details" hidden>
+            <div class="project__head">
+              <span class="project__tag" data-en="Embedded &amp; signal">Embarqué &amp; signal</span>
+              <h3 class="project__title" data-en="IoT connected devices on Arduino">Objets connectés IoT sur Arduino</h3>
+              <p class="project__meta" data-en="Project">Projet</p>
+            </div>
+            <div class="project__body">
+              <div class="project__text">
+                <p class="project__label" data-en="Objective">Objectif</p>
+                <p data-en="Design end-to-end connected embedded systems: read sensors, drive actuators, then send the data over Wi-Fi to the cloud for remote monitoring.">Concevoir des systèmes embarqués connectés de bout en bout : lire des capteurs, piloter des actionneurs, puis transmettre les données en Wi-Fi vers le cloud pour les suivre à distance.</p>
+
+                <p class="project__label" data-en="What I did">Ce que j’ai réalisé</p>
+                <ul class="project__steps">
+                  <li data-en="<b>Sensor acquisition</b> in C/C++ on an Arduino MKR with the MKR IoT Carrier: pressure and altitude computation, gestures (APDS-9960, I²C), <b>LSM6DSOX</b> inertial unit with tilt-angle computation, PIR presence sensor and air quality (BME688)."><b>Acquisition de capteurs</b> en C/C++ sur Arduino MKR et carte MKR IoT Carrier : pression et calcul d’altitude, gestes (APDS-9960, I²C), centrale inertielle <b>LSM6DSOX</b> avec calcul des angles d’inclinaison, détecteur de présence PIR et qualité de l’air (BME688).</li>
+                  <li data-en="<b>Actuator control</b>: 5 RGB LEDs, 2 relays and the built-in display to show information."><b>Pilotage d’actionneurs</b> : 5 LEDs RGB, 2 relais et l’écran intégré pour afficher les informations.</li>
+                  <li data-en="<b>Alert system</b>: simulated monitoring of a turbocharger with a colour code based on pressure and temperature (normal / warning / alarm)."><b>Système d’alerte</b> : surveillance simulée d’un turbocompresseur avec code couleur selon la pression et la température (normal / attention / alerte).</li>
+                  <li data-en="<b>IoT deployment</b>: set-up of a device on <b>Arduino IoT Cloud</b>, Wi-Fi connection, temperature and humidity sent every second and creation of a <b>dashboard</b> (live gauges and charts)."><b>Déploiement IoT</b> : configuration d’un objet sur <b>Arduino IoT Cloud</b>, connexion Wi-Fi, envoi de la température et de l’humidité chaque seconde et création d’un <b>tableau de bord</b> (jauges et courbes en direct).</li>
+                </ul>
+
+                <p class="project__label" data-en="Result">Résultat</p>
+                <p data-en="Full chain validated on the board: real-time measurements, gestures and tilt detected, LEDs and relays controlled, and data accessible remotely on the cloud dashboard.">Chaîne complète validée sur la carte : mesures affichées en temps réel, gestes et inclinaisons détectés, LEDs et relais commandés, et données consultables à distance sur le tableau de bord cloud.</p>
+
+                <ul class="skill__tags project__tools"><li>Arduino MKR</li><li>C / C++</li><li>I²C</li><li data-en="LSM6DSOX IMU">IMU LSM6DSOX</li><li data-en="Environmental sensors">Capteurs environnementaux</li><li data-en="Relays / RGB LEDs">Relais / LEDs RGB</li><li>Wi-Fi</li><li>Arduino IoT Cloud</li></ul>
+              </div>
+
+              <div class="project__figures">
+                <button class="project__fig zoom" type="button" data-full="assets/img/proj-iot-dashboard.jpg">
+                  <img src="assets/img/proj-iot-dashboard.jpg" alt="Tableau de bord Arduino IoT Cloud" loading="lazy">
+                  <span data-en="Cloud dashboard: live temperature and humidity">Tableau de bord cloud : température et humidité en direct</span>
+                </button>
+                <button class="project__fig zoom" type="button" data-full="assets/img/proj-iot-turbo.jpg">
+                  <img src="assets/img/proj-iot-turbo.jpg" alt="Système d’alerte turbocompresseur à l’état normal" loading="lazy">
+                  <span data-en="Turbocharger alert: normal state (green)">Alerte turbocompresseur : état normal (vert)</span>
+                </button>
+                <button class="project__fig zoom" type="button" data-full="assets/img/proj-iot-leds.jpg">
+                  <img src="assets/img/proj-iot-leds.jpg" alt="Commande des LEDs RGB" loading="lazy">
+                  <span data-en="Control of the board’s 5 RGB LEDs">Commande des 5 LEDs RGB de la carte</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ===== Projet : LabVIEW ===== -->
+        <article class="pcard reveal" data-cat="embarque" tabindex="0" role="button" aria-haspopup="dialog">
+          <div class="pcard__img"><img src="assets/img/proj-lv-thumb.jpg" alt="" loading="lazy" style="object-position:center"></div>
+          <div class="pcard__body">
+            <span class="project__tag" data-en="Embedded &amp; signal">Embarqué &amp; signal</span>
+            <h3 class="pcard__title" data-en="LabVIEW application for managing phone numbers">Application LabVIEW de gestion de numéros de téléphone</h3>
+            <p class="pcard__meta" data-en="Project">Projet</p>
+            <p class="pcard__summary" data-en="LabVIEW program built from sub-VIs that generates numbers following the French numbering plan and identifies numbers from a CSV database.">Programme LabVIEW structuré en sous-VI qui génère des numéros selon le plan de numérotation français et identifie des numéros à partir d’une base CSV.</p>
+            <ul class="skill__tags pcard__tools"><li>LabVIEW</li><li data-en="Sub-VIs">Sous-VI</li><li data-en="CSV file">Fichier CSV</li></ul>
+            <span class="pcard__more" data-en="View project →">Voir le projet →</span>
+          </div>
+          <div class="pcard__details" hidden>
+            <div class="project__head">
+              <span class="project__tag" data-en="Embedded &amp; signal">Embarqué &amp; signal</span>
+              <h3 class="project__title" data-en="LabVIEW application for managing phone numbers">Application LabVIEW de gestion de numéros de téléphone</h3>
+              <p class="project__meta" data-en="Project">Projet</p>
+            </div>
+            <div class="project__body">
+              <div class="project__text">
+                <p class="project__label" data-en="Objective">Objectif</p>
+                <p data-en="Develop for a call centre a LabVIEW application that generates phone numbers by region following the French numbering plan, and checks entered numbers against a database.">Développer pour un centre d’appels une application LabVIEW qui génère des numéros de téléphone par région selon le plan de numérotation français, et qui vérifie des numéros saisis en les comparant à une base de données.</p>
+
+                <p class="project__label" data-en="What I did">Ce que j’ai réalisé</p>
+                <ul class="project__steps">
+                  <li data-en="<b>Modular architecture</b>: a main VI calling dedicated <b>sub-VIs</b> (generation, search), each with its own icon and connector pane."><b>Architecture modulaire</b> : un VI principal qui appelle des <b>sous-VI</b> dédiés (génération, recherche), chacun avec son icône et son terminal de connexion.</li>
+                  <li data-en="<b>Number generation</b>: input of the number of numbers wanted per region (Île-de-France, North-West, North-East, South-East, South-West, mobile, internet), random generation with the right prefix and a 15-number limit check with a warning message."><b>Génération de numéros</b> : saisie du nombre de numéros voulus par région (Île-de-France, Nord-Ouest, Nord-Est, Sud-Est, Sud-Ouest, mobiles, internet), génération aléatoire avec le bon indicatif et contrôle de la limite de 15 numéros avec message d’avertissement.</li>
+                  <li data-en="<b>Event-driven programming</b>: event structures driven by the front-panel buttons, loops and case structures."><b>Programmation événementielle</b> : structures d’événements pilotées par les boutons de la face avant, boucles et structures de condition.</li>
+                  <li data-en="<b>Search in a CSV database</b>: reading the short-number file and displaying the associated service and pricing (for example 15: emergency medical services, free), with a validity indicator."><b>Recherche dans une base CSV</b> : lecture du fichier de numéros courts et affichage du service associé et de la tarification (par exemple 15 : SAMU, gratuit), avec voyant de validité.</li>
+                  <li data-en="<b>Debugging</b> with probes to follow the data at each step of the program."><b>Mise au point</b> avec les sondes (probes) pour suivre les données à chaque étape du programme.</li>
+                </ul>
+
+                <p class="project__label" data-en="Result">Résultat</p>
+                <p data-en="Numbers correctly generated for each region with their prefix, and short numbers found in the database with their service and pricing.">Numéros générés correctement pour chaque région avec leur indicatif, et numéros courts retrouvés dans la base avec leur service et leur tarification.</p>
+
+                <ul class="skill__tags project__tools"><li>LabVIEW</li><li data-en="Sub-VIs">Sous-VI</li><li data-en="Event structure">Structure d’événements</li><li data-en="Arrays / strings">Tableaux / chaînes</li><li data-en="CSV file">Fichier CSV</li><li data-en="User interface">Interface utilisateur</li></ul>
+              </div>
+
+              <div class="project__figures">
+                <button class="project__fig zoom" type="button" data-full="assets/img/proj-lv-main.jpg">
+                  <img src="assets/img/proj-lv-main.jpg" alt="Face avant du VI principal avec les numéros générés" loading="lazy">
+                  <span data-en="Front panel: numbers generated by region">Face avant : numéros générés par région</span>
+                </button>
+                <button class="project__fig zoom" type="button" data-full="assets/img/proj-lv-generation.jpg">
+                  <img src="assets/img/proj-lv-generation.jpg" alt="Sous-VI de génération" loading="lazy">
+                  <span data-en="Generation sub-VI: number of numbers per region">Sous-VI de génération : nombre de numéros par région</span>
+                </button>
+                <button class="project__fig zoom" type="button" data-full="assets/img/proj-lv-diagramme.jpg">
+                  <img src="assets/img/proj-lv-diagramme.jpg" alt="Diagramme du sous-VI de génération" loading="lazy">
+                  <span data-en="Block diagram: event structure and limit check">Diagramme : structure d’événements et contrôle de la limite</span>
+                </button>
+                <button class="project__fig zoom" type="button" data-full="assets/img/proj-lv-base.jpg">
+                  <img src="assets/img/proj-lv-base.jpg" alt="Numéros courts retrouvés dans la base CSV" loading="lazy">
+                  <span data-en="Short numbers found in the database with service and pricing">Numéros courts retrouvés dans la base avec service et tarif</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+
         <!-- ===== TP : moteur asynchrone ===== -->
         <article class="pcard reveal" data-cat="electrotechnique" tabindex="0" role="button" aria-haspopup="dialog">
-          <div class="pcard__img"><img src="assets/img/proj-mas-banc.jpg" alt="" loading="lazy" style="object-position:center"></div>
+          <div class="pcard__img"><img src="assets/img/proj-mas-illu.svg" alt="" loading="lazy" style="object-position:center"></div>
           <div class="pcard__body">
             <span class="project__tag" data-en="Electrical engineering">Électrotechnique</span>
             <h3 class="pcard__title" data-en="Testing a three-phase induction motor">Caractérisation d’un moteur asynchrone triphasé</h3>
@@ -762,62 +1477,64 @@
           </div>
         </article>
 
+        <!-- ===== TP : machine à courant continu ===== -->
         <article class="pcard reveal" data-cat="electrotechnique" tabindex="0" role="button" aria-haspopup="dialog">
-          <div class="pcard__img"><img src="assets/img/proj-mcc-banc.jpg" alt="" loading="lazy" style="object-position:center"></div>
+          <div class="pcard__img"><img src="assets/img/proj-mcc-illu.svg" alt="" loading="lazy" style="object-position:center"></div>
           <div class="pcard__body">
             <span class="project__tag" data-en="Electrical engineering">Électrotechnique</span>
-            <h3 class="pcard__title" data-en="Study of a DC machine">Étude d’une machine à courant continu</h3>
+            <h3 class="pcard__title" data-en="DC machine as a generator and a motor">Machine à courant continu en génératrice et en moteur</h3>
             <p class="pcard__meta" data-en="Lab work">Travaux pratiques</p>
-            <p class="pcard__summary" data-en="Separately excited machine studied as a generator and then as a motor on a test bench.">Machine à excitation indépendante étudiée en génératrice puis en moteur sur banc d’essai.</p>
-            <ul class="skill__tags pcard__tools"><li data-en="DC machine">Machine à courant continu</li><li data-en="Generator">Génératrice</li><li data-en="Test bench">Banc d’essai</li></ul>
+            <p class="pcard__summary" data-en="Bench tests on a 1.5 kW separately excited DC machine, run first as a generator and then as a motor.">Essais sur banc d’une machine à courant continu de 1,5 kW à excitation indépendante, utilisée d’abord en génératrice puis en moteur.</p>
+            <ul class="skill__tags pcard__tools"><li data-en="DC machine">Machine à courant continu</li><li data-en="Test bench">Banc d’essai</li><li data-en="Electrical measurements">Mesures électriques</li><li data-en="Python (plots)">Python (courbes)</li></ul>
             <span class="pcard__more" data-en="View project →">Voir le projet →</span>
           </div>
           <div class="pcard__details" hidden>
             <div class="project__head">
               <span class="project__tag" data-en="Electrical engineering">Électrotechnique</span>
-              <h3 class="project__title" data-en="Study of a DC machine">Étude d’une machine à courant continu</h3>
+              <h3 class="project__title" data-en="DC machine as a generator and a motor">Machine à courant continu en génératrice et en moteur</h3>
               <p class="project__meta" data-en="Lab work">Travaux pratiques</p>
             </div>
             <div class="project__body">
               <div class="project__text">
                 <p class="project__label" data-en="Objective">Objectif</p>
-                <p data-en="Operate a DC machine as a generator and then as a motor, and measure its electrical and mechanical characteristics.">Faire fonctionner une machine à courant continu en génératrice puis en moteur, et relever ses caractéristiques électriques et mécaniques.</p>
+                <p data-en="Study the reversibility of a 1.5 kW separately excited DC machine: drive it as a generator, then run it as a motor, and measure its electrical and mechanical characteristics.">Étudier la réversibilité d’une machine à courant continu de 1,5 kW à excitation indépendante : l’entraîner en génératrice, puis la faire fonctionner en moteur, et relever ses caractéristiques électriques et mécaniques.</p>
 
                 <p class="project__label" data-en="What I did">Ce que j’ai réalisé</p>
                 <ul class="project__steps">
-                  <li data-en="<b>No-load characteristic</b> E = f(Ie), increasing and decreasing: highlighting magnetic <b>saturation</b> and <b>hysteresis</b>."><b>Caractéristique à vide</b> E = f(Ie) en montée et en descente : mise en évidence de la <b>saturation</b> et de l’<b>hystérésis</b> magnétiques.</li>
-                  <li data-en="<b>Load characteristic</b> U = f(I) while respecting the rated armature current."><b>Caractéristique en charge</b> U = f(I) en respectant le courant nominal d’induit.</li>
-                  <li data-en="<b>Regulation characteristic</b>: adjusting the field current to keep the output voltage constant as the load changes."><b>Caractéristique de réglage</b> : ajustement du courant d’excitation pour maintenir la tension de sortie constante quand la charge varie.</li>
-                  <li data-en="<b>Armature resistance measurement</b> and power balance."><b>Mesure de la résistance d’induit</b> et établissement du bilan de puissance.</li>
-                  <li data-en="<b>Motor operation</b>: measurement of the mechanical characteristic over several load points."><b>Fonctionnement en moteur</b> : relevé de la caractéristique mécanique sur plusieurs points de charge.</li>
+                  <li data-en="<b>Bench setup</b>: DC machine coupled to an induction motor that drives it at rated speed, with separate supplies for the armature and the field winding."><b>Mise en place du banc</b> : machine à courant continu accouplée à un moteur asynchrone qui l’entraîne à vitesse nominale, avec des alimentations séparées pour l’induit et l’inducteur.</li>
+                  <li data-en="<b>No-load test</b>: plot of E = f(Ie) with increasing then decreasing field current, to highlight <b>magnetic saturation</b> and <b>hysteresis</b>."><b>Essai à vide</b> : tracé de E = f(Ie) en montée puis en descente du courant d’excitation, pour mettre en évidence la <b>saturation magnétique</b> et l’<b>hystérésis</b>.</li>
+                  <li data-en="<b>Load test</b> on a variable resistive load, keeping the current below its rated value (6.8 A): plot of U = f(I) and analysis of the voltage drop."><b>Essai en charge</b> sur charge résistive variable, sans dépasser le courant nominal (6,8 A) : tracé de U = f(I) et analyse de la chute de tension.</li>
+                  <li data-en="<b>Regulation characteristic</b>: adjusting the field current to hold the output voltage at 110 V as the load increases."><b>Caractéristique de réglage</b> : ajustement du courant d’excitation pour maintenir la tension de sortie à 110 V quand la charge augmente.</li>
+                  <li data-en="<b>Armature resistance measurement</b>, then <b>motor operation</b>: load tests and power balance (Joule, iron and mechanical losses)."><b>Mesure de la résistance d’induit</b>, puis <b>fonctionnement en moteur</b> : essais en charge et bilan des puissances (pertes Joule, fer et mécaniques).</li>
                 </ul>
 
                 <p class="project__label" data-en="Result">Résultat</p>
-                <p data-en="Measured armature resistance of <b>4.1 Ω</b> for 4.2 Ω announced. The generator characteristics (saturation, hysteresis, voltage drop under load, voltage regulation through excitation) are consistent with the theoretical model of the machine.">Résistance d’induit mesurée de <b>4,1 Ω</b> pour 4,2 Ω annoncés. Les caractéristiques relevées en génératrice (saturation, hystérésis, chute de tension en charge, réglage de la tension par l’excitation) sont cohérentes avec le modèle théorique de la machine.</p>
+                <p data-en="Measured armature resistance of <b>4.1 to 4.3 Ω</b> for 4.2 Ω announced. The no-load curve clearly shows saturation above about 0.5 A of field current and a hysteresis gap between the two directions. Under load, the voltage falls steadily from 278 V to 244 V, as the model U = E − R·I predicts. All curves were plotted in Python.">Résistance d’induit mesurée entre <b>4,1 et 4,3 Ω</b> pour 4,2 Ω annoncés. La courbe à vide montre nettement la saturation au-delà d’environ 0,5 A d’excitation et un écart d’hystérésis entre la montée et la descente. En charge, la tension baisse régulièrement de 278 V à 244 V, comme le prévoit le modèle U = E − R·I. Toutes les courbes ont été tracées en Python.</p>
 
-                <ul class="skill__tags project__tools"><li data-en="DC machine">Machine à courant continu</li><li data-en="Generator / motor">Génératrice / moteur</li><li data-en="Separate excitation">Excitation indépendante</li><li data-en="Electrical measurements">Mesures électriques</li><li data-en="Python (plots)">Python (tracés)</li></ul>
+                <ul class="skill__tags project__tools"><li data-en="DC machine">Machine à courant continu</li><li data-en="Separate excitation">Excitation indépendante</li><li data-en="Test bench">Banc d’essai</li><li data-en="Power balance">Bilan de puissance</li><li data-en="Electrical measurements">Mesures électriques</li><li data-en="Python (plots)">Python (courbes)</li></ul>
               </div>
 
               <div class="project__figures">
                 <button class="project__fig zoom" type="button" data-full="assets/img/proj-mcc-vide.jpg">
-                  <img src="assets/img/proj-mcc-vide.jpg" alt="Caractéristique à vide de la génératrice" loading="lazy">
-                  <span data-en="No-load characteristic: saturation and hysteresis">Caractéristique à vide : saturation et hystérésis</span>
+                  <img src="assets/img/proj-mcc-vide.jpg" alt="Caractéristique à vide E = f(Ie) en montée et en descente" loading="lazy">
+                  <span data-en="No-load characteristic E = f(Ie): saturation and hysteresis">Caractéristique à vide E = f(Ie) : saturation et hystérésis</span>
                 </button>
                 <button class="project__fig zoom" type="button" data-full="assets/img/proj-mcc-charge.jpg">
-                  <img src="assets/img/proj-mcc-charge.jpg" alt="Caractéristique en charge" loading="lazy">
-                  <span data-en="Load characteristic U = f(I)">Caractéristique en charge U = f(I)</span>
+                  <img src="assets/img/proj-mcc-charge.jpg" alt="Caractéristique en charge U = f(I) de la génératrice" loading="lazy">
+                  <span data-en="Load characteristic U = f(I) of the generator">Caractéristique en charge U = f(I) de la génératrice</span>
                 </button>
-                <button class="project__fig zoom" type="button" data-full="assets/img/proj-mcc-reglage.jpg">
-                  <img src="assets/img/proj-mcc-reglage.jpg" alt="Caractéristique de réglage" loading="lazy">
-                  <span data-en="Regulation characteristic Ie = f(I)">Caractéristique de réglage Ie = f(I)</span>
+                <button class="project__fig zoom" type="button" data-full="assets/img/proj-mcc-plaque.jpg">
+                  <img src="assets/img/proj-mcc-plaque.jpg" alt="Plaque signalétique de la machine à courant continu" loading="lazy">
+                  <span data-en="Nameplate of the DC machine tested (1.5 kW, 220 V)">Plaque signalétique de la machine testée (1,5 kW, 220 V)</span>
                 </button>
               </div>
             </div>
           </div>
         </article>
 
+        <!-- ===== TP : transformateur triphasé ===== -->
         <article class="pcard reveal" data-cat="electrotechnique" tabindex="0" role="button" aria-haspopup="dialog">
-          <div class="pcard__img"><img src="assets/img/proj-tr-banc.jpg" alt="" loading="lazy" style="object-position:center"></div>
+          <div class="pcard__img"><img src="assets/img/proj-tr-illu.svg" alt="" loading="lazy" style="object-position:center"></div>
           <div class="pcard__body">
             <span class="project__tag" data-en="Electrical engineering">Électrotechnique</span>
             <h3 class="pcard__title" data-en="Study of a three-phase transformer">Étude d’un transformateur triphasé</h3>
@@ -877,21 +1594,43 @@
   <section class="services section" id="competences" aria-labelledby="h-competences">
     <div class="container">
       <h2 class="section__title reveal" id="h-competences" data-en="My <span>skills</span>">Mes <span>compétences</span></h2>
+      <p class="skills__intro reveal" data-en="Every skill below has been put into practice in at least one project.">Chaque compétence ci-dessous a été mise en pratique dans au moins un projet.</p>
       <div class="services__container grid">
         <article class="skill reveal">
           <div class="skill__head"><span class="skill__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></span><h3 class="skill__title" data-en="Control and regulation">Commande et régulation</h3></div>
-          <p class="skill__description" data-en="Modeling, simulation and tuning of controlled systems, from two-wheelers to turbojet engines.">Modélisation, simulation et réglage de systèmes commandés, du deux-roues au turboréacteur.</p>
-          <ul class="skill__tags"><li data-en="PD controller">Correcteur PD</li><li>IMC</li><li>Simulink</li><li>Simscape</li><li>Stateflow</li></ul>
+          <p class="skill__description" data-en="Model a system, identify it, then design and validate its control in simulation.">Modéliser un système, l’identifier, puis concevoir et valider sa commande en simulation.</p>
+          <ul class="skill__tags"><li>Identification</li><li>PID</li><li data-en="State feedback / LQR">Retour d’état / LQR</li><li data-en="Observers">Observateurs</li><li data-en="Linearisation">Linéarisation</li><li>MATLAB</li><li>Simulink</li><li>Simscape</li><li>Stateflow</li></ul>
+          <a class="skill__proof" href="#projets" data-goto="commande"><span data-en="See the projects">Voir les projets</span> <b class="skill__count"></b><span aria-hidden="true"> →</span></a>
         </article>
         <article class="skill reveal">
-          <div class="skill__head"><span class="skill__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9zM9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg></span><h3 class="skill__title" data-en="Automation and supervision">Automatismes et supervision</h3></div>
-          <p class="skill__description" data-en="Design of automation sequences and supervision of industrial installations.">Conception de séquences d’automatisme et supervision d’installations industrielles.</p>
-          <ul class="skill__tags"><li>Grafcet</li><li>SCADA</li><li data-en="Electrical diagnostics">Diagnostic électrique</li></ul>
+          <div class="skill__head"><span class="skill__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21h10M9 21v-4l3-6 6-3"/><circle cx="12" cy="11" r="1.6"/><circle cx="18" cy="8" r="1.6"/><path d="M19 9.5l2 3"/></svg></span><h3 class="skill__title" data-en="Industrial and collaborative robotics">Robotique industrielle et collaborative</h3></div>
+          <p class="skill__description" data-en="Commission and program real robots, from teaching points to the automatic cycle.">Mettre en œuvre et programmer des robots réels, de l’apprentissage des points au cycle automatique.</p>
+          <ul class="skill__tags"><li>Stäubli · VAL 3</li><li>FANUC CRX</li><li>Doosan</li><li>Universal Robots</li><li>Pick &amp; place</li><li data-en="Grippers and suction cups">Pinces et ventouses</li><li data-en="Mobile robot">Robot mobile</li></ul>
+          <a class="skill__proof" href="#projets" data-goto="robotique"><span data-en="See the projects">Voir les projets</span> <b class="skill__count"></b><span aria-hidden="true"> →</span></a>
         </article>
         <article class="skill reveal">
-          <div class="skill__head"><span class="skill__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21h10M9 21v-4l3-6 6-3"/><circle cx="12" cy="11" r="1.6"/><circle cx="18" cy="8" r="1.6"/><path d="M19 9.5l2 3"/></svg></span><h3 class="skill__title" data-en="Robotics and embedded systems">Robotique et embarqué</h3></div>
-          <p class="skill__description" data-en="Robot models, sensor-based perception and implementation on electronic boards.">Modèles de robots, perception par capteurs et mise en œuvre sur carte électronique.</p>
-          <ul class="skill__tags"><li>Denavit-Hartenberg</li><li data-en="Sensor fusion">Fusion de capteurs</li><li>GPS</li><li data-en="Ultrasonic">Ultrasons</li><li>LIDAR</li><li>Arduino</li><li>IMU</li></ul>
+          <div class="skill__head"><span class="skill__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9h4M7 13h10M7 17h6"/><circle cx="16" cy="9" r="1.2"/></svg></span><h3 class="skill__title" data-en="Industrial automation">Automatismes industriels</h3></div>
+          <p class="skill__description" data-en="Wire a PLC, design the Grafcet and program it on industrial test rigs.">Câbler un automate, concevoir le Grafcet et le programmer sur des maquettes industrielles.</p>
+          <ul class="skill__tags"><li>Grafcet</li><li>Ladder</li><li>Siemens S7-1200 / S7-300</li><li>Schneider M340</li><li>Unity Pro</li><li>PL7-Pro</li><li data-en="Pneumatics">Pneumatique</li></ul>
+          <a class="skill__proof" href="#projets" data-goto="automatisme"><span data-en="See the projects">Voir les projets</span> <b class="skill__count"></b><span aria-hidden="true"> →</span></a>
+        </article>
+        <article class="skill reveal">
+          <div class="skill__head"><span class="skill__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg></span><h3 class="skill__title" data-en="Embedded systems and IoT">Systèmes embarqués et IoT</h3></div>
+          <p class="skill__description" data-en="Program electronic boards, read sensors, drive actuators and connect data to the cloud.">Programmer des cartes électroniques, lire des capteurs, piloter des actionneurs et connecter les données au cloud.</p>
+          <ul class="skill__tags"><li>C / C++</li><li>Arduino</li><li>STM32 Nucleo</li><li>LiDAR</li><li>IMU</li><li>I²C / UART</li><li>Wi-Fi · IoT Cloud</li></ul>
+          <a class="skill__proof" href="#projets" data-goto="embarque"><span data-en="See the projects">Voir les projets</span> <b class="skill__count"></b><span aria-hidden="true"> →</span></a>
+        </article>
+        <article class="skill reveal">
+          <div class="skill__head"><span class="skill__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12c2-6 4-6 6 0s4 6 6 0 4-6 6 0"/><path d="M2 20h20"/></svg></span><h3 class="skill__title" data-en="Signal and instrumentation">Signal et instrumentation</h3></div>
+          <p class="skill__description" data-en="Analyse and filter signals, develop data acquisition and processing applications.">Analyser et filtrer des signaux, développer des applications d’acquisition et de traitement de données.</p>
+          <ul class="skill__tags"><li>FFT / DFT</li><li data-en="Digital filtering">Filtrage numérique</li><li data-en="Sampling">Échantillonnage</li><li>LabVIEW</li><li>MATLAB</li></ul>
+          <a class="skill__proof" href="#projets" data-goto="embarque"><span data-en="See the projects">Voir les projets</span> <b class="skill__count"></b><span aria-hidden="true"> →</span></a>
+        </article>
+        <article class="skill reveal">
+          <div class="skill__head"><span class="skill__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></span><h3 class="skill__title" data-en="Electrical engineering">Électrotechnique</h3></div>
+          <p class="skill__description" data-en="Characterise electrical machines on a test bench and interpret the measurements.">Caractériser des machines électriques sur banc d’essai et interpréter les mesures.</p>
+          <ul class="skill__tags"><li data-en="DC machine">Machine à courant continu</li><li data-en="Induction motor">Moteur asynchrone</li><li data-en="Transformer">Transformateur</li><li data-en="Electrical measurements">Mesures électriques</li><li data-en="Power analyser">Analyseur de réseau</li></ul>
+          <a class="skill__proof" href="#projets" data-goto="electrotechnique"><span data-en="See the projects">Voir les projets</span> <b class="skill__count"></b><span aria-hidden="true"> →</span></a>
         </article>
       </div>
     </div>
@@ -907,13 +1646,14 @@
         <a class="contact__email" id="emailText" hidden></a>
         <div class="contact__actions">
           <button class="button" type="button" id="copyEmail" hidden data-en="Copy email">Copier l’e-mail</button>
-          <a class="button" href="assets/pdf/Souad_Portfolio.pdf" download id="pdfBtn" data-en="Download PDF">Télécharger le PDF</a>
+          <a class="button" href="assets/pdf/CV_Souad_El_Khataby.pdf" download id="pdfBtn" data-en="Download my CV">Télécharger mon CV</a>
         </div>
       </div>
       <div class="contact__info">
-        <div class="reveal"><h3 class="contact__title" data-en="Location">Localisation</h3><p class="contact__address">Orléans, France</p></div>
-        <div class="reveal" style="--d:.12s"><h3 class="contact__title" data-en="Links">Réseaux</h3><p class="contact__address"><a href="https://github.com/souadelkhataby" target="_blank" rel="noopener">GitHub</a></p></div>
-        <div class="reveal" style="--d:.24s"><h3 class="contact__title">Documents</h3><p class="contact__address"><a href="assets/pdf/Souad_Portfolio.pdf" download data-en="Portfolio (PDF)">Portfolio en PDF</a></p></div>
+        <div class="reveal"><h3 class="contact__title" data-en="Phone">Téléphone</h3><p class="contact__address"><a href="tel:+33745263173">+33 7 45 26 31 73</a></p></div>
+        <div class="reveal" style="--d:.06s"><h3 class="contact__title" data-en="Location">Localisation</h3><p class="contact__address">Orléans, France</p></div>
+        <div class="reveal" style="--d:.12s"><h3 class="contact__title" data-en="Links">Réseaux</h3><p class="contact__address"><a href="https://www.linkedin.com/in/souad-el-khataby-641822375" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://github.com/souadelkhataby" target="_blank" rel="noopener">GitHub</a></p></div>
+        <div class="reveal" style="--d:.24s"><h3 class="contact__title">Documents</h3><p class="contact__address"><a href="assets/pdf/CV_Souad_El_Khataby.pdf" download data-en="CV (PDF)">CV en PDF</a></p></div>
       </div>
     </div>
   </section>
@@ -926,7 +1666,8 @@
       <li><a href="#projets" data-en="Projects">Projets</a></li>
       <li><a href="https://github.com/souadelkhataby" target="_blank" rel="noopener">GitHub</a></li>
       <li><a href="mailto:souadelkhataby@gmail.com">E-mail</a></li>
-      <li><a href="assets/pdf/Souad_Portfolio.pdf" download>PDF</a></li>
+      <li><a href="https://www.linkedin.com/in/souad-el-khataby-641822375" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><a href="assets/pdf/CV_Souad_El_Khataby.pdf" download>CV</a></li>
     </ul>
     <p>© <span id="year">2026</span> Souad, Orléans</p>
   </div>
@@ -1036,6 +1777,14 @@
     projectsEmpty.hidden = shown > 0;
   }));
 
+  /* ---- Compétences : lien vers les projets filtrés ---- */
+  document.querySelectorAll('.skill__proof').forEach(link => {
+    const f = link.dataset.goto;
+    const n = [...document.querySelectorAll('.pcard')].filter(c => (c.dataset.cat || '').split(' ').includes(f)).length;
+    link.querySelector('.skill__count').textContent = n;
+    link.addEventListener('click', () => { const b = document.querySelector('.filter[data-filter="' + f + '"]'); if (b) b.click(); });
+  });
+
   /* ---- Projets : fenêtre de détails ---- */
   const pmodal = document.getElementById('pmodal'), pmodalContent = document.getElementById('pmodalContent');
   const openProject = card => {
@@ -1043,7 +1792,7 @@
     pmodal.classList.add('open'); document.body.classList.add('modal-open');
     pmodal.querySelector('.pmodal__panel').scrollTop = 0;
   };
-  const closeProject = () => { pmodal.classList.remove('open'); document.body.classList.remove('modal-open'); };
+  const closeProject = () => { pmodalContent.querySelectorAll('video').forEach(v => v.pause()); pmodal.classList.remove('open'); document.body.classList.remove('modal-open'); };
   document.querySelectorAll('.pcard').forEach(card => {
     card.addEventListener('click', () => openProject(card));
     card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openProject(card); } });
